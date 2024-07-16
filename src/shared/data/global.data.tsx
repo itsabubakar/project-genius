@@ -6,76 +6,33 @@ import {
   IconChevronDown,
   IconRss,
 } from '@tabler/icons-react';
-import { AnnouncementProps, FooterProps, HeaderProps } from '../types';
+import {  FooterProps, HeaderProps } from '../types';
 
-// Announcement data
-export const announcementData: AnnouncementProps = {
-  title: 'NEW',
-  callToAction: {
-    text: 'This template is made with Next.js 14 using the new App Router »',
-    href: 'https://nextjs.org/blog/next-14',
-  },
-  callToAction2: {
-    text: 'Follow @onWidget on Twitter',
-    href: 'https://twitter.com/intent/user?screen_name=onwidget',
-  },
-};
 
 // Header data
 export const headerData: HeaderProps = {
   links: [
     {
-      label: 'Pages',
-      icon: IconChevronDown,
-      links: [
-        {
-          label: 'Services',
-          href: '/services',
-        },
-        {
-          label: 'Pricing',
-          href: '/pricing',
-        },
-        {
-          label: 'About us',
-          href: '/about',
-        },
-        {
-          label: 'Contact us',
-          href: '/contact',
-        },
-        {
-          label: 'FAQs',
-          href: '/faqs',
-        },
-        {
-          label: 'Terms & Conditions',
-          href: '/terms',
-        },
-        {
-          label: 'Privacy Policy',
-          href: '/privacy',
-        },
-      ],
-    },
-    {
-      label: 'Blog',
+      label: 'About Us',
       href: '/blog',
     },
     {
-      label: 'Contact',
+      label: 'Events',
       href: '/contact',
+    },
+    {         
+       label: 'Contact us',
+        href: '/contact',
     },
   ],
   actions: [
     {
-      text: 'Download',
+      text: 'Start Application',
       href: 'https://github.com/onwidget/tailnext',
       targetBlank: true,
     },
   ],
   isSticky: true,
-  showToggleTheme: true,
   showRssFeed: false,
   position: 'right',
 };
