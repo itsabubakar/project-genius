@@ -156,7 +156,7 @@ type Team = {
 };
 
 type Testimonial = {
-  testimonial?: string;
+  testimonial?: string[];
   startSlice?: number;
   endSlice?: number;
   isTestimonialUp?: boolean;
@@ -186,7 +186,7 @@ type Price = {
   title?: string;
   subtitle?: string;
   description?: string;
-  price?: number;
+  price?: string | number;
   period?: string;
   items?: Array<Item>;
   callToAction?: CallToActionType;

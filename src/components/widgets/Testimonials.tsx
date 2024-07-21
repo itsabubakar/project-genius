@@ -28,8 +28,8 @@ const Testimonials = ({
                     : ''
                 }`}
               >
-                {!callToAction && href ? (
-                  <Link href={href} target="_blank" rel="noopener noreferrer">
+                {!callToAction ? (
+                  <div >
                     <ItemTestimonial
                       name={name}
                       job={job}
@@ -45,7 +45,7 @@ const Testimonials = ({
                       jobClass="text-sm"
                       imageClass="mr-4 rtl:mr-0 rtl:ml-4 h-10 w-10 rounded-full"
                     />
-                  </Link>
+                  </div>
                 ) : (
                   <ItemTestimonial
                     name={name}
@@ -68,13 +68,7 @@ const Testimonials = ({
         )}
       </div>
     </div>
-    {callToAction && (
-      <CTA
-        callToAction={callToAction}
-        containerClass="flex justify-center mx-auto w-fit mt-8 md:mt-12"
-        linkClass="btn"
-      />
-    )}
+   
   </WidgetWrapper>
 );
 

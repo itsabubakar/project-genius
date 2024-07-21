@@ -41,24 +41,23 @@ import gasImg from '~/assets/images/gas.jpg';
 export const heroHome: HeroProps = {
   title: (
     <>
-      Free template for <span className="hidden md:inline">starts a website using</span> <span>Next.js</span> +{' '}
-      <span className="sm:whitespace-nowrap">Tailwind CSS</span>
+      GENERATING EXCITING NEW IDEAS AND
+USEFUL SOLUTIONS (GENIUS) 
     </>
   ),
   subtitle: (
     <>
       <span className="hidden md:inline">
         <span className="font-semibold underline decoration-primary-600 decoration-wavy decoration-1 underline-offset-2">
-          TailNext
+          Project GENIUS
         </span>{' '}
-        is a production ready template to start your new website using <em>Next.js</em> + <em>Tailwind CSS</em>.
+       (Generating Exciting New Ideas and Useful Solutions) Project Contest aims to rekindle students' passion for engineering by fostering creativity, innovation, and analytical thinking. 
       </span>{' '}
-      It has been designed following Best Practices, SEO, Accessibility, Dark Mode, great Page Speed, image
-      optimization.
+    It provides a platform for diverse participants to collaborate, showcase ideas, and engage in friendly competition, promoting teamwork and a sense of community.
     </>
   ),
   callToAction: {
-    text: 'Get template',
+    text: 'Apply',
     href: 'https://github.com/onwidget/tailnext',
     icon: IconDownload,
     targetBlank: true,
@@ -73,33 +72,7 @@ export const heroHome: HeroProps = {
   },
 };
 
-// SocialProof data on Home page *******************
-export const socialProofHome: SocialProofProps = {
-  id: 'socialProof-on-home',
-  hasBackground: false,
-  images: [
-    {
-      link: 'https://nextjs.org/',
-      src: nextJsLogo,
-      alt: 'NextJs Logo',
-    },
-    {
-      link: 'https://react.dev/',
-      src: reactLogo,
-      alt: 'React Logo',
-    },
-    {
-      link: 'https://tailwindcss.com/',
-      src: tailwindCssLogo,
-      alt: 'Tailwind CSS Logo',
-    },
-    {
-      link: 'https://www.typescriptlang.org/',
-      src: typescriptLogo,
-      alt: 'Typescript Logo',
-    },
-  ],
-};
+
 
 // Features data on Home page *******************
 export const featuresHome: FeaturesProps = {
@@ -109,73 +82,47 @@ export const featuresHome: FeaturesProps = {
   header: {
     title: (
       <>
-        What you get with <span className="whitespace-nowrap">TailNext</span>
+        Why <span className="whitespace-nowrap">Project Genius</span>
       </>
     ),
     subtitle:
-      "Elevating Your Digital Presence: Discover the Synergies Unleashed in Our Platform's Core Strengths, from Seamless Integration to Open Collaboration.",
-    tagline: 'Features',
+      "The GENIUS Project Contest emerged from the necessity to address several key areas in education and personal among students",
+    tagline: 'Contest Rationale',
   },
   items: [
     {
-      title: 'Next.Js + Tailwind CSS Integration',
+      title: 'Reigniting Passion for Engineering',
       description:
-        'A seamless integration between two great frameworks that offer high productivity, performance and versatility.',
+        'With a decline in enthusiasm for engineering disciplines, this contest aims to rekindle interest and excitement in this vital field.',
       icon: IconBrandTailwind,
-      callToAction: {
-        text: 'Discover now',
-        href: '/',
-      },
     },
     {
-      title: 'Ready-to-use Components',
+      title: 'Promoting Solution-Driven Mindsets',
       description:
-        'Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
+        'By engaging students in real-world problemsolving activities, we aim to foster a mindset that seeks practical and innovative solutions.',
       icon: IconComponents,
-      callToAction: {
-        text: 'Discover now',
-        href: '/',
-      },
+     
     },
     {
-      title: 'Best Practices',
+      title: 'Encouraging Creativity and Innovation',
       description:
-        'By prioritizing maintainability and scalability through coding standards and design principles, your website stays robust and efficient.',
+        'The contest provides a platform for students to think creatively and develop innovative ideas, preparing them for future challenges',
       icon: IconListCheck,
-      callToAction: {
-        text: 'Discover now',
-        href: '/',
-      },
+     
     },
     {
-      title: 'Excellent Page Speed',
+      title: 'Enhancing Analytical Skills',
       description:
-        'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
+        'Through various contest tasks, participants will enhance their analytical and critical thinking abilities.',
       icon: IconRocket,
-      callToAction: {
-        text: 'Discover now',
-        href: '/',
-      },
+     
     },
     {
-      title: 'Search Engine Optimization (SEO)',
+      title: 'Fostering Curiosity',
       description:
-        "Boost online visibility with our SEO-friendly website. Effective strategies and practices enhance your website's search engine ranking, making it easier for users to find your content.",
+        "Encouraging a sense of curiosity, the contest motivates students to explore new concepts and technologies.",
       icon: IconArrowsRightLeft,
-      callToAction: {
-        text: 'Discover now',
-        href: '/',
-      },
-    },
-    {
-      title: 'Open to new ideas and contributions',
-      description:
-        'We welcome new ideas and contributions to our platform. Whether you have feature suggestions, want to contribute code, or share insights, our platform is open for collaboration.',
-      icon: IconBulb,
-      callToAction: {
-        text: 'Discover now',
-        href: '/',
-      },
+     
     },
   ],
 };
@@ -185,27 +132,27 @@ export const contentHomeOne: ContentProps = {
   id: 'contentOne-on-home-one',
   hasBackground: true,
   header: {
-    title: 'Aliquip definiebas ad est',
-    subtitle: 'Quando cetero his ne, eum admodum sapientem ut',
-    tagline: 'Content',
+    title: 'Key details',
+    subtitle: 'The GENIUS Project Contest is exclusively open to undergraduate students within the Faculty of Engineering at Ahmadu Bello University.',
+    tagline: 'PARTICIPANTS',
   },
   content:
-    'Ne dicta praesent ocurreret has, diam theophrastus at pro. Eos etiam regione ut, persius eripuit quo id. Sit te euismod tacimates.',
+    'This contest aims to bring together a diverse group of students, encouraging cross-departmental collaboration and fostering a spirit of unity and teamwork within the faculty.',
   items: [
     {
-      title: 'Per ei quaeque sensibus',
+      title: 'Eligibility',
       description:
-        'Ex usu illum iudico molestie. Pro ne agam facete mediocritatem, ridens labore facete mea ei. Pro id apeirian dignissim.',
+        'All undergraduate students enrolled in the Faculty of Engineering at Ahmadu Bello University are eligible to participate. This includes students from all departments and academic levels within the faculty.',
     },
     {
-      title: 'Cu imperdiet posidonium sed',
+      title: 'Team-Based Structure',
       description:
-        'Amet utinam aliquando ut mea, malis admodum ocurreret nec et, elit tibique cu nec. Nec ex maluisset inciderint, ex quis.',
+        'The contest is designed to be team-based, promoting collaborative problem-solving and idea-sharing among participants. Students are encouraged to form teams, leveraging the diverse skills and knowledge of their peers.',
     },
     {
-      title: 'Nulla omittam sadipscing mel ne',
+      title: 'Team Composition',
       description:
-        'At sed possim oporteat probatus, justo graece ne nec, minim commodo legimus ut vix. Ut eos iudico quando soleat, nam modus.',
+        'Each team should consist of no more than five members. Teams can be composed of students from any department and academic level within the Faculty of Engineering. This flexibility allows teams to combine different perspectives and expertise, enhancing their potential for innovative solutions.',
     },
   ],
   image: {
@@ -221,26 +168,21 @@ export const contentHomeTwo: ContentProps = {
   id: 'contentOne-on-home-two',
   hasBackground: true,
   content:
-    'Per odio fabellas consulatu cu. Utroque detracto mel ea, quo te latine theophrastus. Ea his tale nib dissentias, mei exerci tamquam euripidis cu.',
+    'By offering a diverse range of awards and recognition, we aim to motivate and inspire participants while expressing gratitude to sponsors, judges, and organizers for their invaluable support and contributions to the success of the contest.',
   items: [
     {
-      title: 'Per ei quaeque sensibus',
+      title: 'Seed funding ranging from 5,000 to 10,000 Naira will be awarded to approximately ten deserving teams to support the development of their innovative solutions.',
     },
     {
-      title: 'Cu imperdiet posidonium sed',
+      title: 'Certificates of participation will be awarded to all contest participants to recognize their contributions and efforts.',
     },
     {
-      title: 'Nulla omittam sadipscing mel ne',
+      title: 'Plaques will be presented to all judges, sponsors, and organizers as a token of appreciation for their valuable contributions to the contest.',
     },
     {
-      title: 'Per ei quaeque sensibus',
+      title: 'All winners, sponsors, judges, and organizers will be prominently recognized and acknowledged through various channels',
     },
-    {
-      title: 'Cu imperdiet posidonium sed',
-    },
-    {
-      title: 'Nulla omittam sadipscing mel ne',
-    },
+    
   ],
   image: {
     src: cameraBackImg,
@@ -261,29 +203,47 @@ export const stepsHome: StepsProps = {
     alt: 'Steps image',
   },
   header: {
-    title: 'Sed ac magna sit amet risus tristique interdum.',
+    title: 'COMPETITION ACTIVITIES & TIMELINE',
   },
   items: [
     {
-      title: 'Step 1',
+      title: 'Registration Deadline',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mirisus tempus nulla, sed porttitor est nibh at nulla. Praesent placerat enim ut ex tincidunt vehicula. Fusce sit amet dui tellus.',
+        'May 31st All interested teams must register by this date to participate in the contest.',
       icon: IconArrowDown,
     },
     {
-      title: 'Step 2',
+      title: 'Round One: Idea Contest Timeline: June 22nd - June 28th',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mirisus tempus nulla, sed porttitor est nibh at nulla.',
+        'In this initial round teams are required to develop unique solutions to prevailing problems. Each team must prepare for a presentation, which could be either physical or online, and submit an executive summary that includes: Problem statement, Proposed solution, Cost analysis (budget) for a prototype, Deliverables,Physical or online presentation Executive summary',
       icon: IconArrowDown,
     },
     {
-      title: 'Step 3',
+      title: 'Announcement of Finalists',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mirisus tempus nulla, sed porttitor est nibh at nulla.',
+        'June 30th Finalists who advance to the next round will be announced.',
       icon: IconArrowDown,
     },
     {
-      title: 'Ready!',
+      title: 'Entitlements for Finalists',
+      description:
+        'Partial seed funding for the prototype and allocation of mentors to guide the development process',
+      icon: IconArrowDown,
+    },
+    {
+      title: 'Pre-Contest Workshop',
+      description:
+        'August 3rd All contestants are invited to attend a workshop where they will receive training on: Fine-tuning and presenting their ideas. Applying for grants. Next steps post-contest.Certificates of participation for all attendees.',
+      icon: IconArrowDown,
+    },
+    {
+      title: 'Round Two (Presentation and Exhibition)',
+      description:
+        ' August 10th This round involves a comprehensive presentation and exhibition. Finalists are expected to present: A working prototype. A PowerPoint presentation. A progress report detailing their development journey. Monetary prizes for top teams. Certificates and awards recognizing excellence. Opportunities to network and connect with field experts and mentors',
+      icon: IconArrowDown,
+    },
+    {
+      title: 'Apply!',
     },
   ],
 };
@@ -293,70 +253,63 @@ export const testimonialsHome: TestimonialsProps = {
   id: 'testimonials-on-home',
   hasBackground: true,
   header: {
-    title: 'What our customers say about us',
+    title: 'RULES & GUIDELINES',
     subtitle:
-      'Etiam sed odio et dolor auctor gravida. Curabitur tincidunt elit non risus pharetra sodales. Etiam sit amet mattis massa.',
+      'To ensure a fair and productive contest, participants must adhere to the following rules and guidelines. These rules are designed to maintain the integrity of the competition and to provide a clear framework within which participants can operate',
   },
   testimonials: [
     {
-      name: 'Tayla Kirsten',
-      job: 'Marketing Manager',
-      testimonial: `I'm impressed by the speed and performance of these templates. My website now loads in the blink of an eye, significantly enhancing my visitors' experience. Thanks to TailNext, my online business is thriving.`,
-      image: {
-        src: 'https://images.unsplash.com/photo-1619734086067-24bf8889ea7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
-        alt: 'Tayla Kirsten',
-      },
-      href: '/',
+      name: 'Eligibility',
+      testimonial: [`Participants must be undergraduate students currently enrolled in any
+department within the Faculty of Engineering at Ahmadu Bello University`, 'Each team can consist of up to five members, who may be from different departments and academic levels within the faculty.']
+      
     },
     {
-      name: 'Silver Jordan',
-      job: 'Senior Marketer',
-      testimonial: `I had never found it so easy to customize a website. TailNext's templates are incredibly flexible, and with Tailwind CSS, I've managed to give my website the look and feel I always wanted. Highly recommended!`,
-      image: {
-        src: 'https://images.unsplash.com/photo-1565049786474-1dea82a8b995?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
-        alt: 'Silver Jordan',
-      },
-      href: '/',
+      name: 'Team Formation',
+      testimonial: [`Teams should be formed voluntarily by students.`, 'No team may exceed five members.', 'Interdepartmental teams are encouraged to promote diversity of thought and skills.'],
+      
+    },
+
+    {
+      name: 'Submission Requirements:',
+      testimonial: [`For Round One, teams must submit an executive summary that includes a problem statement, proposed solution, and cost analysis (budget) for a prototype.`, 'Presentations can be conducted either physically or online.', 'All submissions must be original work created by the team members.'],
+
     },
     {
-      name: 'Kelsey Arden',
-      job: 'Co-Founder & CEO',
-      testimonial: `As a beginner in web development, I really needed clear guidance. Tailnext made it possible. I was able to install and customize my website seamlessly, and I'm thrilled with the results!`,
-      image: {
-        src: 'https://images.unsplash.com/photo-1659057106920-da022cfbc0cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
-        alt: 'Kelsey Arden',
-      },
-      href: '/',
+      name: 'Conduct and Integrity',
+      testimonial: [`All participants are expected to uphold the highest standards of academic
+integrity and professionalism.`, 'Plagiarism, cheating, or any form of dishonest behavior will result in immediate disqualification.', 'Respectful and collaborative behavior is expected at all times during the contest'],
+      
     },
     {
-      name: 'Sarah Johnson',
-      job: 'Business Owner',
-      testimonial: `They've not only saved me a ton of time but have also made my websites look incredibly professional. The level of detail and thought that went into designing these templates is truly impressive.`,
-      image: {
-        src: 'https://images.unsplash.com/photo-1572417884940-c24659be6068?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
-        alt: 'Sarah Johnson',
-      },
-      href: '/',
+      name: 'Evaluation Criteria:',
+      testimonial: [`Entries will be judged based on creativity, feasibility, impact, and
+presentation.`, 'Judge decisions are final and binding.'],
+      
     },
     {
-      name: 'Keith Young',
-      job: 'Freelance Developer',
-      testimonial: `The clean code and integration with Next.js make my projects a breeze. Plus, the responsive design ensures that my clients' websites look amazing on any device. These templates have become my secret weapon for success!`,
-      image: {
-        src: 'https://images.unsplash.com/photo-1694287877106-ee22f764aef1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
-        alt: 'Keith Young',
-      },
-      href: '/',
-    },
-    {
-      name: 'Lisa Gordon',
-      job: 'Project Manager',
-      testimonial: `Their templates are not only stunning but also user-friendly. The support I received from their community has been exceptional. I'm proud to say that I've built my dream website with TailNext.`,
+      name: 'Workshops and Mentorship',
+      testimonial:[ `Attendance at the pre-contest workshop on August 3rd is highly encouraged for all participants.`, 'Finalists will be assigned mentors to assist with prototype development and presentation skills.'],
       image: {
         src: 'https://images.unsplash.com/photo-1665984867752-6370ab5ae35e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
-        alt: 'Lisa Gordon',
+        alt: 'img',
       },
-      href: '/',
+    },
+    {
+      name: 'Final Presentation and Exhibition:',
+      testimonial:[ `Finalist teams must prepare a functional prototype, a PowerPoint presentation, and a progress report for the final round on August 10th.`, 'Teams will present their solutions to a panel of judges and an audience, followed by an exhibition of their prototypes.'],
+      image: {
+        src: 'https://images.unsplash.com/photo-1665984867752-6370ab5ae35e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+        alt: 'img',
+      },
+    },
+    {
+      name: 'Awards and Prizes',
+      testimonial:[ `Monetary prizes will be awarded to the top-performing teams.`, 'All participants will receive certificates, and finalists will receive additional awards and recognition', 'Opportunities for networking with field experts and mentors will be provided during and after the contest.'],
+      image: {
+        src: 'https://images.unsplash.com/photo-1665984867752-6370ab5ae35e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+        alt: 'img',
+      },
     },
   ],
 };
@@ -404,88 +357,77 @@ export const pricingHome: PricingProps = {
   id: 'pricing-on-home',
   hasBackground: true,
   header: {
-    title: 'Prices for each plan',
+    title: 'AWARDS & RECOGNITION',
     subtitle:
-      'Proin eget vestibulum sem, vel ultrices ligula. Vestibulum in eleifend lectus, non mollis odio. Donec nibh ipsum, suscipit non pulvinar quis, lobortis ac lorem.',
-    // tagline: 'Pricing',
+      'The GENIUS Project Contest will offer a range of awards and recognition to celebrate the achievements of participants and acknowledge the support of sponsors judges, and organizers.',
+    tagline: 'Awards ',
   },
   prices: [
+
     {
-      title: 'basic',
-      price: 29,
-      period: 'per month',
+      title: 'Grand Prize',
+      price: '500,000',
       items: [
         {
-          description: 'Etiam in libero, et volutpat',
+          description: 'Customized Notepads',
         },
         {
-          description: 'Aenean ac nunc dolor tristique',
+          description: 'Pens',
         },
         {
-          description: 'Cras scelerisque accumsan lib',
+          description: 'T-shirts',
         },
         {
-          description: 'In hac habitasse',
+          description: 'Certificate',
         },
       ],
-      callToAction: {
-        targetBlank: true,
-        text: 'Free 7-day trial',
-        href: '/',
-      },
-      hasRibbon: false,
-    },
-    {
-      title: 'standard',
-      price: 69,
-      period: 'per month',
-      items: [
-        {
-          description: 'Proin vel laoreet',
-        },
-        {
-          description: 'Ut efficitur egestas',
-        },
-        {
-          description: 'Pellentesque ut nibh',
-        },
-        {
-          description: 'Donec fringilla sem',
-        },
-      ],
-      callToAction: {
-        targetBlank: true,
-        text: 'Free 15-day trial',
-        href: '/',
-      },
+     
       hasRibbon: true,
-      ribbonTitle: 'Popular',
+      ribbonTitle: 'Grand prize',
     },
+
     {
-      title: 'premium',
-      price: 199,
-      period: 'per month',
+      title: 'First Runner-Up',
+      price: "300,000",
       items: [
         {
-          description: 'Curabitur suscipit risus',
+          description: 'Customized Notepads',
         },
         {
-          description: 'Aliquam blandit malesuada',
+          description: 'Pens',
         },
         {
-          description: 'Suspendisse sit amet',
+          description: 'T-shirts',
         },
         {
-          description: 'Suspendisse auctor dui',
+          description: 'Certificate',
         },
       ],
-      callToAction: {
-        targetBlank: true,
-        text: 'Free 30-day trial',
-        href: '/',
-      },
+     
+      
+    },
+
+    {
+      title: 'Second Runner-Up',
+      price: "100,000",
+      items: [
+        {
+          description: 'Customized Notepads',
+        },
+        {
+          description: 'Pens',
+        },
+        {
+          description: 'T-shirts',
+        },
+        {
+          description: 'Certificate',
+        },
+      ],
+      
       hasRibbon: false,
     },
+
   ],
 };
 

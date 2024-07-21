@@ -30,16 +30,16 @@ const Timeline = ({
                   ) : null}
                 </div>
 
-                {index !== items.length - 1 && <div className="w-px h-full bg-black/10 dark:bg-slate-400/50" />}
+                {index !== items.length - 1 && <div className="w-px h-full bg-black/10" />}
               </div>
               <div className={`pt-1 ${index !== items.length - 1 ? 'pb-8' : ''}`}>
                 {title && (
-                  <h3 className={twMerge('text-xl font-bold text-gray-900 dark:text-slate-300 mb-2', titleClass)}>
+                  <h3 className={twMerge('text-xl font-bold text-gray-900 mb-2', titleClass)}>
                     {title}
                   </h3>
                 )}
                 {description && (
-                  <p className={twMerge('text-gray-600 dark:text-slate-400', descriptionClass)}>{description}</p>
+                  <p className={twMerge('text-gray-600', descriptionClass)}>{description}</p>
                 )}
               </div>
             </div>

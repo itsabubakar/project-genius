@@ -9,7 +9,7 @@ const Hero = ({ title, subtitle, tagline, callToAction, callToAction2, image }: 
         <div className="py-12 md:py-20">
           <div className="mx-auto max-w-4xl pb-10 text-center md:pb-16">
             {tagline && (
-              <p className="text-base font-semibold uppercase tracking-wide text-primary-600 dark:text-primary-200">
+              <p className="text-base font-semibold uppercase tracking-wide text-primary-600 ">
                 {tagline}
               </p>
             )}
@@ -19,7 +19,7 @@ const Hero = ({ title, subtitle, tagline, callToAction, callToAction2, image }: 
               </h1>
             )}
             <div className="mx-auto max-w-3xl">
-              {subtitle && <p className="mb-6 text-xl font-normal text-gray-600 dark:text-slate-400">{subtitle}</p>}
+              {subtitle && <p className="mb-6 text-xl font-normal text-gray-600 ">{subtitle}</p>}
               <div className="flex max-w-none flex-col flex-nowrap gap-4 px-4 sm:flex-row sm:justify-center">
                 {callToAction && <CTA callToAction={callToAction} linkClass="btn btn-primary" />}
                 {callToAction2 && <CTA callToAction={callToAction2} linkClass="btn" />}
@@ -29,7 +29,7 @@ const Hero = ({ title, subtitle, tagline, callToAction, callToAction2, image }: 
           {image && (
             <div className="relative m-auto max-w-5xl">
               <Image
-                className="mx-auto h-auto w-full rounded-md bg-gray-400 dark:bg-slate-700"
+                className="mx-auto h-auto w-full rounded-md bg-gray-400"
                 src={image.src}
                 alt={image.alt}
                 width={1024}

@@ -47,18 +47,18 @@ const Testimonials2 = ({ header, testimonials, isTestimonialUp, id, hasBackgroun
                   panelClass="w-full md:max-w-md lg:max-w-screen-sm mx-auto"
                   imageClass="w-6 h-6 rounded-full"
                   dataClass="mt-8 space-x-3 mx-auto"
-                  nameJobClass="flex flex-row items-center divide-x-2 divide-gray-500 dark:divide-gray-700"
-                  nameClass="pr-3 font-medium text-gray-900 dark:text-white"
-                  jobClass="pl-3 text-sm font-light text-gray-500 dark:text-gray-400"
-                  testimonialClass="text-2xl font-medium text-gray-900 dark:text-white"
+                  nameJobClass="flex flex-row items-center divide-x-2 divide-gray-500"
+                  nameClass="pr-3 font-medium text-gray-900"
+                  jobClass="pl-3 text-sm font-light text-gray-500"
+                  testimonialClass="text-2xl font-medium text-gray-900"
                 />
                 <div className="md:absolute md:inset-0 flex items-center justify-center md:justify-between p-4 mb-6 md:mb-0">
                   <button onClick={() => handleGoToPrevious(index)}>
                     <IconChevronLeft
                       className={`w-12 h-12 mr-4 ${
                         activeIndex === firstIndex
-                          ? 'cursor-not-allowed text-gray-400 dark:text-gray-600'
-                          : 'text-black dark:text-white'
+                          ? 'cursor-not-allowed text-gray-400'
+                          : 'text-black'
                       }`}
                     />
                   </button>
@@ -66,8 +66,8 @@ const Testimonials2 = ({ header, testimonials, isTestimonialUp, id, hasBackgroun
                     <IconChevronRight
                       className={`w-12 h-12 ml-4 ${
                         activeIndex === lastIndex
-                          ? 'cursor-not-allowed text-gray-400 dark:text-gray-600'
-                          : 'text-black dark:text-white'
+                          ? 'cursor-not-allowed text-gray-400'
+                          : 'text-black'
                       }`}
                     />
                   </button>

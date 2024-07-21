@@ -169,7 +169,7 @@ export const footerData: FooterProps = {
       <span>
         Made by{' '}
         <a
-          className="font-semibold text-slate-900 dark:text-gray-200 hover:text-blue-600 hover:underline dark:hover:text-blue-600"
+          className="font-semibold text-slate-900  hover:text-blue-600 hover:underline "
           href="https://onwidget.com/"
         >
           {' '}
@@ -220,7 +220,7 @@ export const footerData2: FooterProps = {
       <span>
         Made by{' '}
         <a
-          className="font-semibold text-slate-900 dark:text-gray-200 hover:text-blue-600 hover:underline dark:hover:text-blue-600"
+          className="font-semibold text-slate-900  hover:text-blue-600 hover:underline "
           href="https://onwidget.com/"
         >
           {' '}
