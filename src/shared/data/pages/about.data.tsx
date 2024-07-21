@@ -38,15 +38,11 @@ import {
 
 // Hero2 data on About page *******************
 export const hero2About: HeroProps = {
-  title: 'Great companies are made by great people',
+  title: '(GENIUS) Project Contest',
   subtitle:
-    'Vivamus venenatis, lectus a pellentesque placerat, felis tellus ultrices eros, et aliquam sapien nibh sed sem. Fusce ut ante eget purus viverra malesuada. Morbi eget mi maximus, ultricies urna eget, tristique lorem. Fusce cursus venenatis quam, a blandit lectus vulputate id. Praesent id interdum orci, vitae condimentum dui.',
-  tagline: 'About Us Demo Page',
-  callToAction: {
-    text: 'View jobs',
-    href: 'https://www.linkedin.com/',
-    targetBlank: true,
-  },
+    'The GENIUS Project Contest is a dynamic and inclusive competition aimed at reigniting passion and the engineering spirit among students. Organized by the Nigerian Universities Engineering Students Association (NUESA) at Ahmadu Bello University, the contest is set to take place in May 2024. We believe in the transformative power of innovation, creativity, and teamwork.',
+  tagline: 'Welcome to the GENIUS Project Contest!',
+  
   callToAction2: {
     text: 'Contact us',
     href: '/contact',
@@ -57,30 +53,6 @@ export const hero2About: HeroProps = {
   },
 };
 
-// Stats data on About page *******************
-export const statsAbout: StatsProps = {
-  id: 'stats-on-about',
-  hasBackground: true,
-  items: [
-    {
-      title: 13269,
-      description: 'Downloads',
-    },
-    {
-      title: 24.8,
-      description: 'Stars',
-    },
-    {
-      title: 1767.77,
-      description: 'Forks',
-    },
-    {
-      title: 484000,
-      description: 'Users',
-    },
-  ],
-};
-
 // FeaturesFour data on About page *******************
 export const featuresFourAbout: FeaturesProps = {
   id: 'features-four-on-about',
@@ -88,7 +60,7 @@ export const featuresFourAbout: FeaturesProps = {
   header: {
     title: 'Our mission',
     subtitle:
-      'Quisque laoreet nisi et lectus consectetur, at placerat libero dictum. Donec sed hendrerit turpis. Nunc vel nibh blandit, hendrerit turpis non, mattis magna. Duis feugiat dui mi, eget iaculis ligula gravida congue. Nam quis mauris id eros imperdiet imperdiet. In et dolor non nisi vestibulum rhoncus nec eget dolor.',
+      'The GENIUS Project Contest encourages collaboration, bringing together individuals from diverse backgrounds and interests. This inclusivity fosters an environment where participants can showcase their ideas and compete in a friendly yet challenging setting. By promoting teamwork and cross-disciplinary interaction, the contest aims to cultivate a sense of community and shared purpose among its participants.',
     tagline: 'Mission and Values',
   },
 };
@@ -99,44 +71,9 @@ export const featuresFourAboutTwo: FeaturesProps = {
   hasBackground: false,
   header: {
     title: 'Our values',
-    subtitle: 'Etiam tellus tortor, mattis id mauris et, lobortis ullamcorper nunc.',
+    subtitle: 'Our vision is to create a platform that encourages students to think outside the box, collaborate with peers from diverse backgrounds, and develop practical, innovative solutions to real-world problems. The GENIUS Project Contest is more than just a competition; it is a journey of discovery, learning, and growth.',
   },
-  isAfterContent: true,
-  columns: 2,
-  items: [
-    {
-      title: 'Customer-centricity',
-      description: 'Nullam non sodales massa. Ut justo neque, elementum et vehicula vel, pellentesque non orci.',
-      icon: IconUser,
-    },
-    {
-      title: 'Innovation and adaptability',
-      description:
-        'Etiam ornare, purus nec venenatis porttitor, velit leo convallis dui, at porttitor nibh tortor quis velit.',
-      icon: IconBulb,
-    },
-    {
-      title: 'Quality assurance',
-      description: 'Morbi sit amet arcu vitae metus molestie auctor sit amet in risus. Sed vel lacinia purus.',
-      icon: IconThumbUp,
-    },
-    {
-      title: 'Accessibility and customization',
-      description: 'Phasellus id cursus urna. Nullam feugiat tellus sed euismod venenatis.',
-      icon: IconAdjustments,
-    },
-    {
-      title: 'Collaboration and partnership',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis.',
-      icon: IconHeartHandshake,
-    },
-    {
-      title: 'Ethical and responsible design',
-      description: 'Maecenas urna augue, commodo vitae lectus euismod, tempor aliquam arcu.',
-      icon: IconHomeEco,
-    },
-  ],
+  
 };
 
 // Steps data on About page *******************
@@ -145,10 +82,9 @@ export const stepsAbout: StepsProps = {
   hasBackground: true,
   isImageDisplayed: false,
   header: {
-    title: 'History of TailNext',
+    title: 'Contest Background',
     subtitle:
-      'Duis sit amet magna et sapien cursus fermentum. Curabitur ac mauris non magna condimentum scelerisque. Aliquam nunc ipsum, semper ac scelerisque sit amet, pulvinar vitae libero.',
-    tagline: 'Company History',
+      'The inception of the GENIUS Project Contest stems from a profound need to reignite passion and the engineering spirit in the hearts of students. In todays rapidly evolving world, it is imperative to reform the minds of youth to be solution-driven, creative, analytical, innovative, and curious. This contest is designed to catalyze these qualities by providing a dynamic platform that challenges participants to push their boundaries and think outside the box.',
   },
   items: [
     {
@@ -489,7 +425,7 @@ export const testimonials2About: TestimonialsProps = {
     {
       name: 'Jane Smith',
       job: 'UX Designer',
-      testimonial: `Your templates have been a game-changer for my projects. They're not just beautifully designed; they're also incredibly easy to customize. Thanks to your templates, I've been able to save time and deliver stunning websites to my clients.`,
+      testimonial: [`Your templates have been a game-changer for my projects. They're not just beautifully designed; they're also incredibly easy to customize. Thanks to your templates, I've been able to save time and deliver stunning websites to my clients.`],
       image: {
         src: 'https://images.unsplash.com/photo-1619734086067-24bf8889ea7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
         alt: 'Jane Smith',
@@ -499,7 +435,7 @@ export const testimonials2About: TestimonialsProps = {
     {
       name: 'John Doe',
       job: 'Frontend Developer',
-      testimonial: `I can't say enough good things about your Next.js and Tailwind CSS templates. As a frontend developer, I appreciate the clean and well-organized code. These templates have significantly sped up my development process, and the results are always impressive.`,
+      testimonial: [`I can't say enough good things about your Next.js and Tailwind CSS templates. As a frontend developer, I appreciate the clean and well-organized code. These templates have significantly sped up my development process, and the results are always impressive.`],
       image: {
         src: 'https://images.unsplash.com/photo-1565049786474-1dea82a8b995?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
         alt: 'John Doe',
@@ -509,7 +445,7 @@ export const testimonials2About: TestimonialsProps = {
     {
       name: 'Emily Turner',
       job: 'Marketing Manager',
-      testimonial: `This templates have made our marketing campaigns stand out. The responsiveness and performance of the websites we've built with them have boosted our conversion rates. Thank you for helping us shine in the digital world!`,
+      testimonial: [`This templates have made our marketing campaigns stand out. The responsiveness and performance of the websites we've built with them have boosted our conversion rates. Thank you for helping us shine in the digital world!`],
       image: {
         src: 'https://images.unsplash.com/photo-1659057106920-da022cfbc0cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
         alt: 'Emily Turner',
@@ -519,7 +455,7 @@ export const testimonials2About: TestimonialsProps = {
     {
       name: 'Michael Clark',
       job: 'Startup Founder',
-      testimonial: `I stumbled upon your templates while looking for a way to launch my startup quickly. Your templates not only saved me valuable time but also gave my business a professional and modern online presence. Highly recommended!`,
+      testimonial: [`I stumbled upon your templates while looking for a way to launch my startup quickly. Your templates not only saved me valuable time but also gave my business a professional and modern online presence. Highly recommended!`],
       image: {
         src: 'https://images.unsplash.com/photo-1572417884940-c24659be6068?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
         alt: 'Michael Clark',
@@ -529,7 +465,7 @@ export const testimonials2About: TestimonialsProps = {
     {
       name: 'Linda Johnson',
       job: 'Freelance Web Designer',
-      testimonial: `I've been using your templates for my freelance projects, and my clients are always thrilled with the results. The templates are not only visually appealing but also user-friendly, making my job much easier.`,
+      testimonial: [`I've been using your templates for my freelance projects, and my clients are always thrilled with the results. The templates are not only visually appealing but also user-friendly, making my job much easier.`],
       image: {
         src: 'https://images.unsplash.com/photo-1694287877106-ee22f764aef1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
         alt: 'Linda Johnson',
@@ -539,7 +475,7 @@ export const testimonials2About: TestimonialsProps = {
     {
       name: 'David Rogers',
       job: 'E-commerce Entrepreneur',
-      testimonial: `The speed and SEO-friendliness of the websites I've built with these templates have led to increased traffic and sales. I couldn't be happier!`,
+      testimonial: [`The speed and SEO-friendliness of the websites I've built with these templates have led to increased traffic and sales. I couldn't be happier!`],
       image: {
         src: 'https://images.unsplash.com/photo-1665984867752-6370ab5ae35e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
         alt: 'David Rogers',
@@ -554,10 +490,10 @@ export const faqsAbout: FAQsProps = {
   id: 'faqs-on-faqs',
   hasBackground: false,
   header: {
-    title: 'Frequently Asked Questions',
+    title: 'JUDGING & EVALUATION',
     subtitle:
-      'Duis turpis dui, fringilla mattis sem nec, fringilla euismod neque. Morbi tincidunt lacus nec tortor scelerisque pulvinar.',
-    tagline: 'FAQS',
+      'The judging and evaluation process for the GENIUS Project Contest will be rigorous and impartial, ensuring fairness and transparency in the assessment of participants submissions.',
+    tagline: 'JUDGING',
   },
   items: [
     {

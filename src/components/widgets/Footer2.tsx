@@ -1,7 +1,7 @@
 import { footerData2 } from '~/shared/data/global.data';
 
 const Footer2 = () => {
-  const { links, columns, socials, footNote } = footerData2;
+  const { links, columns, socials } = footerData2;
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -9,7 +9,7 @@ const Footer2 = () => {
         {columns.map(({ title, texts }, index) => (
           <div
             key={`item-column-${index}`}
-            className="col-span-4 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1"
+            className="col-span-3 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1"
           >
             <div className="mb-2 font-medium text-gray-800">{title}</div>
             {texts &&
@@ -53,7 +53,6 @@ const Footer2 = () => {
               </li>
             ))}
         </ul>
-        {footNote}
       </div>
     </div>
   );

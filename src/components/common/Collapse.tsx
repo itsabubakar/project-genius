@@ -9,7 +9,7 @@ const Collapse = ({ items, classCollapseItem, iconUp, iconDown }: CollapseProps)
 
   return (
     <>
-      {items.map(({ title, description }, index) => (
+      {items.map(({ title, description, descriptionTwo }, index) => (
         <div
           key={`accordion-${index}`}
           onClick={() => handleSetIndex(index)}
@@ -44,6 +44,7 @@ const Collapse = ({ items, classCollapseItem, iconUp, iconDown }: CollapseProps)
                 id={`accordion__panel-${index}`}
               >
                 <p className="mt-2 text-gray-600 ">{description}</p>
+                <p className="mt-2 text-gray-600 ">{descriptionTwo}</p>
               </div>
             )}
           </div>

@@ -10,4 +10,5 @@ Partnerships
 ### Tasks
 - Look for small pictures and use in rules part
 - Look for engineering hackathron picture
+- Use better icons everywhere
 

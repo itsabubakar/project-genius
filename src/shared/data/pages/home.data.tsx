@@ -243,7 +243,7 @@ export const stepsHome: StepsProps = {
       icon: IconArrowDown,
     },
     {
-      title: 'Apply!',
+      title: 'Winners Announced!',
     },
   ],
 };
@@ -319,36 +319,48 @@ export const faqs2Home: FAQsProps = {
   id: 'faqsTwo-on-home',
   hasBackground: false,
   header: {
-    title: 'Frequently Asked Questions',
+    title: 'Criteria for Judging',
     subtitle:
-      'Duis turpis dui, fringilla mattis sem nec, fringilla euismod neque. Morbi tincidunt lacus nec tortor scelerisque pulvinar.',
-    tagline: 'FAQS',
+      'The judging and evaluation process for the GENIUS Project Contest will be rigorous and impartial, ensuring fairness and transparency in the assessment of participants submissions.',
+    tagline: 'JUDGING & EVALUATION',
   },
   items: [
     {
-      title: 'What do I need to start?',
-      description: `Nunc mollis tempor quam, non fringilla elit sagittis in. Nullam vitae consectetur mi, a elementum arcu. Sed laoreet, ipsum et vehicula dignissim, leo orci pretium sem, ac condimentum tellus est quis ligula.`,
+      title: 'Innovation',
+      description: `How original and creative is the proposed solution?`,
+      descriptionTwo: `Does the solution offer a unique approach to addressing the problem?
+`,
+      
     },
     {
-      title: 'How to install the NextJS + Tailwind CSS template?',
-      description: `Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer eleifend vestibulum nisl in iaculis. Mauris dictum ac purus vestibulum auctor. Praesent imperdiet lectus et massa faucibus, quis viverra massa rhoncus.`,
+      title: 'Feasibility',
+      description: `Is the proposed solution technically feasible and practical to implement?`,
+      descriptionTwo: `Are the proposed methods and technologies viable within existing constraints?`,
+
     },
     {
-      title: "What's something that you completely don't understand?",
-      description: `Mauris vitae eros a dui varius luctus. Suspendisse rutrum, sapien nec blandit bibendum, justo sapien sollicitudin erat, id aliquam sapien purus quis leo. Aliquam vulputate vestibulum consectetur.`,
+      title: "Impact",
+      description: `What is the potential impact of the solution on addressing the problem?
+`,
+      descriptionTwo: `Does the solution offer meaningful benefits or improvements over existing
+approaches?`,
+
     },
     {
-      title: "What's an example of when you changed your mind?",
-      description: `Nunc dapibus lacinia ipsum ut elementum. Integer in pretium sapien. Ut pretium nisl mauris, ut rutrum justo condimentum id. Etiam aliquet, arcu at iaculis laoreet, est arcu egestas sapien, eget sollicitudin odio orci et nunc.`,
+      title: "Presentation",
+      description: `How effectively is the solution communicated through the presentation?
+`,
+      descriptionTwo: `Are the key concepts and ideas clearly explained and compellingly presented?`,
+
     },
     {
-      title: 'What is something that you would really like to try again?',
-      description: `Duis in maximus mauris, id eleifend mauris. Nam a fringilla arcu. Curabitur convallis, tellus non aliquet rhoncus, lacus massa auctor eros, in interdum lectus augue sed augue. Fusce tempor ex id faucibus efficitur.`,
+      title: 'Proof of Concept',
+      description: `Is there evidence of a well-developed proof of concept or prototype?
+`,
+      descriptionTwo: `Has the team demonstrated progress towards implementing their solution?`,
+
     },
-    {
-      title: 'If you could only ask one question to each person you meet, what would that question be?',
-      description: `Nullam imperdiet sapien tincidunt erat dapibus faucibus. Vestibulum a sem nec lorem imperdiet scelerisque non sed lacus. Ut pulvinar id diam vitae auctor. Nam tempus, neque et elementum consectetur, ex ipsum pulvinar risus, vel sodales ligula tortor eu eros.`,
-    },
+    
   ],
 };
 
@@ -436,30 +448,21 @@ export const teamHome: TeamProps = {
   id: 'team-on-home',
   hasBackground: false,
   header: {
-    title: 'Team Members',
+    title: 'Judges',
     subtitle:
-      'Suspendisse in dui nibh. Donec enim leo, sodales et egestas id, malesuada non diam. Sed dapibus velit et mauris condimentum, vel imperdiet erat egestas.',
+      'Judges chosen based on their expertise, experience, and impartiality in evaluating innovative solutions.',
     // tagline: 'Team',
   },
   teams: [
     {
-      name: 'Cindy Belcher',
+      name: 'Sadiq Bilyamin',
       occupation: 'SEO Consultant',
       image: {
         src: 'https://images.unsplash.com/photo-1637858868799-7f26a0640eb6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
-        alt: 'Cindy Belcher',
+        alt: 'Sadiq Bilyamin',
       },
       items: [
-        {
-          title: 'Know more on Twitter',
-          icon: IconBrandTwitter,
-          href: '#',
-        },
-        {
-          title: 'Know more on Linkedin',
-          icon: IconBrandLinkedin,
-          href: '#',
-        },
+        
         {
           title: 'Contact by email',
           icon: IconMail,
@@ -468,23 +471,14 @@ export const teamHome: TeamProps = {
       ],
     },
     {
-      name: 'Toby Foster',
+      name: 'Morgan Ufoma',
       occupation: 'Marketing Tech',
       image: {
         src: 'https://images.unsplash.com/photo-1614583224978-f05ce51ef5fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2172&q=80',
-        alt: 'Toby Foster',
+        alt: 'Morgan Ufoma',
       },
       items: [
-        {
-          title: 'Know more on Twitter',
-          icon: IconBrandTwitter,
-          href: '#',
-        },
-        {
-          title: 'Know more on Linkedin',
-          icon: IconBrandLinkedin,
-          href: '#',
-        },
+        
         {
           title: 'Contact by email',
           icon: IconMail,
@@ -493,23 +487,14 @@ export const teamHome: TeamProps = {
       ],
     },
     {
-      name: 'Clark Bourne',
+      name: 'James Bond',
       occupation: 'Content Manager',
       image: {
         src: 'https://images.unsplash.com/photo-1639628735078-ed2f038a193e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
-        alt: 'Clark Bourne',
+        alt: 'James Bond',
       },
       items: [
-        {
-          title: 'Know more on Twitter',
-          icon: IconBrandTwitter,
-          href: '#',
-        },
-        {
-          title: 'Know more on Linkedin',
-          icon: IconBrandLinkedin,
-          href: '#',
-        },
+        
         {
           title: 'Contact by email',
           icon: IconMail,
@@ -518,23 +503,14 @@ export const teamHome: TeamProps = {
       ],
     },
     {
-      name: 'Bella Chase',
+      name: 'Pablo Neruda',
       occupation: 'UX Designer',
       image: {
         src: 'https://images.unsplash.com/photo-1628260412297-a3377e45006f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
-        alt: 'Bella Chase',
+        alt: 'Pablo Neruda',
       },
       items: [
-        {
-          title: 'Know more on Twitter',
-          icon: IconBrandTwitter,
-          href: '#',
-        },
-        {
-          title: 'Know more on Linkedin',
-          icon: IconBrandLinkedin,
-          href: '#',
-        },
+        
         {
           title: 'Contact by email',
           icon: IconMail,
@@ -550,26 +526,37 @@ export const contactHome: ContactProps = {
   hasBackground: true,
   header: {
     title: 'Get in Touch',
-    subtitle: 'In hac habitasse platea dictumst',
+    // subtitle: 'In hac habitasse platea dictumst',
     tagline: 'Contact',
   },
   content:
-    'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis nec ipsum orci. Ut scelerisque sagittis ante, ac tincidunt sem venenatis ut.',
+    'Partnerships and sponsorships are fundamental to the success of the contest. Support us in our commitment to fostering innovation and talent development among youth.',
+
   items: [
     {
-      title: 'Our Address',
-      description: ['1230 Maecenas Street Donec Road', 'New York, EEUU'],
-      icon: IconMapPin,
-    },
-    {
-      title: 'Contact',
-      description: ['Mobile: +1 (123) 456-7890', 'Mail: tailnext@gmail.com'],
+      title: 'Chairman - Ufuoma Morgan',
+      description: ['09055433811'],
       icon: IconPhoneCall,
     },
     {
-      title: 'Working hours',
-      description: ['Monday - Friday: 08:00 - 17:00', 'Saturday & Sunday: 08:00 - 12:00'],
-      icon: IconClock,
+      title: 'Secretary - Muhammad Muhktar Bardi',
+      description: ['09069237487'],
+      icon: IconPhoneCall,
+    },
+    {
+      title: 'Head of Media and Design - Benjamin Gambo Yahaya',
+      description: ['07030207301'],
+      icon: IconPhoneCall,
+    },
+    {
+      title: 'Head of Promotion and Planning - Binshi Musa Bentley',
+      description: ['09077080021'],
+      icon: IconPhoneCall,
+    },
+    {
+      title: 'Financial Secretary - Al-Abbad Islam',
+      description: ['08169870101'],
+      icon: IconPhoneCall,
     },
   ],
   form: {
