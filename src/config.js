@@ -1,10 +1,10 @@
 module.exports.SITE = {
-  name: 'TailNext',
+  name: 'ProjectGenius',
 
-  origin: 'https://tailnext.vercel.app',
+  origin: 'https://ProjectGenius.vercel.app',
   basePathname: '/',
   trailingSlash: false,
 
-  title: 'TailNext — Your website with Next.js + Tailwind CSS',
-  description: 'TailNext is a free and ready to start template to make your website using Next.js and Tailwind CSS.',
+  title: 'ProjectGenius — GENERATING EXCITING NEW IDEAS AND USEFUL SOLUTIONS',
+  description: 'The GENIUS Project encourages collaboration, bringing together individuals from diverse backgrounds and interests.',
 };

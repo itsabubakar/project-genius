@@ -7,11 +7,10 @@ export const heroContact: HeroProps = {
   title: 'Get in touch with us',
   subtitle: (
     <>
-      <span className="hidden md:inline">{`Thank you for considering us for your project! We're excited to hear from you.`}</span>{' '}
-      {`Our team can assist you in building your dream website.`}
+      <span className="hidden md:inline">{` We're excited to hear from you.`}</span>{' '}
     </>
   ),
-  tagline: 'Demo Contact Page',
+  tagline: ' Contact Page',
 };
 
 // Contact data on Contact page *******************
@@ -22,7 +21,7 @@ export const contact2Contact: ContactProps = {
     title: 'Contact us',
     subtitle: (
       <>
-        Please take a moment to fill out this form.{' '}
+        Send us an email at <span className='italic font-semibold underline dcoration-blue-500'>info@projectgenius.com.ng</span>{' '}
         <span className="hidden md:inline">{`So we can better understand your needs and get the process started smoothly.`}</span>
       </>
     ),

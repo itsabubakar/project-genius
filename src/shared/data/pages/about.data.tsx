@@ -68,10 +68,19 @@ export const featuresFourAbout: FeaturesProps = {
 // FeaturesFour data on About page (Two) *******************
 export const featuresFourAboutTwo: FeaturesProps = {
   id: 'features-four-on-about-two',
-  hasBackground: false,
+  hasBackground: true,
   header: {
     title: 'Our values',
     subtitle: 'Our vision is to create a platform that encourages students to think outside the box, collaborate with peers from diverse backgrounds, and develop practical, innovative solutions to real-world problems. The GENIUS Project Contest is more than just a competition; it is a journey of discovery, learning, and growth.',
+  },
+  
+};
+export const featuresFourAboutThree: FeaturesProps = {
+  id: 'features-four-on-about-three',
+  hasBackground: false,
+  header: {
+    title: 'Contest Background',
+    subtitle: 'The inception of the GENIUS Project Contest stems from a profound need to reignite passion and the engineering spirit in the hearts of students. In todays rapidly evolving world, it is imperative to reform the minds of youth to be solution-driven, creative, analytical, innovative, and curious. This contest is designed to catalyze these qualities by providing a dynamic platform that challenges participants to push their boundaries and think outside the box.',
   },
   
 };
@@ -198,217 +207,145 @@ export const featuresAbout: FeaturesProps = {
   ],
 };
 
+
+
 // Team data on About page *******************
 export const teamAbout: TeamProps = {
   id: 'team-on-about',
-  hasBackground: false,
+  hasBackground: true,
   header: {
-    title: 'Meet our executive team',
-    subtitle:
-      'Proin quis neque vehicula, sagittis felis ut, scelerisque mi. Nullam consequat, erat eu luctus sodales, ipsum tellus facilisis magna, eu condimentum lectus.',
+    title: 'Meet our team',
+    // subtitle:
+      // 'Proin quis neque vehicula, sagittis felis ut, scelerisque mi. Nullam consequat, erat eu luctus sodales, ipsum tellus facilisis magna, eu condimentum lectus.',
     tagline: 'team',
   },
   teams: [
     {
-      name: 'John Peterson',
-      occupation: 'Founder & CEO',
+      name: 'Ufuoma Morgan',
+      occupation: 'Chairman',
       image: {
         src: 'https://images.unsplash.com/photo-1504257432389-52343af06ae3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80',
-        alt: 'John Peterson',
+        alt: 'Ufuoma Morgan',
       },
-      items: [
-        {
-          title: 'Know more on Twitter',
-          icon: IconBrandTwitter,
-          href: '#',
-        },
-        {
-          title: 'Know more on Linkedin',
-          icon: IconBrandLinkedin,
-          href: '#',
-        },
-        {
-          title: 'Contact by email',
-          icon: IconMail,
-          href: '#',
-        },
-      ],
+      // items: [
+      //   {
+      //     title: 'Know more on Twitter',
+      //     icon: IconBrandTwitter,
+      //     href: '#',
+      //   },
+      //   {
+      //     title: 'Know more on Linkedin',
+      //     icon: IconBrandLinkedin,
+      //     href: '#',
+      //   },
+      //   {
+      //     title: 'Contact by email',
+      //     icon: IconMail,
+      //     href: '#',
+      //   },
+      // ],
     },
     {
-      name: 'Sarah Mitchell',
-      occupation: 'Chief Creative Officer',
+      name: 'Muhammad Muhktar Bardi',
+      occupation: 'Secretary',
       image: {
         src: 'https://images.unsplash.com/photo-1618835962148-cf177563c6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80',
-        alt: 'Sarah Mitchell',
+        alt: 'Muhammad Muhktar Bardi',
       },
-      items: [
-        {
-          title: 'Know more on Twitter',
-          icon: IconBrandTwitter,
-          href: '#',
-        },
-        {
-          title: 'Know more on Linkedin',
-          icon: IconBrandLinkedin,
-          href: '#',
-        },
-        {
-          title: 'Contact by email',
-          icon: IconMail,
-          href: '#',
-        },
-      ],
+      // items: [
+      //   {
+      //     title: 'Know more on Twitter',
+      //     icon: IconBrandTwitter,
+      //     href: '#',
+      //   },
+      //   {
+      //     title: 'Know more on Linkedin',
+      //     icon: IconBrandLinkedin,
+      //     href: '#',
+      //   },
+      //   {
+      //     title: 'Contact by email',
+      //     icon: IconMail,
+      //     href: '#',
+      //   },
+      // ],
     },
     {
-      name: 'David Foster',
-      occupation: 'Chief Technology Officer',
+      name: 'Benjamin Gambo Yahaya',
+      occupation: 'Head of Media and Design',
       image: {
         src: 'https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=250&q=80',
-        alt: 'David Foster',
+        alt: 'Benjamin Gambo Yahaya',
       },
-      items: [
-        {
-          title: 'Know more on Twitter',
-          icon: IconBrandTwitter,
-          href: '#',
-        },
-        {
-          title: 'Know more on Linkedin',
-          icon: IconBrandLinkedin,
-          href: '#',
-        },
-        {
-          title: 'Contact by email',
-          icon: IconMail,
-          href: '#',
-        },
-      ],
+      // items: [
+      //   {
+      //     title: 'Know more on Twitter',
+      //     icon: IconBrandTwitter,
+      //     href: '#',
+      //   },
+      //   {
+      //     title: 'Know more on Linkedin',
+      //     icon: IconBrandLinkedin,
+      //     href: '#',
+      //   },
+      //   {
+      //     title: 'Contact by email',
+      //     icon: IconMail,
+      //     href: '#',
+      //   },
+      // ],
     },
     {
-      name: 'Mary Smith',
-      occupation: 'Chief Marketing Office',
+      name: 'Binshi Musa Bentley',
+      occupation: 'Head of Promotion and Planning',
       image: {
         src: 'https://images.unsplash.com/photo-1607503873903-c5e95f80d7b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80',
-        alt: 'Mary Smith',
+        alt: 'Binshi Musa Bentley',
       },
-      items: [
-        {
-          title: 'Know more on Twitter',
-          icon: IconBrandTwitter,
-          href: '#',
-        },
-        {
-          title: 'Know more on Linkedin',
-          icon: IconBrandLinkedin,
-          href: '#',
-        },
-        {
-          title: 'Contact by email',
-          icon: IconMail,
-          href: '#',
-        },
-      ],
+      // items: [
+      //   {
+      //     title: 'Know more on Twitter',
+      //     icon: IconBrandTwitter,
+      //     href: '#',
+      //   },
+      //   {
+      //     title: 'Know more on Linkedin',
+      //     icon: IconBrandLinkedin,
+      //     href: '#',
+      //   },
+      //   {
+      //     title: 'Contact by email',
+      //     icon: IconMail,
+      //     href: '#',
+      //   },
+      // ],
     },
     {
-      name: 'Michael Turner',
-      occupation: 'Chief Financial Officer',
+      name: 'Al-Abbad Islam',
+      occupation: 'Financial Secretary',
       image: {
         src: 'https://images.unsplash.com/photo-1619380061814-58f03707f082?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80',
-        alt: 'Michael Turner',
+        alt: 'Al-Abbad Islam',
       },
-      items: [
-        {
-          title: 'Know more on Twitter',
-          icon: IconBrandTwitter,
-          href: '#',
-        },
-        {
-          title: 'Know more on Linkedin',
-          icon: IconBrandLinkedin,
-          href: '#',
-        },
-        {
-          title: 'Contact by email',
-          icon: IconMail,
-          href: '#',
-        },
-      ],
+      // items: [
+      //   {
+      //     title: 'Know more on Twitter',
+      //     icon: IconBrandTwitter,
+      //     href: '#',
+      //   },
+      //   {
+      //     title: 'Know more on Linkedin',
+      //     icon: IconBrandLinkedin,
+      //     href: '#',
+      //   },
+      //   {
+      //     title: 'Contact by email',
+      //     icon: IconMail,
+      //     href: '#',
+      //   },
+      // ],
     },
-    {
-      name: 'Laura Adams',
-      occupation: 'Chief Customer Relations Officer',
-      image: {
-        src: 'https://images.unsplash.com/photo-1485893086445-ed75865251e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80',
-        alt: 'Laura Adams',
-      },
-      items: [
-        {
-          title: 'Know more on Twitter',
-          icon: IconBrandTwitter,
-          href: '#',
-        },
-        {
-          title: 'Know more on Linkedin',
-          icon: IconBrandLinkedin,
-          href: '#',
-        },
-        {
-          title: 'Contact by email',
-          icon: IconMail,
-          href: '#',
-        },
-      ],
-    },
-    {
-      name: 'Robert Williams',
-      occupation: 'Chief Operations Officer',
-      image: {
-        src: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80',
-        alt: 'Robert Williams',
-      },
-      items: [
-        {
-          title: 'Know more on Twitter',
-          icon: IconBrandTwitter,
-          href: '#',
-        },
-        {
-          title: 'Know more on Linkedin',
-          icon: IconBrandLinkedin,
-          href: '#',
-        },
-        {
-          title: 'Contact by email',
-          icon: IconMail,
-          href: '#',
-        },
-      ],
-    },
-    {
-      name: 'Emily Davis',
-      occupation: 'Chief Strategy Officer',
-      image: {
-        src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80',
-        alt: 'Emily Davis',
-      },
-      items: [
-        {
-          title: 'Know more on Twitter',
-          icon: IconBrandTwitter,
-          href: '#',
-        },
-        {
-          title: 'Know more on Linkedin',
-          icon: IconBrandLinkedin,
-          href: '#',
-        },
-        {
-          title: 'Contact by email',
-          icon: IconMail,
-          href: '#',
-        },
-      ],
-    },
+
   ],
 };
 

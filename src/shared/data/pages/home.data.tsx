@@ -9,11 +9,13 @@ import {
   IconClock,
   IconComponents,
   IconDownload,
+  IconArrowBigRightLines,
   IconListCheck,
   IconMail,
   IconMapPin,
   IconPhoneCall,
   IconRocket,
+  IconEngine
 } from '@tabler/icons-react';
 import {
   CallToActionProps,
@@ -59,7 +61,7 @@ USEFUL SOLUTIONS (GENIUS)
   callToAction: {
     text: 'Apply',
     href: 'https://github.com/onwidget/tailnext',
-    icon: IconDownload,
+    icon: IconArrowBigRightLines,
     targetBlank: true,
   },
   callToAction2: {
@@ -94,7 +96,7 @@ export const featuresHome: FeaturesProps = {
       title: 'Reigniting Passion for Engineering',
       description:
         'With a decline in enthusiasm for engineering disciplines, this contest aims to rekindle interest and excitement in this vital field.',
-      icon: IconBrandTailwind,
+      icon: IconEngine,
     },
     {
       title: 'Promoting Solution-Driven Mindsets',
@@ -261,37 +263,58 @@ export const testimonialsHome: TestimonialsProps = {
     {
       name: 'Eligibility',
       testimonial: [`Participants must be undergraduate students currently enrolled in any
-department within the Faculty of Engineering at Ahmadu Bello University`, 'Each team can consist of up to five members, who may be from different departments and academic levels within the faculty.']
+department within the Faculty of Engineering at Ahmadu Bello University`, 'Each team can consist of up to five members, who may be from different departments and academic levels within the faculty.'],
+image: {
+  src: 'https://images.unsplash.com/photo-1529088746738-c4c0a152fb2c?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  alt: 'Testimonial Image',
+}
       
     },
     {
       name: 'Team Formation',
       testimonial: [`Teams should be formed voluntarily by students.`, 'No team may exceed five members.', 'Interdepartmental teams are encouraged to promote diversity of thought and skills.'],
+      image: {
+  src: 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?q=80&w=1747&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  alt: 'Team Image',
+}
       
     },
 
     {
       name: 'Submission Requirements:',
       testimonial: [`For Round One, teams must submit an executive summary that includes a problem statement, proposed solution, and cost analysis (budget) for a prototype.`, 'Presentations can be conducted either physically or online.', 'All submissions must be original work created by the team members.'],
+        image: {
+  src: 'https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=1772&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  alt: 'Submission Image',
+}
 
     },
     {
       name: 'Conduct and Integrity',
       testimonial: [`All participants are expected to uphold the highest standards of academic
 integrity and professionalism.`, 'Plagiarism, cheating, or any form of dishonest behavior will result in immediate disqualification.', 'Respectful and collaborative behavior is expected at all times during the contest'],
+  image: {
+  src: 'https://images.unsplash.com/photo-1481966115753-963394378f23?q=80&w=1826&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  alt: 'Conduct Image',
+}
       
     },
     {
       name: 'Evaluation Criteria:',
       testimonial: [`Entries will be judged based on creativity, feasibility, impact, and
 presentation.`, 'Judge decisions are final and binding.'],
+image: {
+  src: 'https://images.unsplash.com/photo-1484589065579-248aad0d8b13?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWJzdHJhY3R8ZW58MHx8MHx8fDA%3D',
+  alt: 'img',
+}
       
     },
     {
       name: 'Workshops and Mentorship',
       testimonial:[ `Attendance at the pre-contest workshop on August 3rd is highly encouraged for all participants.`, 'Finalists will be assigned mentors to assist with prototype development and presentation skills.'],
       image: {
-        src: 'https://images.unsplash.com/photo-1665984867752-6370ab5ae35e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+        src: 'https://images.unsplash.com/photo-1581094481644-f2ab64522498?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        
         alt: 'img',
       },
     },
@@ -299,7 +322,7 @@ presentation.`, 'Judge decisions are final and binding.'],
       name: 'Final Presentation and Exhibition:',
       testimonial:[ `Finalist teams must prepare a functional prototype, a PowerPoint presentation, and a progress report for the final round on August 10th.`, 'Teams will present their solutions to a panel of judges and an audience, followed by an exhibition of their prototypes.'],
       image: {
-        src: 'https://images.unsplash.com/photo-1665984867752-6370ab5ae35e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+        src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         alt: 'img',
       },
     },
@@ -307,7 +330,7 @@ presentation.`, 'Judge decisions are final and binding.'],
       name: 'Awards and Prizes',
       testimonial:[ `Monetary prizes will be awarded to the top-performing teams.`, 'All participants will receive certificates, and finalists will receive additional awards and recognition', 'Opportunities for networking with field experts and mentors will be provided during and after the contest.'],
       image: {
-        src: 'https://images.unsplash.com/photo-1665984867752-6370ab5ae35e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+        src: 'https://images.unsplash.com/photo-1578269174936-2709b6aeb913?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         alt: 'img',
       },
     },

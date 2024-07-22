@@ -6,7 +6,20 @@ import {
   IconChevronDown,
   IconRss,
 } from '@tabler/icons-react';
-import {  FooterProps, HeaderProps } from '../types';
+import {  AnnouncementProps, FooterProps, HeaderProps } from '../types';
+
+// Announcement data
+export const announcementData: AnnouncementProps = {
+  title: 'NEW',
+  callToAction: {
+    text: 'Call for Exhibitions. Showcase your personal work/projects »',
+    href: '/exhibitions',
+  },
+  callToAction2: {
+    text: 'Follow ProjectGenius on Twitter',
+    href: 'https://twitter.com/intent/user?screen_name=sadiq',
+  },
+};
 
 
 // Header data
@@ -14,11 +27,11 @@ export const headerData: HeaderProps = {
   links: [
     {
       label: 'About Us',
-      href: '/blog',
+      href: '/about',
     },
     {
-      label: 'Events',
-      href: '/contact',
+      label: 'Partnerships',
+      href: '/partnerships',
     },
     {         
        label: 'Contact us',
@@ -28,7 +41,7 @@ export const headerData: HeaderProps = {
   actions: [
     {
       text: 'Start Application',
-      href: 'https://github.com/onwidget/tailnext',
+      href: '/',
       targetBlank: true,
     },
   ],
