@@ -37,7 +37,7 @@ const Footer2 = () => {
           </ul>
         </div>
       </div>
-      <div className="text-muted py-6 text-sm text-gray-700  md:flex md:items-center md:justify-between md:py-8">
+      {/* <div className="text-muted py-6 text-sm text-gray-700  md:flex md:items-center md:justify-between md:py-8">
         <ul className="mb-4 flex pl-2 rtl:pl-0 rtl:pr-2 md:order-1 md:mb-0">
           {links &&
             links.map(({ label, href }, index) => (
@@ -53,7 +53,7 @@ const Footer2 = () => {
               </li>
             ))}
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };

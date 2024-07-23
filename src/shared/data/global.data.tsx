@@ -17,7 +17,7 @@ export const announcementData: AnnouncementProps = {
   },
   callToAction2: {
     text: 'Follow ProjectGenius on Twitter',
-    href: 'https://twitter.com/intent/user?screen_name=sadiq',
+    href: 'https://twitter.com/intent/user?screen_name=genius_contest',
   },
 };
 

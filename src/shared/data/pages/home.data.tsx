@@ -1,18 +1,12 @@
 import {
   IconArrowDown,
   IconArrowsRightLeft,
-  IconBrandLinkedin,
-  IconBrandTailwind,
-  IconBrandTwitter,
-  IconBulb,
-  IconCheck,
-  IconClock,
+  
   IconComponents,
   IconDownload,
   IconArrowBigRightLines,
   IconListCheck,
   IconMail,
-  IconMapPin,
   IconPhoneCall,
   IconRocket,
   IconEngine
@@ -25,19 +19,14 @@ import {
   FeaturesProps,
   HeroProps,
   PricingProps,
-  SocialProofProps,
   StepsProps,
   TeamProps,
   TestimonialsProps,
 } from '../../types';
-import heroImg from '~/assets/images/hero.jpg';
-import nextJsLogo from '~/assets/images/nextjs-logo.png';
-import reactLogo from '~/assets/images/react-logo.png';
-import tailwindCssLogo from '~/assets/images/tailwind-css-logo.png';
-import typescriptLogo from '~/assets/images/typescript-logo.png';
-import cameraFrontImg from '~/assets/images/camera-front.jpg';
-import cameraBackImg from '~/assets/images/camera-back.jpg';
-import gasImg from '~/assets/images/gas.jpg';
+import heroImg from '~/assets/images/heroOne.jpg';
+import engineeringOne from '~/assets/images/engineeringone.png';
+import engineeringTwo from '~/assets/images/engineeringtwo.png';
+import activityImage from '~/assets/images/engineeringSix.jpg';
 
 // Hero data on Home page *******************
 export const heroHome: HeroProps = {
@@ -53,24 +42,23 @@ USEFUL SOLUTIONS (GENIUS)
         <span className="font-semibold underline decoration-primary-600 decoration-wavy decoration-1 underline-offset-2">
           Project GENIUS
         </span>{' '}
-       (Generating Exciting New Ideas and Useful Solutions) Project Contest aims to rekindle students' passion for engineering by fostering creativity, innovation, and analytical thinking. 
+       (Generating Exciting New Ideas and Useful Solutions) Project Contest aims to rekindle students&apos; passion for engineering by fostering creativity, innovation, and analytical thinking. 
       </span>{' '}
-    It provides a platform for diverse participants to collaborate, showcase ideas, and engage in friendly competition, promoting teamwork and a sense of community.
     </>
   ),
   callToAction: {
     text: 'Apply',
-    href: 'https://github.com/onwidget/tailnext',
+    href: '/#',
     icon: IconArrowBigRightLines,
     targetBlank: true,
   },
   callToAction2: {
     text: 'Learn more',
-    href: '/',
+    href: '/about',
   },
   image: {
     src: heroImg,
-    alt: 'Hero TailNext',
+    alt: 'Hero',
   },
 };
 
@@ -158,7 +146,7 @@ export const contentHomeOne: ContentProps = {
     },
   ],
   image: {
-    src: cameraFrontImg,
+    src: engineeringOne,
     alt: 'Colorful Image',
   },
   isReversed: false,
@@ -187,7 +175,7 @@ export const contentHomeTwo: ContentProps = {
     
   ],
   image: {
-    src: cameraBackImg,
+    src: engineeringTwo,
     alt: 'Colorful Image',
   },
   isReversed: true,
@@ -201,7 +189,7 @@ export const stepsHome: StepsProps = {
   isReversed: false,
   isImageDisplayed: true,
   image: {
-    src: gasImg,
+    src: activityImage,
     alt: 'Steps image',
   },
   header: {

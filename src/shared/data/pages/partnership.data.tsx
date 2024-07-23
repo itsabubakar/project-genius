@@ -4,7 +4,7 @@ import {
   HeroProps,
   StepsProps,
 } from '~/shared/types';
-import hero2Img from '~/assets/images/hero2.jpg';
+import hero2Img from '~/assets/images/engineeringfive.png';
 import {
   IconAward,
   IconNumber1,
@@ -27,7 +27,7 @@ export const hero2Partnerships: HeroProps = {
   },
   image: {
     src: hero2Img,
-    alt: 'Hero TailNext',
+    alt: 'Hero',
   },
 };
 

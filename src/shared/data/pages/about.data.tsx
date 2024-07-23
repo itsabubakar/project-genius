@@ -8,7 +8,7 @@ import {
   TeamProps,
   TestimonialsProps,
 } from '~/shared/types';
-import hero2Img from '~/assets/images/hero2.jpg';
+import hero2Img from '~/assets/images/engineeringfour.png';
 import {
   IconAdjustments,
   IconAward,
@@ -49,7 +49,7 @@ export const hero2About: HeroProps = {
   },
   image: {
     src: hero2Img,
-    alt: 'Hero TailNext',
+    alt: 'Hero',
   },
 };
 
