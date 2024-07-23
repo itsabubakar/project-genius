@@ -57,7 +57,7 @@ const Page = (props: Props) => {
             />
           ) : (
             <div className="mx-auto max-w-3xl px-4 sm:px-6">
-              <div className="border-t dark:border-slate-700" />
+              <div className="border-t" />
             </div>
           )}
         </header>
