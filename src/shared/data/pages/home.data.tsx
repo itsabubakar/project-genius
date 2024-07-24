@@ -550,18 +550,23 @@ export const contactHome: ContactProps = {
       icon: IconPhoneCall,
     },
     {
-      title: 'Secretary - Muhammad Muhktar Bardi',
-      description: ['09069237487'],
+      title: 'Secretary - Muhammad Salman',
+      description: [' 09013583458'],
       icon: IconPhoneCall,
     },
     {
-      title: 'Head of Media and Design - Benjamin Gambo Yahaya',
+      title: 'Head of Design - Benjamin Gambo Yahaya',
       description: ['07030207301'],
       icon: IconPhoneCall,
     },
     {
-      title: 'Head of Promotion and Planning - Binshi Musa Bentley',
-      description: ['09077080021'],
+      title: 'Head of Promotion and Planning - Fatima Balarabe',
+      description: ['08054397099'],
+      icon: IconPhoneCall,
+    },
+    {
+      title: 'Head of media - Owolabi Ayodeji Prince',
+      description: ['09012378215'],
       icon: IconPhoneCall,
     },
     {

@@ -39,7 +39,7 @@ export default function Page() {
       <Content {...contentHomeTwo} />
       <Testimonials {...testimonialsHome} />
       <FAQs2 {...faqs2Home} />
-      <Team {...teamHome} />
+      {/* <Team {...teamHome} /> */}
       <Contact {...contactHome} />
     </>
   );

@@ -25,7 +25,7 @@ const Page = () => {
       <Features4 {...featuresFourAbout} />
       <Features4 {...featuresFourAboutTwo} />
       <Features4 {...featuresFourAboutThree} />
-      <Team2 {...teamAbout} />
+      {/* <Team2 {...teamAbout} /> */}
     </>
   );
 };

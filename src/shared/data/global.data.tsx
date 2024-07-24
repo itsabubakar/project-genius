@@ -3,7 +3,6 @@ import {
   IconBrandGithub,
   IconBrandInstagram,
   IconBrandTwitter,
-  IconChevronDown,
   IconRss,
 } from '@tabler/icons-react';
 import {  AnnouncementProps, FooterProps, HeaderProps } from '../types';
@@ -13,7 +12,7 @@ export const announcementData: AnnouncementProps = {
   title: 'NEW',
   callToAction: {
     text: 'Call for Exhibitions. Showcase your personal work/projects »',
-    href: '/exhibitions',
+    href: '/blog/tech-exhibition',
   },
   callToAction2: {
     text: 'Follow ProjectGenius on Twitter',
@@ -28,6 +27,10 @@ export const headerData: HeaderProps = {
     {
       label: 'About Us',
       href: '/about',
+    },
+    {
+      label: 'Events',
+      href: '/blog',
     },
     {
       label: 'Partnerships',
