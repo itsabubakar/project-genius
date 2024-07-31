@@ -11,8 +11,8 @@ import {  AnnouncementProps, FooterProps, HeaderProps } from '../types';
 export const announcementData: AnnouncementProps = {
   title: 'NEW',
   callToAction: {
-    text: 'Call for Exhibitions. Showcase your personal work/projects »',
-    href: '/blog/tech-exhibition',
+    text: 'Register Now For The Grand Finale of the Project Genius Contest! »',
+    href: '/blog/grand-finale',
   },
   callToAction2: {
     text: 'Follow ProjectGenius on Twitter',
@@ -33,7 +33,7 @@ export const headerData: HeaderProps = {
       href: '/blog',
     },
     {
-      label: 'Partnerships',
+      label: 'Partnerships & Sponsors',
       href: '/partnerships',
     },
     {         
@@ -217,9 +217,9 @@ export const footerData2: FooterProps = {
     },
   ],
   socials: [
-    { label: 'Twitter', icon: IconBrandTwitter, href: '#' },
-    { label: 'Instagram', icon: IconBrandInstagram, href: '#' },
-    { label: 'Facebook', icon: IconBrandFacebook, href: '#' },
+    // { label: 'Twitter', icon: IconBrandTwitter, href: '#' },
+    { label: 'Instagram', icon: IconBrandInstagram, href: 'https://www.instagram.com/_project_genius/' },
+    // { label: 'Facebook', icon: IconBrandFacebook, href: '#' },
   ],
   footNote: (
     <div className="mr-4 rtl:mr-0 rtl:ml-4 text-sm">

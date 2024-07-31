@@ -543,7 +543,12 @@ export const contactHome: ContactProps = {
   content:
     'Partnerships and sponsorships are fundamental to the success of the contest. Support us in our commitment to fostering innovation and talent development among youth.',
 
-  items: [
+  items: [ 
+    {
+      title: 'Patron - Dr. Alim Sabur',
+      // description: ['09055433811'],
+      icon: IconPhoneCall,
+    },
     {
       title: 'Chairman - Ufuoma Morgan',
       description: ['09055433811'],

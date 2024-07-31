@@ -40,7 +40,7 @@ export default function Page() {
       <Testimonials {...testimonialsHome} />
       <FAQs2 {...faqs2Home} />
       {/* <Team {...teamHome} /> */}
-      <Contact {...contactHome} />
+      {/* <Contact {...contactHome} /> */}
     </>
   );
 }

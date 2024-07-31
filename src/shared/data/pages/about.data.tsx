@@ -61,7 +61,7 @@ export const featuresFourAbout: FeaturesProps = {
     title: 'Our mission',
     subtitle:
       'The GENIUS Project Contest encourages collaboration, bringing together individuals from diverse backgrounds and interests. This inclusivity fosters an environment where participants can showcase their ideas and compete in a friendly yet challenging setting. By promoting teamwork and cross-disciplinary interaction, the contest aims to cultivate a sense of community and shared purpose among its participants.',
-    tagline: 'Mission and Values',
+    tagline: 'Mission and vision',
   },
 };
 
@@ -70,7 +70,7 @@ export const featuresFourAboutTwo: FeaturesProps = {
   id: 'features-four-on-about-two',
   hasBackground: true,
   header: {
-    title: 'Our values',
+    title: 'Our vision',
     subtitle: 'Our vision is to create a platform that encourages students to think outside the box, collaborate with peers from diverse backgrounds, and develop practical, innovative solutions to real-world problems. The GENIUS Project Contest is more than just a competition; it is a journey of discovery, learning, and growth.',
   },
   
