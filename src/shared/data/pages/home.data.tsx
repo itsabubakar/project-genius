@@ -46,12 +46,12 @@ USEFUL SOLUTIONS (GENIUS)
       </span>{' '}
     </>
   ),
-  callToAction: {
-    text: 'Apply',
-    href: '/#',
-    icon: IconArrowBigRightLines,
-    targetBlank: true,
-  },
+  // callToAction: {
+  //   text: 'Apply',
+  //   href: '/#',
+  //   icon: IconArrowBigRightLines,
+  //   targetBlank: true,
+  // },
   callToAction2: {
     text: 'Learn more',
     href: '/about',
