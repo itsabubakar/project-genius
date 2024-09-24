@@ -35,7 +35,7 @@ export default function Page() {
       <Features {...featuresHome} />
       <Content {...contentHomeOne} />
       <Steps {...stepsHome} />
-      <Pricing {...pricingHome} />
+      {/* <Pricing {...pricingHome} /> */}
       <Content {...contentHomeTwo} />
       <Testimonials {...testimonialsHome} />
       <FAQs2 {...faqs2Home} />
