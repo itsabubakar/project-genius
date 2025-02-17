@@ -13,9 +13,19 @@ import Link from "next/link";
 import Logo from "./ui/logo";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Modal from "./auth/modal";
+import { useState } from "react";
 
 export default function Footer() {
   const router = useRouter();
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  }
+  const closeModal = () => {
+    setModalOpen(false)
+  }
 
   const navigateToAbout = () => {
     router.push("/about");
@@ -83,7 +93,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-
+{/*
         <div className="flex flex-col gap-7">
           <h4 className="text-xl font-bold">Partners & Sponsors</h4>
           <ul className="flex flex-col gap-3 inter">
@@ -94,7 +104,7 @@ export default function Footer() {
               <Link href="/">Partnership opportunities</Link>
             </li>
           </ul>
-        </div>
+        </div>*/}
 
         <div className="flex flex-col gap-7 order-1">
         <h4 className="text-xl font-bold">Contact us</h4>
@@ -130,18 +140,25 @@ export default function Footer() {
 
       <div className="flex flex-col pt-8 sm:flex-row-reverse justify-between gap-4 border-t w-full border-t-greyscale_text">
         <ol className="flex gap-4 inter">
-          <li>
-            <Link href="/">Terms</Link>
+          <li onClick={openModal}>Terms & Policies
           </li>
-          <li>
-            <Link href="/">Privacy</Link>
-          </li>
-          <li>
-            <Link href="/">Cookies</Link>
-          </li>
+
+          {modalOpen && 
+            <Modal modalClose={closeModal} heading="Project Genius Terms & Policies"
+              subHeading="By entering Project Genius, you agree to these terms."
+            >
+              <ol className="list-disc pl-4 flex flex-col gap-3 mt-2">
+                <li className="decoration-dotted">Data Collection: We collect email, password, and necessary details for contest administration. Data is not shared except as required by law.</li>
+                <li className="decoration-dotted">Submission & Selection: Entries must be original. Winners are chosen based on creativity, feasability, impact and presentation; decisions are final.</li>
+                <li className="decoration-dotted">Privacy & Security: Personal data is handled per laws. Contact [info@projectgenius.com.ng] for data access or deletion.</li>
+                <li className="decoration-dotted">Changes: Project Genius may modify or cancel the Contest anytime. Updates will be communicated officially.</li>
+
+              
+              </ol>
+            </Modal>}
         </ol>
 
-        <p>© 2077 Untitled UI. All rights reserved.</p>
+        <p>© 2025 Project Genius. All rights reserved.</p>
       </div>
     </footer>
   );
