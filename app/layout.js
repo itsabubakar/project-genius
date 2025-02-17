@@ -25,6 +25,7 @@ export default function RootLayout({ children }) {
     return (
       <html>
         <head>
+          <link rel="icon" href="/favicon/favicon.ico" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"
@@ -55,6 +56,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="public/favicon/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -79,22 +81,22 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <header
-          className="sticky top-0 h-[48px] sm:h-[80px] px-[16px] sm:px-[32px] md:px-[40px]
+          className="sticky top-0 py-3 px-[16px] sm:px-[32px] md:px-[40px]
             font-outfit flex justify-between items-center bg-white z-50"
         >
           <Logo classname="text-xl sm:text-[28px] lg:text-2xl" />
 
           <div className="flex gap-[32px] items-center">
             <nav
-              className="hidden md:flex text-greyscale_title py-[24px] gap-[32px]
+              className="hidden md:flex text-greyscale_title gap-[32px]
                 font-medium"
             >
               <Link className={`${navClass}`} href="/events">
                 Events
-              </Link>
+              </Link>{/*
               <Link className={`${navClass}`} href="/">
                 Partners & Sponsors
-              </Link>
+              </Link>*/}
               <Link className={`${navClass}`} href="/contact">
                 Contact Us
               </Link>
@@ -139,14 +141,14 @@ export default function RootLayout({ children }) {
               >
                 Events
               </Link>
-
+{/*
               <Link
                 className={`${navClass}`}
                 onClick={() => menuOpen(false)}
                 href="/"
               >
                 Partners & Sponsors
-              </Link>
+              </Link>*/}
               <Link
                 className={`${navClass}`}
                 onClick={() => menuOpen(false)}
