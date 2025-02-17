@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import { useState } from "react";
 import { z } from "zod";
+import Link from "next/link";
 
 const schema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -69,87 +70,7 @@ const Page = () => {
       </div>
 
       <div className="w-[100%] flex flex-col lg:flex-row  flex-wrap items-center justify-around px-5 md:px-12 pb-16 mt-28">
-        <div className="first w-[100%] md:w-[80%] lg:w-[45%]">
-          <div className="mb-4">
-            <h1 className="text-3xl font-semibold mb-4">
-              Get in Touch With Us
-            </h1>
-            <p className="#4F5569">
-              Have an inquiry? Fill out the form, and we’ll respond promptly.
-            </p>
-          </div>
-          <form
-            onSubmit={handleSubmit}
-            className="h-[525px] bg-[#FFFFFF]  shadow-2xl rounded-2xl p-6 space-y-8 w-full overflow-y-auto">
-            <div className="flex flex-col">
-              <label className="text-[#4F5569]">Full Name</label>
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter your name"
-                className={`h-12 outline-none rounded-xl pl-4
-                
-                  ${
-                    isValid("name")
-                      ? "bg-[#E4FBF0] focus:outline-[#106A3D]"
-                      : errors.name
-                      ? "text-[#A70C0C] bg-[#FEECEC]  focus:outline-[#A70C0C]"
-                      : "bg-[#F3F4F6]  focus:outline-[#7494EC]"
-                  }`}
-                value={formData.name}
-                onChange={handleChange}
-              />
-              {errors.name && <p className="text-[#A70C0C]">{errors.name}</p>}
-            </div>
-            <div className="flex flex-col">
-              <label className="text-[#4F5569]">Email Address</label>
-              <input
-                type="text"
-                name="email"
-                placeholder="Enter your email address"
-                className={`h-12 outline-none rounded-xl pl-4
-                
-                  ${
-                    isValid("email")
-                      ? "bg-[#E4FBF0] focus:outline-[#106A3D]"
-                      : errors.email
-                      ? "text-[#A70C0C] bg-[#FEECEC]  focus:outline-[#A70C0C]"
-                      : "bg-[#F3F4F6]  focus:outline-[#7494EC]"
-                  }`}
-                value={formData.email}
-                onChange={handleChange}
-              />
-              {errors.email && <p className="text-[#A70C0C]">{errors.email}</p>}
-            </div>
-            <div className="flex flex-col">
-              <label className="text-[#4F5569]">Message</label>
-              <textarea
-                type="text"
-                name="message"
-                placeholder="Enter your message here"
-                className={`outline-none rounded-xl pl-4 min-h-[109px] max-h-[150px]resize-y
-                 ${
-                   isValid("message")
-                     ? "bg-[#E4FBF0] focus:outline-[#106A3D]"
-                     : errors.message
-                     ? "text-[#A70C0C] bg-[#FEECEC]  focus:outline-[#A70C0C]"
-                     : "bg-[#F3F4F6]  focus:outline-[#7494EC]"
-                 }`}
-                value={formData.message}
-                onChange={handleChange}
-              />
-              {errors.message && (
-                <p className="text-[#A70C0C]">{errors.message}</p>
-              )}
-            </div>
-            <div
-              className="w-full h-12 bg-[#1D4ED8]  hover:bg-[#7494EC] cursor-pointer text-[#F3F4F6] flex justify-center items-center rounded-full"
-              onClick={handleSubmit}
-              disabled={!formData.name || !formData.email || !formData.message}>
-              {isSubmitted ? "Message Sent!" : "Send Message"}
-            </div>
-          </form>
-        </div>
+       
         <div className="second w-[100%] lg:w-[45%] mt-16 lg:mt-0">
           <div className="mb-4">
             <h1 className="text-3xl font-semibold mb-4">
@@ -160,7 +81,7 @@ const Page = () => {
             </p>
           </div>
           <div className="h-[525px] bg-[#FFFFFF] shadow-2xl  rounded-2xl p-6 space-y-8">
-            <div className="w-full h-[72px] flex justify-between items-center bg-[#E9EEFC] rounded-2xl px-4 cursor-pointer">
+            <Link href="https://x.com/_ProjectGENIUS?t=x-sjh39CT6uPx2bm34eSIQ&s=08" className="w-full h-[72px] flex justify-between items-center bg-[#E9EEFC] rounded-2xl px-4 cursor-pointer">
               <div className="flex">
                 <Image
                   alt="twitter-logo"
@@ -177,8 +98,8 @@ const Page = () => {
                 width={24}
                 height={24}
               />
-            </div>
-            <div className="w-full h-[72px] flex justify-between  items-center bg-[#E9EEFC] rounded-2xl px-4 cursor-pointer">
+            </Link>
+            <Link href="https://www.instagram.com/_project_genius?igsh=MW1hajRjNnRucTk0ZA==" className="w-full h-[72px] flex justify-between  items-center bg-[#E9EEFC] rounded-2xl px-4 cursor-pointer">
               <div className="flex">
                 <Image
                   alt="instagram-logo"
@@ -195,7 +116,7 @@ const Page = () => {
                 width={24}
                 height={24}
               />
-            </div>
+            </Link>
             <div className="w-full h-[72px] flex justify-between  items-center bg-[#E9EEFC] rounded-2xl px-4 cursor-pointer">
               <div className="flex">
                 <Image
