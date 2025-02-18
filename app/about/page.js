@@ -65,8 +65,8 @@ function About() {
                         />
                         <TeamComponent 
                         src={lead2}
-                        name={"Mohammad Abdulmujeeb"}
-                        title={"Back-end Developer"}
+                        name={"Abdulazeez Folaranmi"}
+                        title={"Technical Director"}
                         />
                     </div>
                 </section>
