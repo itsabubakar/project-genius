@@ -20,9 +20,18 @@ export default function Application(){
                 <button className="bg-primary text-white px-5 py-3 rounded-full w-[240px]">Proceed to payment</button>
             </div>
 
-            <div className="">
+            <div className="h-full flex flex-col">
                 
-                <form className="p-4">
+                <form className="py-4 max-h-full w-full flex gap-2">
+                    
+                    <div className="flex flex-col items-center">
+                        <div className="rounded-full w-5 h-5 flex justify-center items-center text-white border-2 border-primary_light ">
+                            <div className="w-[14px] font-normal h-[14px] text-xs flex justify-center items-center bg-primary_light rounded-full">
+                                
+                            </div>
+                        </div>
+                        <div className={`w-[2px] h-full flex-shrink-0 rounded-full bg-greyscale_border`}></div>    
+                    </div>
                     <div className="w-full flex flex-col gap-4">
                         <h3 className=" text-2xl font-bold text-start">Basic Information</h3>
 
@@ -55,24 +64,34 @@ export default function Application(){
                         
                         <Button
                             disabled={false}
+                            className="w-[314px]"
                             >
                                 Create team link
                         </Button>
-                    
+                        
+                        <div className="mb-[64px] flex flex-col gap-3 bg-success_subtle w-[314px] xs:w-full p-4">
+                            <h3 className="text-[28px] font-semibold">Team Link Generated!</h3>
+                            <p>Share this link with teammates to join and confirm their participation.</p>
+                            <Link href={''}>https://projectgenius.ng/team/join/unique-id</Link>
+                        </div>
                     </div>
                 </form>
 
-                <div className="flex flex-col gap-3 bg-success_subtle p-4">
-                    <h3 className="text-[28px] font-semibold">Team Link Generated!</h3>
-                    <p>Share this link with teammates to join and confirm their participation.</p>
-                    <Link href={''}>https://projectgenius.ng/team/join/unique-id</Link>
-                </div>
 
-                <form className="p-4">
+                <form className="flex gap-2">
+                    
+                    <div className="flex flex-col items-center">
+                        <div className="rounded-full w-5 h-5 flex justify-center items-center text-white border-2 border-primary_light ">
+                            <div className="w-[14px] font-normal h-[14px] text-xs flex justify-center items-center bg-primary_light rounded-full">
+                                
+                            </div>
+                        </div>
+                        <div className={`w-[2px] h-full flex-shrink-0 rounded-full bg-greyscale_border`}></div>    
+                    </div>
                     <div className="w-full flex flex-col gap-4">
                         <h3 className=" text-2xl font-bold text-start">Solution Details</h3>
 
-                        <div className="flex flex-col sm:grid grid-cols-2 gap-8">
+                        <div className="mb-[64px] flex flex-col sm:grid grid-cols-2 gap-8">
                             <Input 
                                 label="Solution Title"
                                 type="text"
@@ -105,34 +124,46 @@ export default function Application(){
                 </form>
             </div>
 
-            <div className="p-4">
-                <h3 className="text-2xl text-greyscale_title">Mode of Submission</h3>
-
-                <div className="p-4 bg-primary_subtle flex flex-col gap-4 rounded-xl">
-                    <h3 className="text-2xl">Instruction</h3>
-
-                    <p>The event requires physical submission of the following deliverables:</p>
-                    <div>
-                        
-                        <li>Pitch Deck (Slides)</li>
-                        <li>Executive Summary for the judges</li>
-                        <li>Prototype (to be presented at the Grand Finale)</li>
-                        
-                    </div>
-                    <p>Please ensure that all materials are delivered by the specified deadline and in the appropriate format.</p>
-                    
-                    <div className="flex gap-3 items-start">
-                    <input type="checkbox" />
-                        <p className="flex text-start">I agree to Project Genius’ terms and conditions</p>
-                    </div>
-                    
-                </div>
-                <Button
-                    disabled={true}
-                    >
-                        Submit application
-                </Button>
+            <div className="flex gap-2">
                 
+                <div className="flex flex-col items-center">
+                    <div className="rounded-full w-5 h-5 flex justify-center items-center text-white border-2 border-primary_light ">
+                        <div className="w-[14px] font-normal h-[14px] text-xs flex justify-center items-center bg-primary_light rounded-full">
+                            
+                        </div>
+                    </div>
+                    <div className={`w-[2px] h-full flex-shrink-0 rounded-full bg-greyscale_border`}></div>    
+                </div>
+                
+                <div className="w-[660px]">
+                    <h3 className="text-2xl text-greyscale_title">Mode of Submission</h3>
+
+                    <div className="p-4 bg-primary_subtle flex flex-col gap-4 rounded-xl">
+                        <h3 className="text-2xl">Instruction</h3>
+
+                        <p>The event requires physical submission of the following deliverables:</p>
+                        <div>
+                            
+                            <li>Pitch Deck (Slides)</li>
+                            <li>Executive Summary for the judges</li>
+                            <li>Prototype (to be presented at the Grand Finale)</li>
+                            
+                        </div>
+                        <p>Please ensure that all materials are delivered by the specified deadline and in the appropriate format.</p>
+                        
+                        <div className="flex gap-3 items-start">
+                        <input type="checkbox" />
+                            <p className="flex text-start">I agree to Project Genius’ terms and conditions</p>
+                        </div>
+                        
+                    </div>
+                    <Button
+                        disabled={true}
+                        >
+                            Submit application
+                    </Button>
+
+                </div>
             </div>
         </section>
 
