@@ -90,7 +90,7 @@ const Page = () => {
                   height={24}
                   className="min-w-[24px] min-h-[24px] w-auto h-auto"
                 />
-                <h1 className="text-[#06102D] font-medium ml-4">X (Twitter)</h1>
+                <h1 className="text-[#06102D] font-medium text-[12px] sm:text-[16px]  ml-4">X (Twitter)</h1>
               </div>
               <Image
                 alt="arrow"
@@ -108,7 +108,7 @@ const Page = () => {
                   height={24}
                   className="min-w-[24px] min-h-[24px] w-auto h-auto"
                 />
-                <h1 className="text-[#06102D] font-medium ml-4">Instagram</h1>
+                <h1 className="text-[#06102D] font-medium text-[12px] sm:text-[16px]  ml-4">Instagram</h1>
               </div>
               <Image
                 alt="arrow"
@@ -124,9 +124,9 @@ const Page = () => {
                   src="/icons/phone.png"
                   width={24}
                   height={24}
-                  className="min-w-[24px] min-h-[24px] w-auto h-auto"
+                  className="w-[24px] h-[24px] my-auto"
                 />
-                <div className="text-[#06102D] font-medium ml-4">
+                <div className="text-[#06102D] font-medium  text-[12px] sm:text-[16px] ml-4">
                   
                   <p>+234 906 555 3105 - Mohammad Salman</p>
                   <p>+234 807 546 1423 - Amina Ismail</p>
@@ -148,8 +148,8 @@ const Page = () => {
                   height={24}
                   className="min-w-[24px] min-h-[24px] w-auto h-auto"
                 />
-                <h1 className="text-[#06102D] font-medium ml-4">
-                  info@projectgenius.com.ng
+                <h1 className="text-[#06102D] text-[14px] sm:text-[16px] font-medium ml-4">
+                  abuprojectgenius@gmail.com
                 </h1>
               </div>
               <Image
