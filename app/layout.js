@@ -166,13 +166,14 @@ export default function RootLayout({ children }) {
             </nav>
             <Button
               href={"/auth/create-profile"}
+              onClick={() => setMenuOpen(!menuOpen)} 
               classname="w-full mt-auto mb-4   border-primary_pressed border-2 px-[20px] py-[12px]
                rounded-full block text-center bg-white
               text-primary hover:border-primary_hover  "
             >
               Register
             </Button>
-            <Button href={"/auth"} classname="w-full">
+            <Button href={"/auth"} onClick={() => setMenuOpen(!menuOpen)} classname="w-full">
               Login
             </Button>
           </div>
