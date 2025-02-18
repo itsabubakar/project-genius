@@ -20,6 +20,7 @@ import MainWrapper from "./main";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const headerClass = "sm:w-[719px] md:max-w-[714px] lg:max-w-[926px] xl:w-[1000px]"
   const router = useRouter();
   
   const navigateToAbout = () => {
@@ -52,16 +53,17 @@ export default function Home() {
             </section>
 
         <section
-          className="flex flex-col items-center text-center gap-[54px]
+          className="flex flex-col items-center text-center gap-[54px] mg:gap-20
             padding-style">
           <Headings
             heading={"Why Project Genius?"}
             subHeading={
               "The Project Genius contest emerged from the necessity to address several key areas in education and personal among students"
             }
+            classname={headerClass}
           />
 
-          <div className="flex flex-wrap justify-center gap-8 md:gap-10 lg:gap-5 pb-5 max-w-[1200px]">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-10 lg:gap-5 lx:gap-10 pb-5 max-w-[1200px]">
             {infoData.map((card, index) => (
               <InfoCard
                 key={index}
@@ -79,9 +81,10 @@ export default function Home() {
           <Headings
             heading="Key Details"
             subHeading="The Project Genius contest is exclusively open to undergraduate students within Ahmadu Bello University. This contest aims to bring together a diverse group of students, encouraging collaboration and fostering a spirit of unity and teamwork within the University."
+            classname={headerClass}
           />
 
-          <div className="flex flex-col gap-[64px] sm:gap-[64px] justify-center">
+          <div className="flex flex-col gap-[64px] sm:gap-[96px] md:gap-[200px] justify-center">
             {detailData.map((detail, index) => (
               <Details
                 key={index}
@@ -96,12 +99,12 @@ export default function Home() {
 
         {/* COMPETITION TIMELINE START */}
         <section
-          className="flex flex-col items-center text-center gap-[54px]
+          className="w-full sm:px-1 lg:px-10 flex flex-col items-center text-center gap-[54px]
             padding-style">
                 
-            <h1 className="text-[28px] text-center md:text-start sm:text-[32px] md:[40px] font-bold">Competition Activities And Timeline</h1>
+            <h1 className="text-[28px] text-center mx-auto md:text-start sm:text-[32px] md:[40px] font-bold">Competition Activities And Timeline</h1>
 
-            <div className="flex flex-col items-center sm:items-start">
+            <div className="flex flex-col gap-10 sm:gap-0 sm:min-w-[719px] md:min-w-[835px] lg:w-[1023px] items-center sm:items-start">
                 {timelineData.map((timeline, index) => (
                     <Timeline
                     key={index}
@@ -120,6 +123,7 @@ export default function Home() {
                 <Heading 
                     heading="Rules And Guidelines"
                     subHeading="To ensure a fair and productive contest, participants must adhere to the following rules and guidelines. These rules are designed to maintain the integrity of the competition and to provide a clear framework within which participants can operate"
+                    classname={headerClass}
                 />
 
                 <div className="flex flex-wrap gap-[24px] justify-center ">
