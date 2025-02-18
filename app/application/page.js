@@ -1,12 +1,59 @@
+"use client"
 import Link from "next/link";
 import Button from "../components/application/button";
 import Input from "../components/application/input";
 import Textarea from "../components/application/textarea";
 import Heading from "../components/landing_page/header";
+import Image from "next/image";
+
+
+import tick from "../../public/icons/ticked.svg"
+import active from "../../public/icons/stepper.svg"
 
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup"
+
+
+
+const schema = yup.object().shape({
+    teamName: yup.string().required("Team Name is required").min(3, "Must be at least 3 characters"),
+  });
 
 export default function Application(){
+
+    const [teamName, setTeamName] = useState("");
+    const [inviteCode, setInviteCode] = useState("");
+    const [error, setError] = useState("");
+
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+    } = useForm({
+        resolver: yupResolver(schema),
+    });
+
+    const handleCreateTeam = async () => {
+        setError("");
+
+        const res = await fetch("/api/teams/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ teamName }),
+        });
+
+        const data = await res.json();
+        
+        if (res.ok) {
+        setInviteCode(data.inviteCode);
+        } else {
+        setError(data.message);
+        }
+    };
     return (
         <section className="flex flex-col px-5 md:px-20 lg:px-[238px] my-10 sm:items-center">
             <Heading 
@@ -20,10 +67,18 @@ export default function Application(){
                 <button className="bg-primary text-white px-5 py-3 rounded-full w-[240px]">Proceed to payment</button>
             </div>
 
-            <div className="">
+            <div className="h-full flex flex-col py-6">
                 
-                <form className="p-4">
-                    <div className="w-full flex flex-col gap-4">
+                <form onSubmit={handleSubmit(handleCreateTeam)} className=" max-h-full w-full flex gap-2">
+                    
+                    <div className="flex gap-[2px] mb-2 flex-col items-center">
+                        <div className="rounded-full w-5 h-5 flex text-center justify-center items-center  bg-success ">
+                            
+                            <Image src={tick} alt="tick" />
+                        </div>
+                        <div className={`w-[2px] h-full flex-shrink-0 rounded-full bg-success`}></div>    
+                    </div>
+                    <div className="w-full flex flex-col gap-4 md:px-20 md:pt-10 md:border-t md:border-x">
                         <h3 className=" text-2xl font-bold text-start">Basic Information</h3>
 
                         <div className="flex flex-col gap-8 sm:grid items-center grid-cols-2">
@@ -45,34 +100,53 @@ export default function Application(){
                                 placeholder="hamidusman@gmail.com"
                                 disabled={true}
                             />
-                            <Input 
-                                label="Team Name"
-                                type="text"
-                                placeholder="Enter team name"
-                                disabled={false}
-                            />
+                            <div>
+                                
+                                <Input
+                                    label="Team Name"
+                                    type="text"
+                                    value={teamName}
+                                    {...register("teamName")}
+                                    onChange={(e) => setTeamName(e.target.value)}
+                                    placeholder="Enter team name"
+                                    disabled={false}
+                                />
+                                {inviteCode && <p>Invite Code: {inviteCode}</p>}
+                                {errors.teamName && <p className="text-red-500">{errors.teamName.message}</p>}
+                            </div>
                         </div>
                         
                         <Button
+                            onClick={handleCreateTeam}
                             disabled={false}
+                            className="w-[314px]"
+                            type="submit"
+                            
                             >
                                 Create team link
                         </Button>
-                    
+                        
+                        <div className=" flex flex-col gap-3 bg-success_subtle w-[314px] xs:w-full p-4">
+                            <h3 className="text-[28px] font-semibold">Team Link Generated!</h3>
+                            <p>Share this link with teammates to join and confirm their participation.</p>
+                            <Link href={''}>https://projectgenius.ng/team/join/unique-id</Link>
+                        </div>
                     </div>
                 </form>
 
-                <div className="flex flex-col gap-3 bg-success_subtle p-4">
-                    <h3 className="text-[28px] font-semibold">Team Link Generated!</h3>
-                    <p>Share this link with teammates to join and confirm their participation.</p>
-                    <Link href={''}>https://projectgenius.ng/team/join/unique-id</Link>
-                </div>
 
-                <form className="p-4">
-                    <div className="w-full flex flex-col gap-4">
+                <form className="flex gap-2">
+                    
+                    <div className="flex gap-[2px] mb-7 flex-col items-center">
+                        <div className="rounded-full w-5 h-5 flex text-center justify-center items-center ">
+                            <Image src={active} alt="active"/>
+                        </div>
+                        <div className={`w-[2px] h-full flex-shrink-0 rounded-full bg-warning`}></div>    
+                    </div>
+                    <div className="w-full flex flex-col gap-4 md:px-20 border-x p-5">
                         <h3 className=" text-2xl font-bold text-start">Solution Details</h3>
 
-                        <div className="flex flex-col sm:grid grid-cols-2 gap-8">
+                        <div className="mb-[64px] flex flex-col sm:grid grid-cols-2 gap-8">
                             <Input 
                                 label="Solution Title"
                                 type="text"
@@ -105,34 +179,42 @@ export default function Application(){
                 </form>
             </div>
 
-            <div className="p-4">
-                <h3 className="text-2xl text-greyscale_title">Mode of Submission</h3>
-
-                <div className="p-4 bg-primary_subtle flex flex-col gap-4 rounded-xl">
-                    <h3 className="text-2xl">Instruction</h3>
-
-                    <p>The event requires physical submission of the following deliverables:</p>
-                    <div>
-                        
-                        <li>Pitch Deck (Slides)</li>
-                        <li>Executive Summary for the judges</li>
-                        <li>Prototype (to be presented at the Grand Finale)</li>
-                        
+            <div className="flex gap-2">
+                <div className="flex flex-col items-center gap-1">
+                    <div className="w-5 h-5 flex items-center justify-center rounded-full bg-greyscale_surface_subtle border border-greyscale_disabled text-white">
                     </div>
-                    <p>Please ensure that all materials are delivered by the specified deadline and in the appropriate format.</p>
-                    
-                    <div className="flex gap-3 items-start">
-                    <input type="checkbox" />
-                        <p className="flex text-start">I agree to Project Genius’ terms and conditions</p>
-                    </div>
-                    
+                    <div className="w-[2px] flex-grow rounded-full bg-greyscale_border"></div>
                 </div>
-                <Button
-                    disabled={true}
-                    >
-                        Submit application
-                </Button>
                 
+                <div className="sm:w-[701.6px] md:w-[821.6px] flex flex-col gap-4 md:px-20 md:pb-10 border-x border-b rounded-2xl p-5">
+                    <h3 className="text-2xl text-greyscale_title">Mode of Submission</h3>
+
+                    <div className="p-4 bg-primary_subtle flex flex-col gap-4 rounded-xl">
+                        <h3 className="text-2xl">Instruction</h3>
+
+                        <p>The event requires physical submission of the following deliverables:</p>
+                        <div>
+                            
+                            <li>Pitch Deck (Slides)</li>
+                            <li>Executive Summary for the judges</li>
+                            <li>Prototype (to be presented at the Grand Finale)</li>
+                            
+                        </div>
+                        <p>Please ensure that all materials are delivered by the specified deadline and in the appropriate format.</p>
+                        
+                        <div className="flex gap-3 items-start">
+                        <input type="checkbox" />
+                            <p className="flex text-start">I agree to Project Genius’ terms and conditions</p>
+                        </div>
+                        
+                    </div>
+                    <Button
+                        disabled={true}
+                        >
+                            Submit application
+                    </Button>
+
+                </div>
             </div>
         </section>
 
