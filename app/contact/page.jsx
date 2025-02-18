@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { z } from "zod";
 import Link from "next/link";
+import Heading from "../components/landing_page/header";
 
 const schema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -71,16 +72,13 @@ const Page = () => {
 
       <div className="w-[100%] flex flex-col lg:flex-row  flex-wrap items-center justify-around px-5 md:px-12 pb-16 mt-28">
        
-        <div className="second w-[100%] lg:w-[45%] mt-16 lg:mt-0">
-          <div className="mb-4">
-            <h1 className="text-3xl font-semibold mb-4">
-              Reach Out, Stay Updated
-            </h1>
-            <p className="#4F5569">
-              Contact us via email or follow us on social media to stay updated.
-            </p>
-          </div>
-          <div className="h-[525px] bg-[#FFFFFF] shadow-2xl  rounded-2xl p-6 space-y-8">
+        <div className="second  w-full md:w-[880px] md:px-[133px]  mt-16 lg:mt-0">
+          <Heading 
+          heading="Get in Touch With Us"
+          subHeading="Have an inquiry? Fill out the form, and we’ll respond promptly."
+          classname="text-center mx-auto"
+          />
+          <div className=" bg-[#FFFFFF] shadow-2xl  rounded-2xl p-10 space-y-8">
             <Link href="https://x.com/_ProjectGENIUS?t=x-sjh39CT6uPx2bm34eSIQ&s=08" className="w-full h-[72px] flex justify-between items-center bg-[#E9EEFC] rounded-2xl px-4 cursor-pointer">
               <div className="flex">
                 <Image
