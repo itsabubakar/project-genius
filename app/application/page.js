@@ -52,7 +52,7 @@ export default function Application(){
     const handleCreateTeam = async () => {
         setError("");
 
-        const res = await fetch("/api/teams/", {
+        const res = await fetch("https://project-genius-back-end.onrender.com/teams/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ teamName }),
@@ -62,6 +62,7 @@ export default function Application(){
         
         if (res.ok) {
         setInviteCode(data.inviteCode);
+        console.log("response: ", data)
         } else {
         setError(data.message);
         }
@@ -108,11 +109,15 @@ export default function Application(){
                 subHeading="Take the first step toward innovation, complete your application and join the competition!"
             />
             {user?.role === "lead" ? (
-                <>
+                <>{userData?.paymentURL && (
                     <div className="bg-primary_subtle rounded-2xl w-fit px-4 sm:px-16 lg:px-20 py-4 flex flex-col items-center gap-4 text-center inter">
                         <p className="text-greyscale_subtitle text-lg">To participate in the contest, a registration fee of N5,000 is required. Complete the payment process to proceed with the appliation</p>
-                        <Link href={userData.paymentURL} className="bg-primary text-white px-5 py-3 rounded-full w-[240px]">Proceed to payment</Link>
+                        
+                            <Link href={userData.paymentURL} className="bg-primary text-white px-5 py-3 rounded-full w-[240px]">Proceed to payment</Link>
+                    
                     </div>
+                    
+                )}
 
                     <div className="h-full flex flex-col py-6">
                         
