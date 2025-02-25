@@ -49,6 +49,7 @@ const Dashboard = () => {
                 const result = await response.json();
 
                 if (response.status === 200) {
+                    console.log("API Response:", result);
                     setUserData(result);
                 } else if (response.status === 401) {
                     setError("Invalid login credentials");
@@ -163,7 +164,7 @@ const Dashboard = () => {
                         { user.role === "lead" ? (
                             <>
                             <p className=" text-greysca">Create a new team to lead and inspire your group</p>
-                            <ButtonBlue>Create Team</ButtonBlue></>
+                            <ButtonBlue onClick={openModal}>Create Team</ButtonBlue></>
                         ) : (
                             <>
                             <p className="">Collaborate with others by joining an existing team</p>

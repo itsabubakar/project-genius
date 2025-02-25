@@ -40,7 +40,7 @@ export default function Login() {
   const onSubmit = async (data) => {
     setLoading(true); // Start loading
     try {
-        const response = await fetch("https://project-genius-back-end.onrender.com/auth/connect", {
+        const response = await fetch("https://project-genius-back-end-1.onrender.com/auth/connect", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
