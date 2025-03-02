@@ -7,6 +7,7 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup"
 import SolutionForm from "./solution";
+import { useEffect, useState } from "react";
 
 
 const schema = yup.object().shape({

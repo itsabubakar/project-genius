@@ -71,7 +71,8 @@ function MobileForm({ currentSection, nextSection, previousSection }) {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-      const response = await fetch("https://project-genius-back-end-1.onrender.com/users/", {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const response = await fetch(`${apiUrl}/users/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

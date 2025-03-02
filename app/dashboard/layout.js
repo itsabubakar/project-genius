@@ -46,8 +46,8 @@ function Layout({ children }) {
     localStorage.removeItem("user"); // Remove token from storage
     router.replace("/");
     try {
-      const response = await fetch(
-        "https://project-genius-back-end-1.onrender.com/auth/disconnect",
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const response = await fetch(`${apiUrl}/auth/disconnect`,
         {
           method: "DELETE",
         }

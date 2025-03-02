@@ -7,7 +7,7 @@ const InputField = ({ label, name, type, placeholder, register, error }) => {
                 placeholder={placeholder}
                 {...register(name)}
                 autoComplete="off"
-                className="w-full md:w-full lg:w-full  border focus:outline-primary p-2 rounded-md px-4 py-2 bg-greyscale_surface_subtle text-greyscale_text"
+                className="w-full md:w-[360px]  border focus:outline-primary p-2 rounded-md px-4 py-2 bg-greyscale_surface_subtle text-greyscale_text"
             />
             {error && <p className="text-red-500">{error.message}</p>}
         </div>
