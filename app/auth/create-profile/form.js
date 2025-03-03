@@ -18,6 +18,8 @@ import spinner from "../../../public/svg/spinner.svg";
 
 import faculties from "../../data/faculties";
 
+
+// yup function for form validation
 const validationSchema = yup.object().shape({
   firstName: yup.string().required("First name is required"),
   lastName: yup.string().required("Last name is required"),
@@ -30,7 +32,7 @@ const validationSchema = yup.object().shape({
   confirmPassword: yup.string().oneOf([yup.ref("password")], "Passwords must match").required("Confirm Password is required"),
 });
 
-function MobileForm({ currentSection, nextSection, previousSection }) {
+function Form({ currentSection, nextSection, previousSection }) {
   const { handleSubmit, control, watch, formState: { errors }, setError, register, trigger } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
@@ -52,8 +54,6 @@ function MobileForm({ currentSection, nextSection, previousSection }) {
 
   // faculties and departments data filtering
   const [departmentOptions, setDepartmentOptions] = useState([]);
-
-  const selectedFaculty = watch("faculty");
 
   const handleFacultyChange = (faculty) => {
     const facultyData = faculties.find((f) => f.faculty === faculty);
@@ -166,4 +166,4 @@ function MobileForm({ currentSection, nextSection, previousSection }) {
   );
 }
 
-export default MobileForm;
+export default Form;
