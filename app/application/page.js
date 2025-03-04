@@ -105,7 +105,7 @@ export default function Application(){
         };
 
         fetchUserCode();
-    }, []);
+    }, [apiUrl]);
     
         useEffect(() => {
             const verifyPayment = async () => {
@@ -123,7 +123,7 @@ export default function Application(){
             };
 
             verifyPayment();
-        }, [ref]);
+        }, [ref, apiUrl]);
     useEffect(() => {
         const fetchPaymentLink = async () => {
             try {
@@ -148,7 +148,7 @@ export default function Application(){
         };
     
         fetchPaymentLink();
-    }, []);
+    }, [apiUrl]);
 
     
     if (loading) {
@@ -225,7 +225,7 @@ export default function Application(){
 
                 </>
             ) :
-            <h3 className="text-4xl">Hold up, you shouldn't be here!</h3>}
+            <h3 className="text-4xl">Hold up, you shouldn&apos;t be here!</h3>}
         </section>
 
     )

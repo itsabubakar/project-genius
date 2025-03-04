@@ -17,6 +17,7 @@ import Link from "next/link";
 const currentDate = new Date();
 const nextStepIndex = progressData.findIndex(progress => new Date(progress.date) > currentDate);
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const Dashboard = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -26,7 +27,6 @@ const Dashboard = () => {
     const [inviteCode, setInviteCode] = useState("");
     const [message, setMessage] = useState("");
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
     const handleJoinTeam = async () => {
         setMessage("");
@@ -103,7 +103,7 @@ const Dashboard = () => {
         };
 
         fetchUserDashboard();
-    }, []);
+    }, [apiUrl]);
 
     if (loading) {
         return <div className="w-full h-full flex justify-center items-center">
@@ -126,7 +126,7 @@ const Dashboard = () => {
                 <h1 className="text-[32px] md:text-[40px] lg:text-[44px] font-bold text-greyscale_title">
                     Welcome, {user.firstName}!
                 </h1>
-                <p className="text-greyscale_subtitle">You’re doing great, keep innovating!</p>
+                <p className="text-greyscale_subtitle">You&#34;re doing great, keep innovating!</p>
             </div>
             <hr />
 
@@ -205,32 +205,29 @@ const Dashboard = () => {
                         </div>
                     </div>
                 )}
-                    {modalOpen && (
-                        
-                <Modal
-                    >
-                    heading="Join a Team"
-                    subHeading="Enter the unique team code shared with you to join your team and participate in the competition"
+                {modalOpen && (
+    <Modal>
+        <h2>Join a Team</h2>
+        <p>Enter the unique team code shared with you to join your team and participate in the competition</p>
 
-                    
-                    <input
-                        type="text"
-                        placeholder="Enter team code"
-                        className="w-full px-4 py-3 mt-8 mb-4 rounded-xl outline-none bg-greyscale_surface_subtle"
-                        value={inviteCode}
-                        onChange={(e) => setInviteCode(e.target.value)}
-                    />
-                    <ButtonBlue classname="mx-auto w-[318px] sm:w-[240px]"
-                        onClick={handleJoinTeam}
-                    >
-                        Join Team
-                    </ButtonBlue>
+        <input
+            type="text"
+            placeholder="Enter team code"
+            className="w-full px-4 py-3 mt-8 mb-4 rounded-xl outline-none bg-greyscale_surface_subtle"
+            value={inviteCode}
+            onChange={(e) => setInviteCode(e.target.value)}
+        />
+        <ButtonBlue classname="mx-auto w-[318px] sm:w-[240px]"
+            onClick={handleJoinTeam}
+        >
+            Join Team
+        </ButtonBlue>
 
-                    {message && <p className="text-green-600 mt-4">{message}</p>}
-                    {error && <p className="text-red-600 mt-4">{error}</p>}
+        {message && <p className="text-green-600 mt-4">{message}</p>}
+        {error && <p className="text-red-600 mt-4">{error}</p>}
+    </Modal>
+)}
 
-                </Modal>
-                    )}
 
             {/* Progress Section */}
         </div>
