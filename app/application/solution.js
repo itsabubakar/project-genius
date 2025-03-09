@@ -20,7 +20,7 @@ const solutionSchema = yup.object().shape({
     solution: yup.string().min(10, "Solution must be at least 10 characters").required("Solution is required"),
 });
 
-const SolutionForm = ({ active }) => {
+const SolutionForm = ({ disabled }) => {
     const {
         register,
         handleSubmit,
@@ -34,7 +34,7 @@ const SolutionForm = ({ active }) => {
     const [success, setSuccess] = useState(null);
     const [checked, setChecked] = useState(false)
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEVS;
 
     const handleSolutionSubmit = async (data) => {
         setError(null);
@@ -80,14 +80,16 @@ const SolutionForm = ({ active }) => {
                         placeholder="Enter solution title"
                         register={register}
                         error={errors.title}
+                        disabled={disabled}
                     />
 
                     <div className="flex flex-col gap-2">
                         <label>Category</label>
-                        <div className="w-full md:w-[360px] border focus:outline-primary p-2 rounded-md px-4 py-2 bg-greyscale_surface_subtle text-greyscale_text flex">
+                        <div className={`w-full lg:w-[100%] md:w-[360px] border focus:outline-primary p-2 rounded-md px-4 py-2 text-greyscale_text flex ${disabled === true ? 'bg-greyscale_disabled' : 'bg-greyscale_surface_subtle'}`}>
                             <select
+                                disabled={disabled}
                                 {...register("category")}
-                                className="w-full bg-transparent focus:outline-none h-full text-greyscale_text appearance-none"
+                                className={`  w-full bg-transparent focus:outline-none h-full text-greyscale_text appearance-none`}
                             >
                                 <option value="">Select your solution category</option>
                                 <option value="health">Health</option>
@@ -104,7 +106,8 @@ const SolutionForm = ({ active }) => {
                             label="Problem Addressed"
                             placeholder="What is the problem?"
                             name={"problem"}
-                            register={register} 
+                            register={register}
+                            disabled={disabled}
                         />
                         {errors.problem && <p className="text-red-500">{errors.problem.message}</p>}
                     </div>
@@ -115,6 +118,7 @@ const SolutionForm = ({ active }) => {
                             placeholder="How does your solution solve it?"
                             name={"solution"}
                             register={register} 
+                            disabled={disabled}
                         />
                         {errors.solution && <p className="text-red-500">{errors.solution.message}</p>}
                     </div>

@@ -46,7 +46,7 @@ function Layout({ children }) {
     localStorage.removeItem("user"); // Remove token from storage
     router.replace("/");
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
       const response = await fetch(`${apiUrl}/auth/disconnect`,
         {
           method: "DELETE",

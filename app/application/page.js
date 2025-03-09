@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup"
 import SolutionForm from "./solution";
 import { useEffect, useState } from "react";
+import ButtonBlue from "../ui/buttonBlue";
 
 
 const schema = yup.object().shape({
@@ -37,7 +38,7 @@ export default function Application(){
     const ref = queryParam.get("reference")
     const [status, setStatus] = useState("Verifying...");
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -58,21 +59,22 @@ export default function Application(){
     });
 
 
-    const handleCreateTeam = async () => {
+
+    const handleCreateTeam = async (data) => {
         setError("");
         const res = await fetch(`${apiUrl}/teams/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ teamName }),
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ teamName: data.teamName }),
         });
 
-        const data = await res.json();
+        const result = await res.json();
         
         if (res.ok) {
-        setInviteCode(data.inviteCode);
-        console.log("response: ", data)
+            setInviteCode(result.inviteCode);
+            console.log("response: ", result);
         } else {
-        setError(data.message);
+            setError(result.message);
         }
     };
     
@@ -151,6 +153,15 @@ export default function Application(){
     }, [apiUrl]);
 
     
+    const handlePayment = () => {
+        if (userData?.paymentURL) {
+            window.location.href = userData.paymentURL; // Redirect to external URL
+        } else {
+            alert("Payment URL not available");
+        }
+    };
+
+    
     if (loading) {
         return <div className=" h-[85vh] flex justify-center items-center">
             <Image src={spinner} className="w-16 h-16 animate-spin" alt="Loading" />
@@ -164,10 +175,19 @@ export default function Application(){
                 classname="text-center w-fit px-6"
                 subHeading="Take the first step toward innovation, complete your application and join the competition!"
             />
+
+            {userData.paymentURL && (
+                
+                <div className="bg-primary_subtle rounded-2xl w-fit px-4 sm:px-16 lg:px-20 py-4 flex flex-col items-center gap-4 text-center inter">
+                    <p className="text-greyscale_subtitle text-lg">To participate in the contest, a registration fee of N5,000 is required. Complete the payment process to proceed with the appliation</p>
+                    <button onClick={handlePayment} className="bg-primary text-white px-5 py-3 rounded-full w-[240px]">Proceed to payment</button>
+                </div>
+            )}
+            
             {user?.role === "lead" ? (
                 <>
 
-                    <div className="h-full flex flex-col py-6 md:border gap-10 md:px-20 md:pt-10 "><div>Payment Status: {status}</div>
+                    <div className="mt-10 h-full flex flex-col py-6 md:border gap-10 md:px-20 md:pt-10 ">
                         
                         <form onSubmit={handleSubmit(handleCreateTeam)} className=" max-h-full w-full flex gap-2">
                             
@@ -178,19 +198,19 @@ export default function Application(){
                                     <Input 
                                         label="Full name"
                                         type="text"
-                                        placeholder="Yusef Aliyu"
+                                        placeholder={user.firstName}
                                         disabled={true}
                                     />
                                     <Input 
                                         label="Department"
                                         type="text"
-                                        placeholder="Computer Science"
+                                        placeholder={user.department}
                                         disabled={true}
                                     />
                                     <Input 
                                         label="Email address"
                                         type="email"
-                                        placeholder="hamidusman@gmail.com"
+                                        placeholder={user.email}
                                         disabled={true}
                                     />
                                     <div className="w-full">
@@ -198,29 +218,34 @@ export default function Application(){
                                         <Input
                                             label="Team Name"
                                             type="text"
-                                            value={teamName}
                                             {...register("teamName")}
                                             placeholder={user.team ? user.team : "place"}
                                             disabled={user.team ? true : false}
-                                            onChange={(e) => setTeamName(e.target.value)} 
                                         />
                                         {inviteCode && <p>Invite Code: {inviteCode}</p>}
                                         {errors.teamName && <p className="text-red-500">{errors.teamName.message}</p>}
                                     </div>
                                 </div>
-                                {userData.team && (
-                                    
-                                <div className=" flex flex-col gap-3 bg-success_subtle w-[314px] xs:w-full p-4">
-                                    <h3 className="text-[28px] font-semibold">Team Code Generated!</h3>
-                                    <p>Share this code with teammates to join and confirm their participation: <strong>{userData.team.invite_code}</strong> </p>
-
-                                </div>
-                                )}
+                                    <div className="w-full">
+                                        
+                                    <ButtonBlue classname={"md:w-[395px] text-black w-[100%] sm:w-[335px] ml-auto"}>Submit</ButtonBlue>
+                                    </div>
                             </div>
                         </form>
+                        
+                        {userData?.team && (
+                                    
+                            <div className=" flex flex-col gap-3 bg-success_subtle xs:w-full p-4">
+                                <h3 className="text-[28px] font-semibold">Team Code Generated!</h3>
+                                <p>Share this code with teammates to join and confirm their participation: <strong>{userData.team.invite_code}</strong> </p>
+
+                            </div>
+                        )}
 
 
-                        <SolutionForm />
+                        <SolutionForm 
+                            disabled={!userData.team}
+                        />
                     </div>
 
                 </>

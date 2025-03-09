@@ -1,5 +1,7 @@
 'use client'
 
+require("dotenv").config();
+
 import Image from "next/image";
 import SelectField from "./selectedField";
 import InputField from "./inputField";
@@ -71,7 +73,7 @@ function Form({ currentSection, nextSection, previousSection }) {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
       const response = await fetch(`${apiUrl}/users/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

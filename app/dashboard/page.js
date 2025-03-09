@@ -17,12 +17,13 @@ import Link from "next/link";
 const currentDate = new Date();
 const nextStepIndex = progressData.findIndex(progress => new Date(progress.date) > currentDate);
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
 const Dashboard = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [user, setUser] = useState(null);
+
 
     const [inviteCode, setInviteCode] = useState("");
     const [message, setMessage] = useState("");
@@ -119,6 +120,15 @@ const Dashboard = () => {
         return <div>No user data available</div>;
     }
 
+    const handlePayment = () => {
+
+        if (userData?.paymentURL) {
+            window.location.href = userData.paymentURL; // Redirect to external URL
+        } else {
+            alert("Payment URL not available");
+        }
+    };
+
     return (
         <div className="flex flex-col gap-6 lg:gap-8">
             {/* Welcome Message */}
@@ -139,7 +149,7 @@ const Dashboard = () => {
                             {user.role === "lead" && (
                                 <p>Invite Code: {userData.team.invite_code}</p>
                             )}
-                                                        <p className="text-greyscale_subtitle">A team of digital pioneers shaping the future.</p>
+                                                        <p className="text-greyscale_subtitle">A team of digital pioneers shaping the future. </p>
                         </div>
                         <div className="flex flex-col gap-4">
                             <h2 className="text-xl font-semibold">Team Members</h2>
@@ -194,7 +204,9 @@ const Dashboard = () => {
                         { user.role === "lead" ? (
                             <>
                             <p className=" text-greysca">Create a new team to lead and inspire your group</p>
-                            <ButtonBlue onClick={openModal}>Create Team</ButtonBlue></>
+                            {userData && (
+                            <ButtonBlue onClick={handlePayment}>Create Team</ButtonBlue>
+                        )}</>
                         ) : (
                             <>
                             <p className="">Collaborate with others by joining an existing team</p>
