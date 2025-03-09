@@ -52,8 +52,7 @@ export default function Application(){
     const {
         register,
         handleSubmit,
-        control,
-        formState: { errors, isSubmitting },
+        formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),
     });
@@ -62,19 +61,31 @@ export default function Application(){
 
     const handleCreateTeam = async (data) => {
         setError("");
-        const res = await fetch(`${apiUrl}/teams/`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ teamName: data.teamName }),
-        });
-
-        const result = await res.json();
         
-        if (res.ok) {
-            setInviteCode(result.inviteCode);
-            console.log("response: ", result);
-        } else {
-            setError(result.message);
+        console.log("Creating team with:", data.teamName);
+        console.log("API URL:", `${apiUrl}/teams/`);
+    
+        try {
+            const res = await fetch(`${apiUrl}/teams/`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ teamName: data.teamName.trim() }),
+            });
+    
+            console.log("Response status:", res.status);
+    
+            const result = await res.json();
+            console.log("Response body:", result);
+            
+            if (res.ok) {
+                setInviteCode(result.inviteCode);
+                console.log("Team Created: ", result);
+            } else {
+                setError(result.message || "Something went wrong");
+            }
+        } catch (err) {
+            console.error("Fetch error:", err);
+            setError("Failed to create team. Please try again.");
         }
     };
     
@@ -176,6 +187,7 @@ export default function Application(){
                 subHeading="Take the first step toward innovation, complete your application and join the competition!"
             />
 
+            {status}
             {userData.paymentURL && (
                 
                 <div className="bg-primary_subtle rounded-2xl w-fit px-4 sm:px-16 lg:px-20 py-4 flex flex-col items-center gap-4 text-center inter">
@@ -214,14 +226,13 @@ export default function Application(){
                                         disabled={true}
                                     />
                                     <div className="w-full">
-                                        
-                                        <Input
-                                            label="Team Name"
-                                            type="text"
-                                            {...register("teamName")}
-                                            placeholder={user.team ? user.team : "place"}
-                                            disabled={user.team ? true : false}
-                                        />
+                                    <Input
+                                        label="Team Name"
+                                        type="text"
+                                        {...register("teamName")}
+                                        placeholder={userData.team ? userData.team.team_name : "Enter team name"}
+                                        disabled={userData.team ? true : false}
+                                    />
                                         {inviteCode && <p>Invite Code: {inviteCode}</p>}
                                         {errors.teamName && <p className="text-red-500">{errors.teamName.message}</p>}
                                     </div>
