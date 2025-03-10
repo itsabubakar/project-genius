@@ -112,10 +112,8 @@ function Layout({ children }) {
                 Overview
               </li>
               <li
-                onClick={() => handleTab("rank")}
-                className={`${isActive(
-                  "rank"
-                )} h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
+                //onClick={() => handleTab("rank")}
+                className={`text-greyscale_disabled h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
                 `}
               >
                 <Image

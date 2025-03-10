@@ -53,6 +53,10 @@ const Dashboard = () => {
     
             if (res.ok) {
                 setMessage("Successfully joined the team!");
+                
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
             } else {
                 setError(data.message || "Failed to join the team.");
             }
@@ -131,18 +135,19 @@ const Dashboard = () => {
 
     return (
         <div className="flex flex-col gap-6 lg:gap-8">
-            {/* Welcome Message */}
-            <div className="flex flex-col gap-1">
-                <h1 className="text-[32px] md:text-[40px] lg:text-[44px] font-bold text-greyscale_title">
-                    Welcome, {user.firstName}!
-                </h1>
-                <p className="text-greyscale_subtitle">You&#34;re doing great, keep innovating!</p>
-            </div>
-            <hr />
+            
+            {userData?.team ? (
+                <>
+                    {/* Welcome Message */}
+                    <div className="flex flex-col gap-1">
+                        <h1 className="text-[32px] md:text-[40px] lg:text-[44px] font-bold text-greyscale_title">
+                            Welcome, {user.firstName}!
+                        </h1>
+                        <p className="text-greyscale_subtitle">You&#34;re doing great, keep innovating!</p>
+                    </div>
+                    <hr />
 
             {/* Team Section */}
-                {userData?.team ? (
-                    <>
                     <section className="flex flex-col gap-6 p-4 lg:pb-[55px] shadow-xl rounded-xl">
                         <div className="flex flex-col gap-2">
                             <h1 className="text-2xl font-medium text-greyscale_title">Team {userData.team.team_name}</h1>
@@ -168,7 +173,7 @@ const Dashboard = () => {
                                                 key={index}
                                                 initials={member.initials}
                                                 name={member.first_name}
-                                                role={member.role || "Team Member"}
+                                                role={member.role === 'member'? 'Member': 'Lead'}
                                                 classname="lg:w-[25%]"
                                             />
                                         ))}
@@ -218,7 +223,8 @@ const Dashboard = () => {
                     </div>
                 )}
                 {modalOpen && (
-    <Modal>
+    <Modal
+        modalClose={closeModal}>
         <h2>Join a Team</h2>
         <p>Enter the unique team code shared with you to join your team and participate in the competition</p>
 

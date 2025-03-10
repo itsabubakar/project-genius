@@ -9,15 +9,14 @@ import InputField from "../auth/create-profile/inputField";
 import Textarea from "../components/application/textarea";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import tick from "../../public/icons/ticked.svg"
-import stepper from "../../public/icons/stepper.svg"
 import Button from "../components/application/button";
+import { useRouter } from "next/navigation";
 
 const solutionSchema = yup.object().shape({
     title: yup.string().required("Solution title is required"),
     category: yup.string().required("Please select a category"),
-    problem: yup.string().min(10, "Problem description must be at least 10 characters").required("Problem is required"),
-    solution: yup.string().min(10, "Solution must be at least 10 characters").required("Solution is required"),
+    problem: yup.string().min(50, "Problem description must be at least 50 characters").required("Problem is required"),
+    solution: yup.string().min(50, "Solution must be at least 50 characters").required("Solution is required"),
 });
 
 const SolutionForm = ({ disabled }) => {
@@ -34,7 +33,9 @@ const SolutionForm = ({ disabled }) => {
     const [success, setSuccess] = useState(null);
     const [checked, setChecked] = useState(false)
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEVS;
+    const router = useRouter()
+
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
 
     const handleSolutionSubmit = async (data) => {
         setError(null);
@@ -52,6 +53,7 @@ const SolutionForm = ({ disabled }) => {
                 setSuccess("Solution submitted successfully!");
                 console.log("Solution submitted successfully!")
                 reset();
+                router.push('/dashboard')
             } else {
                 throw new Error("Failed to submit solution.");
             }
@@ -59,6 +61,9 @@ const SolutionForm = ({ disabled }) => {
             setError("Failed to submit solution. Please try again.");
         }
     };
+
+    const errorClass ="border-error_dark border-2 bg-error_subtle focus:outline-error_dark" //error class mod
+    const successClass = "focus:outline-primary" //success class mod
 
     return (
         <form onSubmit={handleSubmit(handleSolutionSubmit)} className="flex flex-col gap-2">
@@ -77,6 +82,7 @@ const SolutionForm = ({ disabled }) => {
                         label="Solution Title"
                         name="title"
                         type="text"
+                        className={`${errors.title ? errorClass : successClass}`}
                         placeholder="Enter solution title"
                         register={register}
                         error={errors.title}
@@ -85,7 +91,7 @@ const SolutionForm = ({ disabled }) => {
 
                     <div className="flex flex-col gap-2">
                         <label>Category</label>
-                        <div className={`w-full lg:w-[100%] md:w-[360px] border focus:outline-primary p-2 rounded-md px-4 py-2 text-greyscale_text flex ${disabled === true ? 'bg-greyscale_disabled' : 'bg-greyscale_surface_subtle'}`}>
+                        <div className={`w-full lg:w-[100%] md:w-[360px] border focus:outline-primary p-2 rounded-md px-4 py-2 text-greyscale_text flex ${disabled === true ? 'bg-greyscale_disabled' : 'bg-greyscale_surface_subtle'} ${errors.category ? errorClass : successClass}`}>
                             <select
                                 disabled={disabled}
                                 {...register("category")}
@@ -106,6 +112,7 @@ const SolutionForm = ({ disabled }) => {
                             label="Problem Addressed"
                             placeholder="What is the problem?"
                             name={"problem"}
+                            className={`${errors.problem ? errorClass : successClass}`}
                             register={register}
                             disabled={disabled}
                         />
@@ -117,6 +124,7 @@ const SolutionForm = ({ disabled }) => {
                             label="Solution Description"
                             placeholder="How does your solution solve it?"
                             name={"solution"}
+                            className={`${errors.solution ? errorClass : successClass}`}
                             register={register} 
                             disabled={disabled}
                         />

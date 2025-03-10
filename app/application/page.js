@@ -9,11 +9,12 @@ import * as yup from "yup"
 import SolutionForm from "./solution";
 import { useEffect, useState } from "react";
 import ButtonBlue from "../ui/buttonBlue";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 
 const schema = yup.object().shape({
     teamName: yup.string().required("Team Name is required").min(3, "Must be at least 3 characters"),
-  });
+});
 
 const solutionSchema = yup.object().shape({
     title: yup.string().required("Solution title is required"),
@@ -32,22 +33,62 @@ export default function Application(){
     const [loading, setLoading] = useState(true);
     const [success, setSuccess] = useState(null);
     
-    
-    // for extracting the reference
-    const queryParam = new URLSearchParams()
-    const ref = queryParam.get("reference")
-    const [status, setStatus] = useState("Verifying...");
+    const router = useRouter()
+    const searchParams = useSearchParams();
+    const ref = searchParams.get("trxref") || (typeof window !== "undefined" ? localStorage.getItem("userRef") : null);
+
+    const [status, setStatus] = useState("");
+
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
+    useEffect(() => {
+        if (ref) {
+            localStorage.setItem("userRef", ref);
+        }
+    }, [ref]);
 
+
+    useEffect(() => {
+        if (ref && !searchParams.get("trxref")) {
+            router.replace(`/application?trxref=${ref}`);
+        }
+    }, [ref, router, searchParams]);
+
+    useEffect(() => {
+        const verifyPayment = async () => {
+            if (!ref) return;
+
+            try {
+                const response = await fetch(
+                    `${apiUrl}/app/verify-payment/${ref}`
+                );
+
+                if (!response.ok) {
+                    throw new Error("Failed to verify payment");
+                }
+
+                const data = await response.json();
+                console.log("Working")
+                setStatus(data.status);
+                console.log("done")
+            } catch (err) {
+                setError("Payment verification failed");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        verifyPayment();
+    }, [ref]);
+      
     useEffect(() => {
         if (typeof window !== "undefined") {
             const storedUser = localStorage.getItem("user");
             if (storedUser) {
                 setUser(JSON.parse(storedUser));
             }
-            }
-        }, []);
+        }
+    }, []);
 
     const {
         register,
@@ -56,8 +97,6 @@ export default function Application(){
     } = useForm({
         resolver: yupResolver(schema),
     });
-
-
 
     const handleCreateTeam = async (data) => {
         setError("");
@@ -80,6 +119,9 @@ export default function Application(){
             if (res.ok) {
                 setInviteCode(result.inviteCode);
                 console.log("Team Created: ", result);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
             } else {
                 setError(result.message || "Something went wrong");
             }
@@ -88,7 +130,6 @@ export default function Application(){
             setError("Failed to create team. Please try again.");
         }
     };
-    
     
     useEffect(() => {
         const fetchUserCode = async () => {
@@ -105,6 +146,7 @@ export default function Application(){
                 if (response.status === 200) {
                     console.log("API Response:", result);
                     setUserData(result);
+                    
                 } else if (response.status === 401) {
                     setError("Invalid login credentials");
                 } else {
@@ -120,23 +162,7 @@ export default function Application(){
         fetchUserCode();
     }, [apiUrl]);
     
-        useEffect(() => {
-            const verifyPayment = async () => {
-            if (!ref) return;
 
-            try {
-                const response = await fetch(`${apiUrl}/app/verify-payment/${ref}`);
-                const data = await response.json();
-                setStatus(data.status);
-                console.log("verified")
-            } catch (error) {
-                console.error("Payment verification failed", error);
-                setStatus("Failed to verify payment");
-            }
-            };
-
-            verifyPayment();
-        }, [ref, apiUrl]);
     useEffect(() => {
         const fetchPaymentLink = async () => {
             try {
@@ -163,21 +189,14 @@ export default function Application(){
         fetchPaymentLink();
     }, [apiUrl]);
 
-    
-    const handlePayment = () => {
-        if (userData?.paymentURL) {
-            window.location.href = userData.paymentURL; // Redirect to external URL
-        } else {
-            alert("Payment URL not available");
-        }
-    };
 
-    
     if (loading) {
         return <div className=" h-[85vh] flex justify-center items-center">
             <Image src={spinner} className="w-16 h-16 animate-spin" alt="Loading" />
-            </div>;
+        </div>;
     }
+
+    
 
     return (
         <section className="flex flex-col px-5 md:px-20 lg:px-[238px] my-10 sm:items-center">
@@ -187,19 +206,17 @@ export default function Application(){
                 subHeading="Take the first step toward innovation, complete your application and join the competition!"
             />
 
-            {status}
-            {userData.paymentURL && (
-                
-                <div className="bg-primary_subtle rounded-2xl w-fit px-4 sm:px-16 lg:px-20 py-4 flex flex-col items-center gap-4 text-center inter">
-                    <p className="text-greyscale_subtitle text-lg">To participate in the contest, a registration fee of N5,000 is required. Complete the payment process to proceed with the appliation</p>
-                    <button onClick={handlePayment} className="bg-primary text-white px-5 py-3 rounded-full w-[240px]">Proceed to payment</button>
-                </div>
-            )}
+            
+        <div>
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            {status && <p>Status: {status}</p>}
+            
+        </div>
             
             {user?.role === "lead" ? (
                 <>
 
-                    <div className="mt-10 h-full flex flex-col py-6 md:border gap-10 md:px-20 md:pt-10 ">
+                    <div className="mt-10 h-full flex flex-col py-6 md:border rounded-xl gap-10 md:px-20 md:pt-10 ">
                         
                         <form onSubmit={handleSubmit(handleCreateTeam)} className=" max-h-full w-full flex gap-2">
                             
@@ -230,17 +247,21 @@ export default function Application(){
                                         label="Team Name"
                                         type="text"
                                         {...register("teamName")}
-                                        placeholder={userData.team ? userData.team.team_name : "Enter team name"}
-                                        disabled={userData.team ? true : false}
+                                        className={`${errors.teamName ? "border-error_dark" : ""}`}
+                                        placeholder={userData?.team?.team_name ?? "Enter team name"}
+                                        disabled={!!userData?.team && status === 'success' ? true : false }
                                     />
                                         {inviteCode && <p>Invite Code: {inviteCode}</p>}
                                         {errors.teamName && <p className="text-red-500">{errors.teamName.message}</p>}
                                     </div>
                                 </div>
+                                {!userData?.team && (
+                                    
                                     <div className="w-full">
                                         
-                                    <ButtonBlue classname={"md:w-[395px] text-black w-[100%] sm:w-[335px] ml-auto"}>Submit</ButtonBlue>
+                                        <ButtonBlue classname={"md:w-[395px] text-black w-[100%] sm:w-[335px] ml-auto"}>Submit</ButtonBlue>
                                     </div>
+                                )}
                             </div>
                         </form>
                         
@@ -255,7 +276,7 @@ export default function Application(){
 
 
                         <SolutionForm 
-                            disabled={!userData.team}
+                            disabled={userData?.team ? false : true}
                         />
                     </div>
 
