@@ -18,6 +18,7 @@ import Help from "./sections/help";
 import UpdateProfile from "./sections/updateProfile";
 import Footer from "../footer";
 import { useRouter } from "next/navigation";
+import Rank from "./sections/rank";
 
 function Layout({ children }) {
   const [activeTab, setActiveTab] = useState("overview");
@@ -45,8 +46,8 @@ function Layout({ children }) {
     localStorage.removeItem("user"); // Remove token from storage
     router.replace("/");
     try {
-      const response = await fetch(
-        "https://project-genius-back-end.onrender.com/auth/disconnect",
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
+      const response = await fetch(`${apiUrl}/auth/disconnect`,
         {
           method: "DELETE",
         }
@@ -111,6 +112,7 @@ function Layout({ children }) {
                 Overview
               </li>
               <li
+                //onClick={() => handleTab("rank")}
                 className={`text-greyscale_disabled h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
                 `}
               >
@@ -173,7 +175,7 @@ function Layout({ children }) {
                     "overview"
                   )} h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center`}
                 >
-                  <Image
+                  <Image alt="icon"
                     src={isActive("overview") ? overview : overviewBlack}
                   />{" "}
                   Overview
@@ -181,7 +183,7 @@ function Layout({ children }) {
                 <li
                   className={` text-greyscale_disabled  h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center`}
                 >
-                  <Image src={isActive("rank") ? rank : rankBlack} /> Rank and
+                  <Image alt="icon" src={isActive("rank") ? rank : rankBlack} /> Rank and
                   Progress
                 </li>
                 <li
@@ -203,7 +205,7 @@ function Layout({ children }) {
                     "help"
                   )} h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center`}
                 >
-                  <Image src={isActive("help") ? help : helpBlack} /> Find help
+                  <Image alt="icon" src={isActive("help") ? help : helpBlack} /> Find help
                 </li>
               </ul>
               <hr />
@@ -211,7 +213,7 @@ function Layout({ children }) {
                 onClick={handleLogout}
                 className="h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center"
               >
-                <Image src={logout} /> Logout
+                <Image alt="icon" src={logout} /> Logout
               </button>
             </nav>
           </aside>
@@ -223,6 +225,7 @@ function Layout({ children }) {
           <main className="flex-1 px-4 py-6 md:px-6 lg:p-8 bg-greyscale_background_light">
             {activeTab === "overview" && children}
             {activeTab === "help" && <Help />}
+            {activeTab === "rank" && <Rank />}
             {activeTab === "update-profile" && <UpdateProfile />}
           </main>
         </div>

@@ -3,9 +3,9 @@
 import { useState } from "react";
 import AuthLayout from "../auth-components/layout";
 import Heading from "../../components/landing_page/header";
-import MobileForm from "./mobileForm";
-import DesktopForm from "./desktopForm";
 import Modal from "../modal";
+
+import Form from "./form";
 
 
 export default function CreateProfile() {    
@@ -15,8 +15,7 @@ export default function CreateProfile() {
     const closeModal = () => setModalOpen(false);
 
     const handleSubmit = (e) => {
-        e.preventDefault(); // Prevent form default behavior
-        
+        e.preventDefault();
         openModal()
     }
     const [currentSection, setCurrentSection] = useState(1);
@@ -33,17 +32,12 @@ export default function CreateProfile() {
             classname="gap-2"
             />
 
-            <MobileForm
+            <Form
                     currentSection={currentSection}
                     nextSection={nextSection}
                     previousSection={previousSection}
                     handleSubmit={handleSubmit}
             />
-            <DesktopForm
-                    previousSection={previousSection}
-                    handleSubmit={handleSubmit}
-            />
-
 
             {modalOpen && (
                 <Modal

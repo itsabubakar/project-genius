@@ -40,7 +40,8 @@ export default function Login() {
   const onSubmit = async (data) => {
     setLoading(true); // Start loading
     try {
-        const response = await fetch("https://project-genius-back-end.onrender.com/auth/connect", {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
+      const response = await fetch(`${apiUrl}/auth/connect/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
