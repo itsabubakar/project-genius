@@ -40,27 +40,31 @@ const SolutionForm = ({ disabled }) => {
     const handleSolutionSubmit = async (data) => {
         setError(null);
         setSuccess(null);
-
-
+    
         try {
             const response = await fetch(`${apiUrl}/teams/solutions`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
-
-            if (response.ok) {
-                setSuccess("Solution submitted successfully!");
-                console.log("Solution submitted successfully!")
-                reset();
-                router.push('/dashboard')
-            } else {
-                throw new Error("Failed to submit solution.");
+    
+            const responseData = await response.json().catch(() => null); // Handle cases where response is not JSON
+    
+            if (!response.ok) {
+                const errorMessage = "Already submitted solution"|| (responseData?.error, 'f') || "Something went wrong.";
+                throw new Error(errorMessage);
             }
+    
+            setSuccess("Solution submitted successfully!");
+            console.log("Solution submitted successfully!");
+            reset();
+            router.push('/dashboard');
         } catch (err) {
-            setError("Failed to submit solution. Please try again.");
+            console.error("Submission error:", err);
+            setError(err.message || "An unexpected error occurred. Please try again.");
         }
     };
+    
 
     const errorClass ="border-error_dark border-2 bg-error_subtle focus:outline-error_dark" //error class mod
     const successClass = "focus:outline-primary" //success class mod

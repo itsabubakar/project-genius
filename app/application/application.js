@@ -47,7 +47,6 @@ export default function Application(){
         }
     }, [ref]);
 
-
     useEffect(() => {
         if (ref && !searchParams.get("trxref")) {
             router.replace(`/application?trxref=${ref}`);
