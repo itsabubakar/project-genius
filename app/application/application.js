@@ -3,55 +3,71 @@ import Input from "../components/application/input";
 import Heading from "../components/landing_page/header";
 import Image from "next/image";
 import spinner from "../../public/svg/spinner.svg";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup"
 import SolutionForm from "./solution";
 import { useEffect, useState } from "react";
 import ButtonBlue from "../ui/buttonBlue";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
+import tick from "../../public/icons/tick_green.svg"
+import cancel from "../../public/icons/cancel.svg"
 
 const schema = yup.object().shape({
     teamName: yup.string().required("Team Name is required").min(3, "Must be at least 3 characters"),
 });
 
-const solutionSchema = yup.object().shape({
-    title: yup.string().required("Solution title is required"),
-    category: yup.string().required("Please select a category"),
-    problem: yup.string().min(10, "Problem description must be at least 10 characters").required("Problem is required"),
-    solution: yup.string().min(10, "Solution must be at least 10 characters").required("Solution is required"),
-});
 
 export default function Application(){
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
 
     const [userData, setUserData] = useState(null);
     const [user, setUser] = useState(null);
-    const [teamName, setTeamName] = useState("");
     const [inviteCode, setInviteCode] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
-    const [success, setSuccess] = useState(null);
     
     const router = useRouter()
     const searchParams = useSearchParams();
-    const ref = searchParams.get("trxref") || (typeof window !== "undefined" ? localStorage.getItem("userRef") : null);
+    const ref = searchParams.get("trxref")
 
     const [status, setStatus] = useState("");
+    const [paymentStatus, setPaymentStatus] = useState(null);
+    const [paymentError, setPaymentError] = useState('');
+    const [popUp, setPopUp] = useState(true);
+
+    const hidePopUp = () => {
+        setPopUp(false);
+    }
 
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
+
     useEffect(() => {
-        if (ref) {
-            localStorage.setItem("userRef", ref);
-        }
-    }, [ref]);
-
-    useEffect(() => {
-        if (ref && !searchParams.get("trxref")) {
-            router.replace(`/application?trxref=${ref}`);
-        }
-    }, [ref, router, searchParams]);
+        const fetchPaymentStatus = async () => {
+            try {
+                const response = await fetch(`${apiUrl}/app/payment/paid`, {
+                    method: "GET",
+                    headers: {
+                        "Accept": "application/json",
+                    },
+                });
+    
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+    
+                const data = await response.json();
+                console.log("Payment status data:", data);
+                setPaymentStatus(data.is_paid);
+            } catch (error) {
+                console.error("Error fetching payment status:", error);
+                setPaymentError("Failed to fetch payment status. Please try again later.");
+            }
+        };
+    
+        fetchPaymentStatus();
+    }, [apiUrl]);
 
     useEffect(() => {
         const verifyPayment = async () => {
@@ -99,6 +115,7 @@ export default function Application(){
 
     const handleCreateTeam = async (data) => {
         setError("");
+        setLoading(true);
         
         console.log("Creating team with:", data.teamName);
         console.log("API URL:", `${apiUrl}/teams/`);
@@ -127,6 +144,9 @@ export default function Application(){
         } catch (err) {
             console.error("Fetch error:", err);
             setError("Failed to create team. Please try again.");
+        }
+        finally {
+            setLoading(false)
         }
     };
     
@@ -206,11 +226,29 @@ export default function Application(){
             />
 
             
-        <div>
-            {error && <p style={{ color: "red" }}>{error}</p>}
-            {status && <p>Status: {status}</p>}
-            
-        </div>
+            {paymentStatus && (
+                
+                <div className={`${!popUp ? 'hidden': 'flex'} items-center gap-4 bg-success_subtle w-full rounded-2xl p-4 `}>
+                    <div className="p-3 w-fit h-fit border-8 rounded-full border-success_border">
+                        <Image src={tick} width={40} height={40} />
+                    </div>
+                    
+                    <div className="flex flex-col gap-2">
+                        <h3 className="font-bold text-2xl">Payment Successful</h3>
+                        <p className="inter font-normal">Thank you for completing your registration payment. You can now proceed to finalize your application.</p>
+                    </div>
+
+                    <div on className="ml-auto" onClick={hidePopUp}>
+                        <Image src={cancel} alt="Cancel Icon" width={40} height={40} />
+                    </div>
+
+
+                
+                </div>
+    
+            )}
+        
+        
             
             {user?.role === "lead" ? (
                 <>
@@ -258,7 +296,7 @@ export default function Application(){
                                     
                                     <div className="w-full">
                                         
-                                        <ButtonBlue classname={"md:w-[395px] text-black w-[100%] sm:w-[335px] ml-auto"}>Submit</ButtonBlue>
+                                        <ButtonBlue classname={"md:w-[395px] text-black w-[100%] xs:w-full sm:w-[335px] ml-auto"}>{loading ? <Image className="animate-spin mx-auto" src={spinner}/> : 'Create team code'}</ButtonBlue>
                                     </div>
                                 )}
                             </div>
