@@ -32,8 +32,12 @@ module.exports = {
         error_dark: "#A70C0C", // red
         error_subtle: "#FEECEC",
 
+        success: '#1AAE64',
         success_dark: "#106A3D", //green
-        success_subtle: "#E4FBF0"
+        success_border: '#CAF7E0',
+        success_subtle: "#E4FBF0",
+
+        warning: '#F8D677',
       },
       screens: {
         'xs': '390px',

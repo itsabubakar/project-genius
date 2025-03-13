@@ -1,5 +1,7 @@
 'use client'
 
+require("dotenv").config();
+
 import Image from "next/image";
 import SelectField from "./selectedField";
 import InputField from "./inputField";
@@ -18,6 +20,8 @@ import spinner from "../../../public/svg/spinner.svg";
 
 import faculties from "../../data/faculties";
 
+
+// yup function for form validation
 const validationSchema = yup.object().shape({
   firstName: yup.string().required("First name is required"),
   lastName: yup.string().required("Last name is required"),
@@ -30,7 +34,7 @@ const validationSchema = yup.object().shape({
   confirmPassword: yup.string().oneOf([yup.ref("password")], "Passwords must match").required("Confirm Password is required"),
 });
 
-function MobileForm({ currentSection, nextSection, previousSection }) {
+function Form({ currentSection, nextSection, previousSection }) {
   const { handleSubmit, control, watch, formState: { errors }, setError, register, trigger } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
@@ -53,8 +57,6 @@ function MobileForm({ currentSection, nextSection, previousSection }) {
   // faculties and departments data filtering
   const [departmentOptions, setDepartmentOptions] = useState([]);
 
-  const selectedFaculty = watch("faculty");
-
   const handleFacultyChange = (faculty) => {
     const facultyData = faculties.find((f) => f.faculty === faculty);
     setDepartmentOptions(facultyData ? facultyData.departments : []);
@@ -71,7 +73,8 @@ function MobileForm({ currentSection, nextSection, previousSection }) {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-      const response = await fetch("https://project-genius-back-end.onrender.com/users/", {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
+      const response = await fetch(`${apiUrl}/users/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -165,4 +168,4 @@ function MobileForm({ currentSection, nextSection, previousSection }) {
   );
 }
 
-export default MobileForm;
+export default Form;

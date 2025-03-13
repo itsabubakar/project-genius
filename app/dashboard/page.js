@@ -14,13 +14,57 @@ import ButtonBlue from "../ui/buttonBlue";
 import Modal from "./components/modal";
 import Link from "next/link";
 
-const currentStep = 1;
+const currentDate = new Date();
+const nextStepIndex = progressData.findIndex(progress => new Date(progress.date) > currentDate);
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
 const Dashboard = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [user, setUser] = useState(null);
+
+
+    const [inviteCode, setInviteCode] = useState("");
+    const [message, setMessage] = useState("");
+
+
+    const handleJoinTeam = async () => {
+        setMessage("");
+        setError("");
+    
+        if (!inviteCode) {
+            setError("Please enter a valid team code.");
+            return;
+        }
+    
+        console.log("Sending request with inviteCode:", inviteCode); // Debugging
+    
+        try {
+            const res = await fetch(`${apiUrl}/users/team`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ inviteCode }),
+            });
+            console.log("Invite Code Sent:", inviteCode);
+            console.log("Response status:", res.status); // Debugging
+            const data = await res.json();
+            console.log("Response data:", data); // Debugging
+    
+            if (res.ok) {
+                setMessage("Successfully joined the team!");
+                
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            } else {
+                setError(data.message || "Failed to join the team.");
+            }
+        } catch (err) {
+            setError("An error occurred. Please try again.");
+        }
+    };
+
 
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -39,7 +83,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchUserDashboard = async () => {
             try {
-                const response = await fetch("https://project-genius-back-end.onrender.com/app/dashboard", {
+                const response = await fetch(`${apiUrl}/app/dashboard`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -49,6 +93,7 @@ const Dashboard = () => {
                 const result = await response.json();
 
                 if (response.status === 200) {
+                    console.log("API Response:", result);
                     setUserData(result);
                 } else if (response.status === 401) {
                     setError("Invalid login credentials");
@@ -63,7 +108,7 @@ const Dashboard = () => {
         };
 
         fetchUserDashboard();
-    }, []);
+    }, [apiUrl]);
 
     if (loading) {
         return <div className="w-full h-full flex justify-center items-center">
@@ -79,58 +124,59 @@ const Dashboard = () => {
         return <div>No user data available</div>;
     }
 
+    const handlePayment = () => {
+
+        if (userData?.paymentURL) {
+            window.location.href = userData.paymentURL; // Redirect to external URL
+        } else {
+            alert("Payment URL not available");
+        }
+    };
+
     return (
         <div className="flex flex-col gap-6 lg:gap-8">
-            {/* Welcome Message */}
-            <div className="flex flex-col gap-1">
-                <h1 className="text-[32px] md:text-[40px] lg:text-[44px] font-bold text-greyscale_title">
-                    Welcome back, {user.firstName}!
-                </h1>
-                <p className="text-greyscale_subtitle">You’re doing great, keep innovating!</p>
-            </div>
-            <hr />
+            
+            {userData?.team ? (
+                <>
+                    {/* Welcome Message */}
+                    <div className="flex flex-col gap-1">
+                        <h1 className="text-[32px] md:text-[40px] lg:text-[44px] font-bold text-greyscale_title">
+                            Welcome, {user.firstName}!
+                        </h1>
+                        <p className="text-greyscale_subtitle">You&#34;re doing great, keep innovating!</p>
+                    </div>
+                    <hr />
 
             {/* Team Section */}
-                {userData?.team ? (
-                    <>
                     <section className="flex flex-col gap-6 p-4 lg:pb-[55px] shadow-xl rounded-xl">
                         <div className="flex flex-col gap-2">
-                            <h1 className="text-2xl font-medium text-greyscale_title">{userData.team}</h1>
-                            <p className="text-greyscale_subtitle">A team of digital pioneers shaping the future.</p>
+                            <h1 className="text-2xl font-medium text-greyscale_title">Team {userData.team.team_name}</h1>
+                            {user.role === "lead" && (
+                                <p>Invite Code: {userData.team.invite_code}</p>
+                            )}
+                                                        <p className="text-greyscale_subtitle">A team of digital pioneers shaping the future. </p>
                         </div>
                         <div className="flex flex-col gap-4">
                             <h2 className="text-xl font-semibold">Team Members</h2>
                             <div className="flex flex-col gap-4">
                                 <UserCard 
-                                    photo={photo}
-                                    name={"Umar"}
-                                    role={"Team Leader"}
+                                    initials={user.initials}
+                                    name={user.firstName}
+                                    role={user.role === "lead" ? "Lead" : "Member"}
                                 />
                                 <div className="flex flex-col w-[100%] lg:flex-row gap-4">
-                                    <UserCard
-                                        photo={photo}
-                                        name={"Hamid"}
-                                        role={"Team Member"}
-                                        classname={"lg:w-[25%]"}
-                                    />
-                                    <UserCard
-                                        photo={photo}
-                                        name={"Baqir"}
-                                        role={"Team Member"}
-                                        classname={"lg:w-[25%]"}
-                                    />
-                                    <UserCard
-                                        photo={photo}
-                                        name={"Westie"}
-                                        role={"Team Member"}
-                                        classname={"lg:w-[25%]"}
-                                    />
-                                    <UserCard
-                                        photo={photo}
-                                        name={"John"}
-                                        role={"Team Member"}
-                                        classname={"lg:w-[25%]"}
-                                    />
+                                    {userData?.members
+                                        ?.filter((member) => member.first_name !== user.firstName && member.role !== user.role && member.initials !== user.initials) // Exclude logged-in user
+                                        .map((member, index) => (
+                                            
+                                            <UserCard
+                                                key={index}
+                                                initials={member.initials}
+                                                name={member.first_name}
+                                                role={member.role === 'member'? 'Member': 'Lead'}
+                                                classname="lg:w-[25%]"
+                                            />
+                                        ))}
                                 </div>
                             </div>
                         </div>
@@ -146,7 +192,7 @@ const Dashboard = () => {
                                     description={progress.description}
                                     active={progress.date}
                                     isLast={index === progressData.length - 1}
-                                    isNext={index === currentStep + 1}
+                                    isNext={index === nextStepIndex}
                                 />
                             ))}
                         </div>
@@ -163,7 +209,9 @@ const Dashboard = () => {
                         { user.role === "lead" ? (
                             <>
                             <p className=" text-greysca">Create a new team to lead and inspire your group</p>
-                            <ButtonBlue>Create Team</ButtonBlue></>
+                            {userData && (
+                            <ButtonBlue onClick={handlePayment}>Create Team</ButtonBlue>
+                        )}</>
                         ) : (
                             <>
                             <p className="">Collaborate with others by joining an existing team</p>
@@ -174,26 +222,30 @@ const Dashboard = () => {
                         </div>
                     </div>
                 )}
-                    {modalOpen && (
-                        
-                <Modal 
-                    heading={"Application starts at 12th of March"}
-                    subHeading="Use this time to organize your team and prepare for the competition"
-                    modalClose={closeModal} 
-                    
-                
-                >
-                {/*
-                    heading="Join a Team"
-                    subHeading="Enter the unique team code shared with you to join your team and participate in the competition"
+                {modalOpen && (
+    <Modal
+        modalClose={closeModal}>
+        <h2>Join a Team</h2>
+        <p>Enter the unique team code shared with you to join your team and participate in the competition</p>
 
-                    
-                    <input type="text" placeholder="Enter team code" className="w-full px-4 py-3 mt-8 mb-4 rounded-xl outline-none bg-greyscale_surface_subtle" />
-                    <ButtonBlue classname="mx-auto w-[318px] sm:w-[240px] ">Join Team</ButtonBlue>
+        <input
+            type="text"
+            placeholder="Enter team code"
+            className="w-full px-4 py-3 mt-8 mb-4 rounded-xl outline-none bg-greyscale_surface_subtle"
+            value={inviteCode}
+            onChange={(e) => setInviteCode(e.target.value)}
+        />
+        <ButtonBlue classname="mx-auto w-[318px] sm:w-[240px]"
+            onClick={handleJoinTeam}
+        >
+            Join Team
+        </ButtonBlue>
 
-                */}
-                </Modal>
-                    )}
+        {message && <p className="text-green-600 mt-4">{message}</p>}
+        {error && <p className="text-red-600 mt-4">{error}</p>}
+    </Modal>
+)}
+
 
             {/* Progress Section */}
         </div>
