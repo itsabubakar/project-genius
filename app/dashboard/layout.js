@@ -72,7 +72,7 @@ function Layout({ children }) {
           className="md:hidden sticky top-0 h-[48px] sm:h-[80px] px-[16px] sm:px-[32px] md:px-[40px]
             font-outfit flex justify-between items-center bg-white z-50"
         >
-          <Logo classname="text-xl sm:text-[28px] lg:text-2xl" />
+          <Logo classname="text-xl sm:text-[28px] lg:text-2xl" href={'/dashboard'} />
 
           <div className="flex gap-[32px] items-center">
             <div>
