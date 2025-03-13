@@ -9,6 +9,7 @@ import help from "../../public/icons/help.svg";
 import helpBlack from "../../public/icons/helpBlack.svg";
 import logout from "../../public/icons/logout.svg";
 
+import { FaWpforms } from "react-icons/fa6";
 import Image from "next/image";
 import Logo from "../ui/logo";
 import Menu from "../../public/svg/menu.svg";
@@ -19,6 +20,7 @@ import UpdateProfile from "./sections/updateProfile";
 import Footer from "../footer";
 import { useRouter } from "next/navigation";
 import Rank from "./sections/rank";
+import Link from "next/link";
 
 function Layout({ children }) {
   const [activeTab, setActiveTab] = useState("overview");
@@ -145,9 +147,17 @@ function Layout({ children }) {
             </ul>
 
             <hr className="" />
+            {user?.team && (
+
+              <Link href="/application"
+                className="h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center"
+                ><FaWpforms size={24}/>
+                  Application
+              </Link>
+              )}
             <button
               onClick={handleLogout}
-              className="h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center "
+              className="h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center"
             >
               <Image src={logout} /> Logout
             </button>
@@ -209,6 +219,15 @@ function Layout({ children }) {
                 </li>
               </ul>
               <hr />
+              {user.team && user.role === 'lead' && (
+                <Link 
+                  href="/application" 
+                  className="h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center"
+                >
+                  <FaWpforms size={24} />
+                  Application
+                </Link>
+              )}
               <button
                 onClick={handleLogout}
                 className="h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center"

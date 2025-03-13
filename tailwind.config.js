@@ -34,6 +34,7 @@ module.exports = {
 
         success: '#1AAE64',
         success_dark: "#106A3D", //green
+        success_border: '#CAF7E0',
         success_subtle: "#E4FBF0",
 
         warning: '#F8D677',
