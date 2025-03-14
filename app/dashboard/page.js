@@ -225,7 +225,7 @@ const Dashboard = () => {
                 {modalOpen && (
     <Modal
         modalClose={closeModal}>
-        <h2>Join a Team</h2>
+        <h2 className="font-bold text-2xl">Join a Team</h2>
         <p>Enter the unique team code shared with you to join your team and participate in the competition</p>
 
         <input
