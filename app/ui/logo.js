@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Logo({classname}){
     return(
         <Link
-            href={"/"}
+        href={'/'}
             className={` font-extrabold cursor-pointer ${classname}`}
         >
             Project

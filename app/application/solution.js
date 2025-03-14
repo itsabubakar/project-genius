@@ -164,7 +164,7 @@ const SolutionForm = ({ disabled }) => {
                                             
                                         </div>
                                         <Button
-                                            disabled={!checked}
+                                            disabled={true}
                                             >
                                                 Submit application
                                         </Button>

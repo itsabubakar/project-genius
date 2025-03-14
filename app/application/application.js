@@ -313,7 +313,7 @@ export default function Application(){
 
 
                         <SolutionForm 
-                            disabled={userData?.team ? false : true}
+                            disabled={true}
                         />
                     </div>
 
