@@ -17,7 +17,6 @@ import Link from "next/link";
 const currentDate = new Date();
 const nextStepIndex = progressData.findIndex(progress => new Date(progress.date) > currentDate);
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
 const Dashboard = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -27,6 +26,7 @@ const Dashboard = () => {
 
     const [inviteCode, setInviteCode] = useState("");
     const [message, setMessage] = useState("");
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
 
 
     const handleJoinTeam = async () => {
