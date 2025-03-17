@@ -27,6 +27,7 @@ function Layout({ children }) {
   const [user, setUser] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -64,6 +65,38 @@ function Layout({ children }) {
       console.error("Network error:", error);
     }
   };
+
+  
+      useEffect(() => {
+          const fetchUserDashboard = async () => {
+              try {
+                  const response = await fetch(`${apiUrl}/app/dashboard`, {
+                      method: "GET",
+                      headers: {
+                          "Content-Type": "application/json",
+                      },
+                  });
+  
+                  const result = await response.json();
+  
+                  if (response.status === 200) {
+                      console.log("API Response:", result);
+                      setUserData(result);
+                  } else if (response.status === 401) {
+                      setError("Invalid login credentials");
+                  } else {
+                      setError(result.message || "Something went wrong");
+                  }
+              } catch (error) {
+                  setError("Network error, please try again");
+              } finally {
+                  setLoading(false);
+              }
+          };
+  
+          fetchUserDashboard();
+      }, [apiUrl]);
+  
 
   return (
     <>
@@ -147,7 +180,7 @@ function Layout({ children }) {
             </ul>
 
             <hr className="" />
-            {user?.team && (
+            {userData?.team && user.role === 'lead' (
 
               <Link href="/application"
                 className="h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center"
@@ -218,8 +251,8 @@ function Layout({ children }) {
                   <Image alt="icon" src={isActive("help") ? help : helpBlack} /> Find help
                 </li>
               </ul>
-              <hr />
-              {user.team && user.role === 'lead' && (
+              <hr /> 
+              {userData.team && user.role === 'lead' && (
                 <Link 
                   href="/application" 
                   className="h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center"
