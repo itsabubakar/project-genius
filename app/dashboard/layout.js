@@ -91,8 +91,6 @@ function Layout({ children }) {
               }
           } catch (error) {
               setError("Network error, please try again");
-          } finally {
-              setLoading(false);
           }
       };
 
@@ -182,7 +180,7 @@ function Layout({ children }) {
             </ul>
 
             <hr className="" />
-            {userData?.team && user.role === 'lead' (
+            {userData?.team && user?.role === 'lead' (
 
               <Link href="/application"
                 className="h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center"
