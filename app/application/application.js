@@ -319,7 +319,7 @@ export default function Application(){
 
                 </>
             ) :
-            <h3 className="text-4xl">Hold up, you shouldn&apos;t be here!</h3>}
+            <h3 className="text-4xl">Hold up, you should not be here!</h3>}
         </section>
 
     )
