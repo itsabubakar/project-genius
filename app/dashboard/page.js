@@ -13,6 +13,7 @@ import Unavailable from '../../public/unavailable.png'
 import ButtonBlue from "../ui/buttonBlue";
 import Modal from "./components/modal";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const currentDate = new Date();
 const nextStepIndex = progressData.findIndex(progress => new Date(progress.date) > currentDate);
@@ -27,6 +28,7 @@ const Dashboard = () => {
     const [inviteCode, setInviteCode] = useState("");
     const [message, setMessage] = useState("");
     const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
+    const router = useRouter()
 
 
     const handleJoinTeam = async () => {
@@ -125,12 +127,7 @@ const Dashboard = () => {
     }
 
     const handlePayment = () => {
-
-        if (userData?.paymentURL) {
-            window.location.href = userData.paymentURL; // Redirect to external URL
-        } else {
-            alert("Payment URL not available");
-        }
+        router.push('/application')
     };
 
     return (

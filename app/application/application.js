@@ -69,6 +69,15 @@ export default function Application(){
         fetchPaymentStatus();
     }, [apiUrl]);
 
+
+    
+    const handlePayment = () => {
+        if (userData?.paymentURL) {
+            window.location.href = userData.paymentURL; // Redirect to external URL
+        } else {
+            alert("Payment URL not available");
+        }
+    };
     useEffect(() => {
         const verifyPayment = async () => {
             if (!ref) return;
@@ -226,7 +235,7 @@ export default function Application(){
             />
 
             
-            {paymentStatus && (
+            {paymentStatus === true ? (
                 
                 <div className={`${!popUp ? 'hidden': 'flex'} items-center gap-4 bg-success_subtle w-full rounded-2xl p-4 `}>
                     <div className="p-3 w-fit h-fit border-8 rounded-full border-success_border">
@@ -246,6 +255,20 @@ export default function Application(){
                 
                 </div>
     
+            ) :
+            (
+                
+                
+                <div className={`${!popUp ? 'hidden': 'flex'} px-5 py-4 md:px-20 items-center gap-4 bg-primary_subtle w-full rounded-2xl p-4 `}>
+                    
+                    <div className="flex flex-col gap-2 items-center text-center">
+                        <p className="inter font-normal">To participate in the contest, a registration fee of 5,000 naira is required. Complete the payment process to proceed with the application</p>
+                        <ButtonBlue onClick={handlePayment} classname='w-full md:w-[240px]'>Proceed to payment</ButtonBlue>
+                    </div>
+
+
+                
+                </div>
             )}
         
         
@@ -286,13 +309,13 @@ export default function Application(){
                                         {...register("teamName")}
                                         className={`${errors.teamName ? "border-error_dark" : ""}`}
                                         placeholder={userData?.team?.team_name ?? "Enter team name"}
-                                        disabled={paymentStatus === true && userData.team === false ? false : true }
+                                        disabled={paymentStatus === true && user.team === false ? false : true }
                                     />
                                         {inviteCode && <p>Invite Code: {inviteCode}</p>}
                                         {errors.teamName && <p className="text-red-500">{errors.teamName.message}</p>}
                                     </div>
                                 </div>
-                                {!userData?.team && (
+                                {paymentStatus && (
                                     
                                     <div className="w-full">
                                         
