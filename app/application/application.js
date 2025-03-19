@@ -309,7 +309,7 @@ export default function Application(){
                                         {...register("teamName")}
                                         className={`${errors.teamName ? "border-error_dark" : ""}`}
                                         placeholder={userData?.team?.team_name ?? "Enter team name"}
-                                        disabled={paymentStatus === true && user.team === false ? false : true }
+                                        disabled={paymentStatus && !user.team ? false : true }
                                     />
                                         {inviteCode && <p>Invite Code: {inviteCode}</p>}
                                         {errors.teamName && <p className="text-red-500">{errors.teamName.message}</p>}
