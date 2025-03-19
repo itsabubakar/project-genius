@@ -256,10 +256,10 @@ function Layout({ children }) {
         <div className="flex-1 flex flex-col">
           {/* Content */}
           <main className="flex-1 px-4 py-6 md:px-6 lg:p-8 bg-greyscale_background_light">
-            {activeTab === "overview" && children}
+          {/*  {activeTab === "overview" && children}
             {activeTab === "help" && <Help />}
             {activeTab === "rank" && <Rank />}
-            {activeTab === "update-profile" && <UpdateProfile />}
+            {activeTab === "update-profile" && <UpdateProfile />}}*/}
           </main>
         </div>
       </div>
