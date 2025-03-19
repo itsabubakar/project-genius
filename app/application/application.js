@@ -315,7 +315,7 @@ export default function Application(){
                                         {errors.teamName && <p className="text-red-500">{errors.teamName.message}</p>}
                                     </div>
                                 </div>
-                                {!userData?.team && (
+                                {paymentStatus && (
                                     
                                     <div className="w-full">
                                         
