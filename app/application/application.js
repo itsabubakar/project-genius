@@ -33,7 +33,7 @@ export default function Application(){
     const ref = searchParams.get("trxref")
 
     const [status, setStatus] = useState("");
-    const [paymentStatus, setPaymentStatus] = useState(null);
+    const [paymentStatus, setPaymentStatus] = useState(false);
     const [paymentError, setPaymentError] = useState('');
     const [popUp, setPopUp] = useState(true);
 
@@ -286,7 +286,7 @@ export default function Application(){
                                         {...register("teamName")}
                                         className={`${errors.teamName ? "border-error_dark" : ""}`}
                                         placeholder={userData?.team?.team_name ?? "Enter team name"}
-                                        disabled={!!userData?.team && status === 'success' ? true : false }
+                                        disabled={paymentStatus === true && userData.team === false ? false : true }
                                     />
                                         {inviteCode && <p>Invite Code: {inviteCode}</p>}
                                         {errors.teamName && <p className="text-red-500">{errors.teamName.message}</p>}
@@ -302,7 +302,7 @@ export default function Application(){
                             </div>
                         </form>
                         
-                        {userData?.team && (
+                        {userData?.team && paymentStatus === true && (
                                     
                             <div className=" flex flex-col gap-3 bg-success_subtle xs:w-full p-4">
                                 <h3 className="text-[28px] font-semibold">Team Code Generated!</h3>
@@ -319,7 +319,7 @@ export default function Application(){
 
                 </>
             ) :
-            <h3 className="text-4xl">Hold up, you shouldn&apos;t be here!</h3>}
+            <h3 className="text-4xl">Hold up, you should not be here!</h3>}
         </section>
 
     )

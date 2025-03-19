@@ -81,6 +81,7 @@ function Form({ currentSection, nextSection, previousSection }) {
       });
 
       const result = await response.json();
+      console.log("Response from server:", result);
 
       if (!response.ok) {
         if (Array.isArray(result.errors)) {
