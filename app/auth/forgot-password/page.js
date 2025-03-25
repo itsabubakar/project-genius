@@ -4,7 +4,10 @@ import Heading from "../../components/landing_page/header";
 import ButtonBlue from "../../ui/buttonBlue";
 import AuthLayout from "../auth-components/layout";
 import Modal from "../modal";
+import spinner from "../../../public/svg/spinner.svg";
 import { useRouter } from "next/router";
+
+import Image from "next/image";
 export default function ForgotPassword() {
 
     const [modalOpen, setModalOpen] = useState(false);
@@ -12,8 +15,12 @@ export default function ForgotPassword() {
     const openModal = () => setModalOpen(true); // Open modal
     const closeModal = () => setModalOpen(false); // Close modal
     const [error, setError] = useState("");
+    const [ loading, setLoading ] =useState(false)
+
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
     
     const handleSubmit = async (e) => {
+        setLoading(true)
         e.preventDefault();
         setError("");
 
@@ -23,7 +30,7 @@ export default function ForgotPassword() {
         }
 
         try {
-            const res = await fetch("https://project-genius-back-end.onrender.com/auth/reset", {
+            const res = await fetch(`${apiUrl}/auth/reset`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email }),
@@ -37,6 +44,9 @@ export default function ForgotPassword() {
             }
         } catch (err) {
             setError("Failed to send reset email");
+        }
+        finally {
+            setLoading(false)
         }
     };
 
@@ -60,7 +70,7 @@ export default function ForgotPassword() {
                         />
                     </div>
                     {error && <p className="text-red-500">{error}</p>}
-                    <ButtonBlue type="submit">Submit</ButtonBlue>
+                    <ButtonBlue type="submit">{loading ? <Image src={spinner} className="animate-spin"/> : "Create account"}</ButtonBlue>
                 </form>
 
                 {modalOpen && (

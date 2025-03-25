@@ -15,7 +15,6 @@ import { useState } from "react";
 import Next from "../../../public/icons/arrow_next.svg";
 import Previous from "../../../public/icons/arrow_back.svg";
 import Modal from "../modal";
-
 import spinner from "../../../public/svg/spinner.svg";
 
 import faculties from "../../data/faculties";
