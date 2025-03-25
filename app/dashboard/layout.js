@@ -158,9 +158,8 @@ function Layout({ children }) {
                 Rank and Progress
               </li>
               <li
-                className={`${isActive(
-                  "update-profile"
-                )} text-greyscale_disabled h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
+                onClick={() => handleTab("update-profile")}
+                className={`${isActive("update-profile")} text-greyscale_disabled h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
                 `}
               >
                 <Image

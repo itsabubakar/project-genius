@@ -23,6 +23,8 @@ export default function Login() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState("");
+  
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
 
   const navigateTocreate = () => {
     router.push('/auth/create-profile');
@@ -40,7 +42,6 @@ export default function Login() {
   const onSubmit = async (data) => {
     setLoading(true); // Start loading
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
       const response = await fetch(`${apiUrl}/auth/connect/`, {
             method: "POST",
             headers: {

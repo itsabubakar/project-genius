@@ -14,6 +14,7 @@ import ButtonBlue from "../ui/buttonBlue";
 import Modal from "./components/modal";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Loader from "../components/loader";
 
 const currentDate = new Date();
 const nextStepIndex = progressData.findIndex(progress => new Date(progress.date) > currentDate);
@@ -114,10 +115,9 @@ const Dashboard = () => {
 
     if (loading) {
         return <div className="w-full h-full flex justify-center items-center">
-            <Image src={spinner} className="w-16 h-16 animate-spin" alt="Loading" />
-            </div>;
+                    <Loader />
+                </div>;
     }
-
     if (error) {
         return <div className="text-red-500">{error}. <Link className="text-primary underline" href={'/auth'}>Login</Link> </div>;
     }
