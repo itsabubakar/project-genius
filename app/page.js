@@ -104,11 +104,6 @@ export default function Home() {
 
           <div className="flex flex-col gap-[64px] sm:gap-[96px] md:gap-[200px] justify-center">
             {detailData.map((detail, index) => (
-              <motion.div
-                key={index}
-                whileInView={{opacity: 1, x: 0}}
-                initial={index === 1 ? {x: 80, opacity: 1} : {x: -80, opacity: 1}}
-                transition={index === 1 ? { duration: 1 } : { duration: 0.8 }} >
                 <Details
                 key={index}
                 heading={detail.heading}
@@ -116,7 +111,6 @@ export default function Home() {
                 image={detail.image}
                 classname={index === 1 ? "md:flex-row-reverse" : "md:flex-row"}
               />
-              </motion.div>
             ))}
           </div>
         </section>
