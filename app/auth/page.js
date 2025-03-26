@@ -10,13 +10,14 @@ import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { useState } from "react";
 import Image from "next/image";
-
+import * as yup from "yup"
 import spinner from "../../public/svg/spinner.svg";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 // Zod schema for validation
-export const loginSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
+export const loginSchema = yup.object().shape({
+  email: yup.string().email("Invalid email").required("Please enter a valid email address"),
+  password: yup.string().min(8, "Password must be at least 8 characters")
 });
 
 export default function Login() {
@@ -33,9 +34,9 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors, touchedFields },
+    formState: { errors},
   } = useForm({
-    resolver: zodResolver(loginSchema),
+    resolver: yupResolver(loginSchema),
     mode: "onChange",
   });
 
