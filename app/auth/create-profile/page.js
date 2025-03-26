@@ -6,6 +6,9 @@ import Heading from "../../components/landing_page/header";
 import Modal from "../modal";
 
 import Form from "./form";
+import { AnimatePresence, motion } from "framer-motion";
+import slideUp from "@/app/motion/slideUp";
+import pageTransition from "@/app/motion/pageTransition";
 
 
 export default function CreateProfile() {    
@@ -32,12 +35,23 @@ export default function CreateProfile() {
             classname="gap-2"
             />
 
-            <Form
-                    currentSection={currentSection}
-                    nextSection={nextSection}
-                    previousSection={previousSection}
-                    handleSubmit={handleSubmit}
-            />
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={currentSection}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    variants={slideUp}
+                    transition={pageTransition} 
+                    className="w-full">
+                    <Form
+                            currentSection={currentSection}
+                            nextSection={nextSection}
+                            previousSection={previousSection}
+                            handleSubmit={handleSubmit}
+                    />
+                </motion.div>
+            </AnimatePresence>
 
             {modalOpen && (
                 <Modal

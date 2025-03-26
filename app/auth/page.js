@@ -13,6 +13,8 @@ import Image from "next/image";
 import * as yup from "yup"
 import spinner from "../../public/svg/spinner.svg";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { motion, AnimatePresence} from "framer-motion"
+import slideUp from "../motion/slideUp";
 
 // Zod schema for validation
 export const loginSchema = yup.object().shape({
@@ -69,7 +71,12 @@ export default function Login() {
 
   return (
     <AuthLayout>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col xs:items-center gap-4">
+      <motion.form
+      initial="initial"
+      animate="animate"
+      variants={slideUp}
+      transition={{duration: 0.8}}
+      onSubmit={handleSubmit(onSubmit)} className="flex flex-col xs:items-center gap-4">
         <Heading
           heading={"Let's continue building"}
           subHeading={"Log in to pick up where you left off"}
@@ -130,7 +137,7 @@ export default function Login() {
         <Link href={'/auth/forgot-password'} className="text-right md:ml-auto text-greyscale_text">
           Forgot Password?
         </Link>
-      </form>
+      </motion.form>
     </AuthLayout>
   );
 }
