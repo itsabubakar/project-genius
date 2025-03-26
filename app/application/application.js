@@ -27,8 +27,6 @@ export default function Application(){
     const [inviteCode, setInviteCode] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
-    
-    const router = useRouter()
     const searchParams = useSearchParams();
     const ref = searchParams.get("trxref")
 
