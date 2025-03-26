@@ -25,7 +25,7 @@ const validationSchema = yup.object().shape({
   firstName: yup.string().required("First name is required"),
   lastName: yup.string().required("Last name is required"),
   email: yup.string().email("Invalid email format").required("Email is required"),
-  phone: yup.number().required("Phone number is required"),
+  phone: yup.string().required("Phone number is required").min(9, "Phone number calnt be less than 11"),
   faculty: yup.string().required("Faculty is required"),
   department: yup.string().required("Department is required"),
   role: yup.string().required("Role is required"),

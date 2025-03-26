@@ -14,7 +14,7 @@ const SelectField = ({ label, name, control, options, errors, onChange }) => (
             field.onChange(e);
             if (onChange) onChange(e.target.value);
           }}
-          className="inter w-full md:w-[340px] px-4 py-3 text-greyscale_text bg-greyscale_surface_subtle rounded-lg shadow-sm focus:outline-primary_hover"
+          className={`${errors? "outline-error_dark bg-error_subtle text-error_dark": "border-primary bg-primary_subtle"} inter w-full md:w-[340px] px-4 py-3 text-greyscale_text bg-greyscale_surface_subtle rounded-lg shadow-sm focus:outline-none`}
         >
           <option value="">Select an option</option>
           {options.map((option, index) => (

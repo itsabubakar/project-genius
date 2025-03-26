@@ -21,6 +21,9 @@ import Footer from "../footer";
 import { useRouter } from "next/navigation";
 import Rank from "./sections/rank";
 import Link from "next/link";
+import { animate, AnimatePresence, motion } from "framer-motion";
+import pageTransition from "../motion/pageTransition";
+import slideUp from "../motion/slideUp";
 
 function Layout({ children }) {
   const [activeTab, setActiveTab] = useState("overview");
@@ -157,8 +160,7 @@ function Layout({ children }) {
                 />
                 Rank and Progress
               </li>
-              <li
-                onClick={() => handleTab("update-profile")}
+              <li                 
                 className={`${isActive("update-profile")} text-greyscale_disabled h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
                 `}
               >
@@ -251,7 +253,7 @@ function Layout({ children }) {
                 </li>
               </ul>
               <hr /> 
-              {userData.team && user.role === 'lead' && (
+              {user.team && user.role === 'lead' && (
                 <Link 
                   href="/application" 
                   className="h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center"
@@ -273,12 +275,21 @@ function Layout({ children }) {
         {/* Main content */}
         <div className="flex-1 flex flex-col">
           {/* Content */}
-          <main className="flex-1 px-4 py-6 md:px-6 lg:p-8 bg-greyscale_background_light">
-            {activeTab === "overview" && children}
-            {activeTab === "help" && <Help />}
-            {activeTab === "rank" && <Rank />}
-            {activeTab === "update-profile" && <UpdateProfile />}
-          </main>
+          <AnimatePresence mode="wait">
+            
+          <motion.main
+          key={activeTab}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={slideUp}
+          transition={pageTransition} className="flex-1 px-4 py-6 md:px-6 lg:p-8 bg-greyscale_background_light">
+              {activeTab === "overview" && children}
+              {activeTab === "help" && <Help />}
+              {activeTab === "rank" && <Rank />}
+              {activeTab === "update-profile" && <UpdateProfile />}
+            </motion.main>
+          </AnimatePresence>
         </div>
       </div>
 

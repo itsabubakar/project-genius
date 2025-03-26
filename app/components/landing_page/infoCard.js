@@ -1,7 +1,26 @@
 import Image from "next/image";
+import { motion } from "framer-motion";
+const whileInView= {
+    opacity: 1,
+    y:0
+
+  }
+  const transition = {
+    duration: 0.8
+
+  }
+  const initial = {
+    opacity: 0,
+    y:100 
+
+  }
 export default function InfoCard({icon, heading, subheading}) {
     return (
-        <div className="w-[342px] md:w-[360px] h-[238px] px-[16px] py-[24px]
+        <motion.div
+            whileInView={whileInView}
+            initial={initial}
+            transition={transition}
+        className="w-[342px] md:w-[360px] h-[238px] px-[16px] py-[24px]
             bg-primary_subtle rounded-xl shadow-custom-primary
             flex justify-start text-start gap-[12px]
             hover:">
@@ -15,7 +34,7 @@ export default function InfoCard({icon, heading, subheading}) {
             </div>
 
 
-        </div>
+        </motion.div>
 
     )
 }

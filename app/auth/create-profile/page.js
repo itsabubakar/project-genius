@@ -6,6 +6,9 @@ import Heading from "../../components/landing_page/header";
 import Modal from "../modal";
 
 import Form from "./form";
+import { AnimatePresence, motion } from "framer-motion";
+import slideUp from "@/app/motion/slideUp";
+import pageTransition from "@/app/motion/pageTransition";
 
 
 export default function CreateProfile() {    
@@ -25,19 +28,30 @@ export default function CreateProfile() {
 
     return (
         <AuthLayout>
-        <div className="w-fit flex flex-col justify-start md:mt-5 sm:items-center gap-4">
+        <div className="w-fit h-fit flex flex-col justify-start md:mt-5 sm:items-center gap-4">
             <Heading
             heading="Join the Innovation Movement"
             subHeading="Sign up to start your journey of creativity and collaboration."
-            classname="gap-2"
+            classname="gap-2 text-center"
             />
 
-            <Form
-                    currentSection={currentSection}
-                    nextSection={nextSection}
-                    previousSection={previousSection}
-                    handleSubmit={handleSubmit}
-            />
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={currentSection}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    variants={slideUp}
+                    transition={pageTransition} 
+                    className="w-full">
+                    <Form
+                            currentSection={currentSection}
+                            nextSection={nextSection}
+                            previousSection={previousSection}
+                            handleSubmit={handleSubmit}
+                    />
+                </motion.div>
+            </AnimatePresence>
 
             {modalOpen && (
                 <Modal

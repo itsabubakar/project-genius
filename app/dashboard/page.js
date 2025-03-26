@@ -151,7 +151,7 @@ const Dashboard = () => {
                             {user.role === "lead" && (
                                 <p>Invite Code: {userData.team.invite_code}</p>
                             )}
-                                                        <p className="text-greyscale_subtitle">A team of digital pioneers shaping the future. </p>
+                            <p className="text-greyscale_subtitle">A team of digital pioneers shaping the future. </p>
                         </div>
                         <div className="flex flex-col gap-4">
                             <h2 className="text-xl font-semibold">Team Members</h2>

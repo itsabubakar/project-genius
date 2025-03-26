@@ -10,13 +10,16 @@ import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { useState } from "react";
 import Image from "next/image";
-
+import * as yup from "yup"
 import spinner from "../../public/svg/spinner.svg";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { motion, AnimatePresence} from "framer-motion"
+import slideUp from "../motion/slideUp";
 
 // Zod schema for validation
-export const loginSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
+export const loginSchema = yup.object().shape({
+  email: yup.string().email("Invalid email").required("Please enter a valid email address"),
+  password: yup.string().min(8, "Password must be at least 8 characters")
 });
 
 export default function Login() {
@@ -33,9 +36,9 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors, touchedFields },
+    formState: { errors},
   } = useForm({
-    resolver: zodResolver(loginSchema),
+    resolver: yupResolver(loginSchema),
     mode: "onChange",
   });
 
@@ -68,7 +71,12 @@ export default function Login() {
 
   return (
     <AuthLayout>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col xs:items-center gap-4">
+      <motion.form
+      initial="initial"
+      animate="animate"
+      variants={slideUp}
+      transition={{duration: 0.8}}
+      onSubmit={handleSubmit(onSubmit)} className="flex flex-col xs:items-center gap-4">
         <Heading
           heading={"Let's continue building"}
           subHeading={"Log in to pick up where you left off"}
@@ -129,7 +137,7 @@ export default function Login() {
         <Link href={'/auth/forgot-password'} className="text-right md:ml-auto text-greyscale_text">
           Forgot Password?
         </Link>
-      </form>
+      </motion.form>
     </AuthLayout>
   );
 }

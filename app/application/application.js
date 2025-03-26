@@ -13,6 +13,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import tick from "../../public/icons/tick_green.svg"
 import cancel from "../../public/icons/cancel.svg"
+import Loader from "../components/loader";
 
 const schema = yup.object().shape({
     teamName: yup.string().required("Team Name is required").min(3, "Must be at least 3 characters"),
@@ -27,8 +28,6 @@ export default function Application(){
     const [inviteCode, setInviteCode] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
-    
-    const router = useRouter()
     const searchParams = useSearchParams();
     const ref = searchParams.get("trxref")
 
@@ -220,7 +219,7 @@ export default function Application(){
 
     if (loading) {
         return <div className=" h-[85vh] flex justify-center items-center">
-            <Image src={spinner} className="w-16 h-16 animate-spin" alt="Loading" />
+            <Loader />
         </div>;
     }
 
@@ -307,7 +306,7 @@ export default function Application(){
                                         label="Team Name"
                                         type="text"
                                         {...register("teamName")}
-                                        className={`${errors.teamName ? "border-error_dark" : ""}`}
+                                        className={`${errors.teamName ? "border-error_dark bg-error_subtle" : ""}`}
                                         placeholder={userData?.team?.team_name ?? "Enter team name"}
                                         disabled={paymentStatus && !user.team ? false : true }
                                     />

@@ -3,7 +3,7 @@ export default function AuthLayout({children}) {
         
         <div className="px-5 pt-8 pb-28 flex flex-col gap-8
             
-            sm:justify-center sm:items-center h-[100vh] bg-custom"
+            sm:justify-center sm:items-center min-h-[100vh] bg-custom"
         >
             {children}
         </div>
