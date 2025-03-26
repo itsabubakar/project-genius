@@ -28,11 +28,11 @@ export default function CreateProfile() {
 
     return (
         <AuthLayout>
-        <div className="w-fit flex flex-col justify-start md:mt-5 sm:items-center gap-4">
+        <div className="w-fit h-fit flex flex-col justify-start md:mt-5 sm:items-center gap-4">
             <Heading
             heading="Join the Innovation Movement"
             subHeading="Sign up to start your journey of creativity and collaboration."
-            classname="gap-2"
+            classname="gap-2 text-center"
             />
 
             <AnimatePresence mode="wait">

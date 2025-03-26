@@ -1,24 +1,24 @@
 const accordionData = [
     {
-        "question": "How do I register my team for the competition?",
-        "answer": "The final submission deadline is 15th February. Ensure all files are uploaded by 11:59 PM on that day."
+        "question": "How can I register my team for the competition?",
+        "answer": "As a team lead, you will receive an invitation code that allows potential teammates to join your team."
     },
     {
-        "question": "How will I know if my submission has been successfully received?",
-        "answer": "The final submission deadline is 15th February. Ensure all files are uploaded by 11:59 PM on that day."
+        "question": "How will I know if my submission has been received?",
+        "answer": "You can verify your submission by navigating to the 'Applications' tab, where you will find your team's submission status."
     },
     {
         "question": "Can I update my submission after uploading it?",
-        "answer": "The final submission deadline is 15th February. Ensure all files are uploaded by 11:59 PM on that day."
+        "answer": "No, submissions cannot be modified once they have been submitted."
     },
     {
-        "question": "Who can I contact for technical issues?",
-        "answer": "The final submission deadline is 15th February. Ensure all files are uploaded by 11:59 PM on that day."
+        "question": "Who should I contact for technical support?",
+        "answer": "For any technical issues or inquiries, please contact Abdulhamid Usman at 08160803194."
     },
     {
-        "question": "How will I know if my submission has been successfully received?",
-        "answer": "The final submission deadline is 15th February. Ensure all files are uploaded by 11:59 PM on that day."
+        "question": "Will I receive confirmation after submitting my application?",
+        "answer": "Yes, you will receive a confirmation pop-up upon successful submission. You can also review your submission in the 'Applications' tab."
     }
-]
+];
 
-export default accordionData
+export default accordionData;

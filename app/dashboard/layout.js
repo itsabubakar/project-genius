@@ -22,6 +22,8 @@ import { useRouter } from "next/navigation";
 import Rank from "./sections/rank";
 import Link from "next/link";
 import { animate, AnimatePresence, motion } from "framer-motion";
+import pageTransition from "../motion/pageTransition";
+import slideUp from "../motion/slideUp";
 
 function Layout({ children }) {
   const [activeTab, setActiveTab] = useState("overview");
@@ -69,27 +71,6 @@ function Layout({ children }) {
     }
   };
 
-  
-  const slideUp = {
-    initial: {
-        opacity: 0,
-        y: -30
-    },
-    animate: {
-        opacity: 1,
-        y: 0
-    },
-    exit: {
-        opacity: 0,
-        y: -30
-    },
-};
-
-const pageTransition = {
-    type: "tween",
-    ease: "anticipate",
-    duration: 0.8,
-};
 
   useEffect(() => {
       const fetchUserDashboard = async () => {
@@ -179,8 +160,7 @@ const pageTransition = {
                 />
                 Rank and Progress
               </li>
-              <li
-                onClick={() => handleTab("update-profile")}
+              <li                 
                 className={`${isActive("update-profile")} text-greyscale_disabled h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
                 `}
               >
@@ -301,7 +281,7 @@ const pageTransition = {
           key={activeTab}
           initial="initial"
           animate="animate"
-          exit={{opacity: 0, y: -30}}
+          exit="exit"
           variants={slideUp}
           transition={pageTransition} className="flex-1 px-4 py-6 md:px-6 lg:p-8 bg-greyscale_background_light">
               {activeTab === "overview" && children}

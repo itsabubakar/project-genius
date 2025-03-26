@@ -11,7 +11,7 @@ import Headings from "./components/landing_page/header.js";
 import InfoCard from "./components/landing_page/infoCard.js";
 import Details from "./components/landing_page/details.js";
 import Timeline from "./components/landing_page/timeline";
-import Heading from "./components/landing_page/header.js";
+import Heading from "./components/landing_page/headerLanding";
 import Rules from "./components/landing_page/rules.js"
 import ButtonBlue from "./ui/buttonBlue";
 import ButtonGlass from "./ui/buttonGlass";
