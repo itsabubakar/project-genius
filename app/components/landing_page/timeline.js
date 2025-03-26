@@ -1,6 +1,11 @@
-export default function Timeline({ start, end, heading, description, isLast }) {
+import { motion } from "framer-motion";
+export default function Timeline({ start, end, heading, description, isLast, whileInView, initial, transition }) {
     return (
-        <div className="flex flex-col sm:flex-row gap-[16px] sm:gap[32px] md:gap-16 lg:gap-[72px] text-center">
+        <motion.div 
+            whileInView={whileInView}
+            initial={initial}
+            transition={transition}
+            className="flex flex-col sm:flex-row gap-[16px] sm:gap[32px] md:gap-16 lg:gap-[72px] text-center">
             <div className="flex flex-col items-center">
                 <div
                     className="relative w-[100px] min-h-[88px] flex flex-col items-center justify-center
@@ -26,6 +31,6 @@ export default function Timeline({ start, end, heading, description, isLast }) {
                 ))}
                 </ul>
             </div>
-        </div>
+        </motion.div>
     );
 }

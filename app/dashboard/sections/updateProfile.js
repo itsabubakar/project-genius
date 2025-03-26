@@ -13,6 +13,7 @@ export default function UpdateProfile() {
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -40,29 +41,24 @@ export default function UpdateProfile() {
       setFormData({ ...formData, avatar: e.target.files[0] });
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
 
+    const formDataToSend = new FormData();
+    formDataToSend.append("firstName", formData.firstName);
+    formDataToSend.append("lastName", formData.lastName);
+    formDataToSend.append("phoneNumber", formData.phoneNumber);
+
     try {
-      const userId = user.id; // Use dynamic user ID from user state
-
-      const formDataToSend = new FormData();
-      formDataToSend.append("firstName", formData.firstName);
-      formDataToSend.append("lastName", formData.lastName);
-      formDataToSend.append("phoneNumber", formData.phoneNumber);
-      if (formData.avatar) {
-        formDataToSend.append("avatar", formData.avatar);
-      }
-
-      const response = await fetch(`https://project-genius-back-end.onrender.com/users/${userId}`, {
+      const response = await fetch(`${apiUrl}/users/`, {
         method: "PATCH",
         body: formDataToSend,
       });
 
       const data = await response.json();
+      console.log(data);
 
       if (response.ok) {
         setMessage("Update was successful");
@@ -75,6 +71,7 @@ export default function UpdateProfile() {
       setLoading(false);
     }
   };
+
 
   return (
     <section className="px-3 py-6 flex flex-col items-center gap-16">

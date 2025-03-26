@@ -18,6 +18,7 @@ import ButtonGlass from "./ui/buttonGlass";
 import Link from "next/link";
 import MainWrapper from "./main";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const headerClass = "sm:w-[719px] md:max-w-[714px] lg:max-w-[926px] xl:w-[1000px]"
@@ -26,6 +27,21 @@ export default function Home() {
   const navigateToAbout = () => {
     router.push('/about');
   };
+
+  const whileInView= {
+    opacity: 1,
+    y:0
+
+  }
+  const transition = {
+    duration: 0.8
+
+  }
+  const initial = {
+    opacity: 0,
+    y:100 
+
+  }
     return (
       <MainWrapper>
         <section
@@ -34,7 +50,9 @@ export default function Home() {
                 py-[40px] sm:py-[64px] md:py-[80px]
                 w-full text-center lg:flex-row lg:justify-between lg:gap-[83px]
                 padding-style">
-                <div className="lg:text-start items-center lg:items-start sm:w-[720px] lg:w-[620px] flex flex-col gap-[20px]">
+                <motion.div whileInView={whileInView}
+                  initial={initial}
+                  transition={transition} className="lg:text-start items-center lg:items-start sm:w-[720px] lg:w-[620px] flex flex-col gap-[20px]">
                     <h1 className="text-[36px] md:text-[44px] font-extrabold -tracking-[0.72px]">Generating Exciting New  Ideas And Useful Solutions</h1>
                     <p className="lg:text-start text-greyscale_text text-[16px]">
                     GENIUS 2.0 aims to foster a generation of problem solvers who address local challenges with sustainable and innovative solutions
@@ -47,7 +65,7 @@ export default function Home() {
                           </Link>
                             <ButtonGlass onClick={navigateToAbout}>Learn More</ButtonGlass>
                         </div>
-                </div>
+                </motion.div>
                 
                 <Image className="w-full lg:w-[520px] h-[292px] " alt="Lightbulb" src={hero} />
             </section>
@@ -86,13 +104,19 @@ export default function Home() {
 
           <div className="flex flex-col gap-[64px] sm:gap-[96px] md:gap-[200px] justify-center">
             {detailData.map((detail, index) => (
-              <Details
+              <motion.div
+                key={index}
+                whileInView={{opacity: 1, x: 0}}
+                initial={index === 1 ? {x: 80, opacity: 1} : {x: -80, opacity: 1}}
+                transition={index === 1 ? { duration: 1 } : { duration: 0.8 }} >
+                <Details
                 key={index}
                 heading={detail.heading}
                 description={detail.description}
                 image={detail.image}
                 classname={index === 1 ? "md:flex-row-reverse" : "md:flex-row"}
               />
+              </motion.div>
             ))}
           </div>
         </section>
@@ -102,7 +126,8 @@ export default function Home() {
           className="w-full sm:px-1 lg:px-10 flex flex-col items-center text-center gap-[54px]
             padding-style">
                 
-            <h1 className="text-[28px] text-center mx-auto md:text-start sm:text-[32px] md:[40px] font-bold">Competition Activities And Timeline</h1>
+            <Heading 
+              heading="Competition Activities And Timeline"/>
 
             <div className="flex flex-col gap-10 sm:gap-0 sm:min-w-[719px] md:min-w-[835px] lg:w-[1023px] items-center sm:items-start">
                 {timelineData.map((timeline, index) => (
@@ -113,6 +138,9 @@ export default function Home() {
                     heading={timeline.heading}
                     description={timeline.description}
                     isLast={index === timelineData.length - 1}
+                    whileInView = {whileInView}
+                    initial={initial}
+                    transition={transition}
                 />
                 ))}
             </div>
@@ -132,6 +160,9 @@ export default function Home() {
                         key={index}
                         heading={rule.heading}
                         details={rule.details}
+                        inView={whileInView}
+                        initial={initial}
+                        transition={transition}
                         />
                     ))}
                 </div>

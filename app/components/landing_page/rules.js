@@ -1,6 +1,10 @@
-export default function Rules({heading, details}) {
+import { motion } from "framer-motion"
+export default function Rules({heading, details, inView, initial, transition}) {
     return(
-        <div className="xs:w-[338px] h-[300px] bg-secondary_surface_light
+        <motion.div 
+            whileInView={inView}
+            initial={initial}
+            transition={transition} className="xs:w-[338px] h-[300px] bg-secondary_surface_light
             p-[16px] rounded-2xl text-start shadow-custom-secondary
             flex flex-col gap-[12px]">
             <h3 className="text-xl text-center font-bold">{heading}</h3>
@@ -11,6 +15,6 @@ export default function Rules({heading, details}) {
                         key={index}>{detail}</li>
                 ))}
             </ol>
-        </div>
+        </motion.div>
     )
 }
