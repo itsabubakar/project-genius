@@ -21,9 +21,10 @@ import Footer from "../footer";
 import { useRouter } from "next/navigation";
 import Rank from "./sections/rank";
 import Link from "next/link";
-import { animate, AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import pageTransition from "../motion/pageTransition";
 import slideUp from "../motion/slideUp";
+import slideLeft from "../motion/slideLeft";
 
 function Layout({ children }) {
   const [activeTab, setActiveTab] = useState("overview");
@@ -161,7 +162,7 @@ function Layout({ children }) {
                 Rank and Progress
               </li>
               <li onClick={() => handleTab("update-profile")}
-                className={`${isActive("update-profile")} text-greyscale_disabled h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
+                className={`${isActive("update-profile")} h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
                 `}
               >
                 <Image
@@ -199,7 +200,15 @@ function Layout({ children }) {
         </aside>
 
         {menuOpen && (
-          <aside className="inter z-50 px-4 lg:px-5 mt-8 flex md:hidden py-8 flex-col gap-6 w-full md:relative fixed font-medium h-screen md:w-[260px] lg:w-[300px] bg-white">
+          <AnimatePresence mode="wait">
+            
+          <motion.aside
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={slideLeft}
+          transition={{duration: 0.8}}
+          className="inter z-50 px-4 lg:px-5 mt-8 flex md:hidden py-8 flex-col gap-6 w-full md:relative fixed font-medium h-screen md:w-[260px] lg:w-[300px] bg-white">
             {user && (
               <UserCard
                 initials={user.initials}
@@ -231,9 +240,13 @@ function Layout({ children }) {
                   Progress
                 </li>
                 <li
+                  onClick={() => {
+                    handleTab("update-profile");
+                    setMenuOpen(!menuOpen);
+                  }}
                   className={`${isActive(
                     "update-profile"
-                  )} text-greyscale_disabled h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center`}
+                  )} h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center`}
                 >
                   <Image
                     src={isActive("update-profile") ? profile : profileBlack}
@@ -269,7 +282,8 @@ function Layout({ children }) {
                 <Image alt="icon" src={logout} /> Logout
               </button>
             </nav>
-          </aside>
+          </motion.aside>
+          </AnimatePresence>
         )}
 
         {/* Main content */}

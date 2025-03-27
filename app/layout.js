@@ -12,6 +12,8 @@ import { usePathname } from "next/navigation";
 import Footer from "./footer";
 import ButtonGlass from "./ui/buttonGlass";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import slideLeft from "./motion/slideLeft";
 
 export default function RootLayout({ children }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -194,7 +196,12 @@ export default function RootLayout({ children }) {
         </header>
 
         {menuOpen && (
-          <div
+          <motion.div
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={slideLeft}
+          transition={{duration: 0.8}}
             className="fixed left-0 w-full md:hidden h-[85vh] bg-white shadow-lg z-40 
                 py-4 px-6 flex flex-col justify-between"
           >
@@ -241,7 +248,7 @@ export default function RootLayout({ children }) {
             <Button href={"/auth"} onClick={() => setMenuOpen(!menuOpen)} classname="w-full">
               Login
             </Button>
-          </div>
+          </motion.div>
         )}
 
         {children}
