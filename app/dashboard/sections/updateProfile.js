@@ -5,18 +5,20 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
-  firstName: yup.string(),
-  lastName: yup.string(),
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
   phone: yup
     .string()
-    .matches(/^\d{10,15}$/, "Phone number must be between 10-15 digits")
-    ,
+    .matches(/^\d{11}$/, "Phone number must 11 digits")
+    .required("Phone number is required"),
 });
 
 export default function UpdateProfile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("")
+
   const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
 
   const {
@@ -37,7 +39,7 @@ export default function UpdateProfile() {
         setUser(parsedUser);
         setValue("firstName", parsedUser.firstName || "");
         setValue("lastName", parsedUser.lastName || "");
-        setValue("phone", parsedUser.phoneNumber || "");
+        setValue("phone", parsedUser.phone || ""); // Ensure consistency
       }
     }
   }, [setValue]);
@@ -45,27 +47,30 @@ export default function UpdateProfile() {
   const onSubmit = async (data) => {
     setLoading(true);
     setMessage("");
-
-    const formDataToSend = new FormData();
-    formDataToSend.append("firstName", data.firstName);
-    formDataToSend.append("lastName", data.lastName);
-    formDataToSend.append("phone", data.phone);
+    setError("");
 
     try {
       const response = await fetch(`${apiUrl}/users/`, {
         method: "PATCH",
-        body: formDataToSend,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       });
 
       const responseData = await response.json();
 
       if (response.ok) {
+        // Update local storage with new user data
+        const updatedUser = { ...user, ...data };
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        setUser(updatedUser);
         setMessage("Update was successful");
       } else {
-        setMessage(responseData.error || "An error occurred");
+        setError(responseData.error || "An error occurred");
       }
     } catch (error) {
-      setMessage("Network error");
+      setError("Network error");
     } finally {
       setLoading(false);
     }
@@ -75,17 +80,17 @@ export default function UpdateProfile() {
     <section className="px-3 py-6 flex flex-col items-center gap-16">
       <div className="flex flex-col w-full gap-8">
         <h2 className="text-[32px] md:text-[44px] font-bold">Manage Your Profile</h2>
-        {message && <p className="text-center text-red-500">{message}</p>}
-
+        {message && <p className="text-center text-success">{message}</p>}
+        {error && <p className="text-center text-red-400">{error}</p>}
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8 text-greyscale_text">
           <div className="flex flex-col">
             <label>First name</label>
             <input
               type="text"
               {...register("firstName")}
-              className="px-4 py-3 rounded-xl bg-greyscale_surface_subtle"
+              className={`${errors.firstName ? "focus:outline-error_dark bg-error_subtle text-red-400": "" }px-4 py-3 rounded-xl bg-greyscale_surface_subtle`}
             />
-            {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName.message}</p>}
+            {errors.firstName && <p className="text-red-400 text-sm">{errors.firstName.message}</p>}
           </div>
 
           <div className="flex flex-col">
@@ -93,9 +98,9 @@ export default function UpdateProfile() {
             <input
               type="text"
               {...register("lastName")}
-              className="px-4 py-3 rounded-xl bg-greyscale_surface_subtle"
+              className={`${errors.lastName ? "focus:outline-error_dark bg-error_subtle text-red-400": "" } px-4 py-3 rounded-xl bg-greyscale_surface_subtle`}
             />
-            {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName.message}</p>}
+            {errors.lastName && <p className="text-red-400 text-sm">{errors.lastName.message}</p>}
           </div>
 
           <div className="flex flex-col">
@@ -113,9 +118,9 @@ export default function UpdateProfile() {
             <input
               type="text"
               {...register("phone")}
-              className="p-3 rounded-xl bg-greyscale_surface_subtle"
+              className={`${errors.phone ? "focus:outline-error_dark bg-error_subtle text-red-400": "" } f p-3 rounded-xl bg-greyscale_surface_subtle`}
             />
-            {errors.phone && <p className="text-red-500 text-sm">{errors.phone.message}</p>}
+            {errors.phone && <p className="text-red-400 text-sm">{errors.phone.message}</p>}
           </div>
 
           <button

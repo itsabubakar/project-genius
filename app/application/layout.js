@@ -7,6 +7,8 @@ import Image from "next/image";
 import Menu from "../../public/svg/menu.svg";
 import { useState } from "react";
 import Footer from "../footer";
+import { motion } from "framer-motion";
+import slideLeft from "../motion/slideLeft";
 
 function Layout({children}) {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -77,7 +79,12 @@ function Layout({children}) {
             </header>
     
             {menuOpen && (
-              <div
+              <motion.div
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={slideLeft}
+              transition={{duration: 0.8}}
                 className="fixed left-0 w-full md:hidden h-[85vh] bg-white shadow-lg z-40 
                     py-4 px-6 flex flex-col justify-between"
               >
@@ -112,7 +119,7 @@ function Layout({children}) {
                     Contact Us
                   </Link>
                 </nav>
-              </div>
+              </motion.div>
             )}
     
             {children}

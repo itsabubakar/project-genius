@@ -13,7 +13,7 @@ const accordionData = [
     },
     {
         "question": "Who should I contact for technical support?",
-        "answer": "For any technical issues or inquiries, please contact Abdulhamid Usman at 08160803194."
+        "answer": "For any technical issues or inquiries, please contact Abdulhamid (08160803194) or Abdulmujeeb (09017461798)."
     },
     {
         "question": "Will I receive confirmation after submitting my application?",
