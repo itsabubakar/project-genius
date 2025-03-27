@@ -93,7 +93,7 @@ export default function Login() {
               ${
                 errors.email
                   ? "outline-error_dark text-error_dark bg-error_subtle"
-                  :  "bg-greyscale_surface_subtle focus:outline-primary"
+                  :  ""
               }`}
             placeholder="Enter your email address"
           />
@@ -112,7 +112,7 @@ export default function Login() {
               ${
                 errors.password
                   ? "outline-error_dark bg-error_subtle"
-                  : "bg-greyscale_surface_subtle focus:outline-primary"
+                  : ""
               }`}
             placeholder="Enter your password"
           />

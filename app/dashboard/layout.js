@@ -171,7 +171,6 @@ function Layout({ children }) {
                 Update profile
               </li>
               <li
-                onClick={() => handleTab("help")}
                 className={`${isActive(
                   "help"
                 )} h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center `}
@@ -240,13 +239,9 @@ function Layout({ children }) {
                   Progress
                 </li>
                 <li
-                  onClick={() => {
-                    handleTab("update-profile");
-                    setMenuOpen(!menuOpen);
-                  }}
                   className={`${isActive(
                     "update-profile"
-                  )} h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center`}
+                  )} text-greyscale_disabled h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center`}
                 >
                   <Image
                     src={isActive("update-profile") ? profile : profileBlack}

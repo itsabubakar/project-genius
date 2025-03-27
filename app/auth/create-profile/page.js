@@ -34,24 +34,12 @@ export default function CreateProfile() {
             subHeading="Sign up to start your journey of creativity and collaboration."
             classname="gap-2 text-center"
             />
-
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={currentSection}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                    variants={slideUp}
-                    transition={pageTransition} 
-                    className="w-full">
-                    <Form
-                            currentSection={currentSection}
-                            nextSection={nextSection}
-                            previousSection={previousSection}
-                            handleSubmit={handleSubmit}
-                    />
-                </motion.div>
-            </AnimatePresence>
+            <Form
+                    currentSection={currentSection}
+                    nextSection={nextSection}
+                    previousSection={previousSection}
+                    handleSubmit={handleSubmit}
+            />
 
             {modalOpen && (
                 <Modal

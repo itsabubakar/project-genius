@@ -7,7 +7,7 @@ const InputField = ({ label, className, name, type, placeholder, disabled, regis
                 placeholder={placeholder}
                 {...register(name)}
                 disabled={disabled}
-                className={`${className} ${error ? 'border-error_dark bg-error_subtle text-error_dark': "border-primary bg-primary_subtle"} ${disabled === true ? 'bg-greyscale_disabled' : 'bg-greyscale_surface_subtle'} border-2 outline-none w-full lg:w-[100%] md:w-[360px] p-2 rounded-md px-4 py-2 text-greyscale_text`}            />
+                className={`${className} ${error ? 'border-error_dark bg-error_subtle text-error_dark': ""} ${disabled === true ? 'bg-greyscale_disabled' : 'bg-greyscale_surface_subtle'} border-2 outline-none w-full lg:w-[100%] md:w-[360px] p-2 rounded-md px-4 py-2 text-greyscale_text`}            />
             {error && <p className="text-red-500">{error.message}</p>}
         </div>
     );
