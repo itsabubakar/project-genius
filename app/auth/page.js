@@ -15,6 +15,7 @@ import spinner from "../../public/svg/spinner.svg";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { motion, AnimatePresence} from "framer-motion"
 import slideUp from "../motion/slideUp";
+import useLoginStore from "../store/loginStore";
 
 // Zod schema for validation
 export const loginSchema = yup.object().shape({
@@ -24,8 +25,7 @@ export const loginSchema = yup.object().shape({
 
 export default function Login() {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [loginError, setLoginError] = useState("");
+  const { login, loading, loginError } = useLoginStore()
   
   const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
 
@@ -42,32 +42,9 @@ export default function Login() {
     mode: "onChange",
   });
 
-  const onSubmit = async (data) => {
-    setLoading(true); // Start loading
-    try {
-      const response = await fetch(`${apiUrl}/auth/connect/`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        });
-
-        const result = await response.json();
-        console.log(result);
-
-        if (response.ok) {
-            localStorage.setItem("user", JSON.stringify(result));
-            router.push('/dashboard');
-        } else {
-            setLoginError(result.error || "Invalid login credentials");
-        }
-    } catch (error) {
-        setLoginError("Network error, please try again.");
-    } finally {
-        setLoading(false); // Stop loading
-    }
-};
+  const onSubmit = (data) => {
+    login(data, apiUrl, router)
+  }
 
   return (
     <AuthLayout>

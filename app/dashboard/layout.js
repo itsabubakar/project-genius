@@ -31,7 +31,6 @@ function Layout({ children }) {
   const [user, setUser] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
-  const [userData, setUserData] = useState(null);
 
   
   const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
@@ -71,36 +70,6 @@ function Layout({ children }) {
       console.error("Network error:", error);
     }
   };
-
-
-  useEffect(() => {
-      const fetchUserDashboard = async () => {
-          try {
-              const response = await fetch(`${apiUrl}/app/dashboard`, {
-                  method: "GET",
-                  headers: {
-                      "Content-Type": "application/json",
-                  },
-              });
-
-              const result = await response.json();
-
-              if (response.status === 200) {
-                  console.log("API Response:", result);
-                  setUserData(result);
-              } else if (response.status === 401) {
-                  setError("Invalid login credentials");
-              } else {
-                  setError(result.message || "Something went wrong");
-              }
-          } catch (error) {
-              setError("Network error, please try again");
-          }
-      };
-
-      fetchUserDashboard();
-  }, [apiUrl]);
-
 
   return (
     <>

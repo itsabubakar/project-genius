@@ -7,66 +7,27 @@ import UserCard from "./components/userCard";
 import Progress from "./components/progress";
 import progressData from "../data/progressData";
 
-import spinner from "../../public/svg/spinner.svg";
-
 import Unavailable from '../../public/unavailable.png'
 import ButtonBlue from "../ui/buttonBlue";
 import Modal from "./components/modal";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Loader from "../components/loader";
+import useDashboardStore from "../store/useDashboardStore";
+import useTeamStore from "../store/joinTeamStore";
 
 const currentDate = new Date();
 const nextStepIndex = progressData.findIndex(progress => new Date(progress.date) > currentDate);
 
 const Dashboard = () => {
-    const [userData, setUserData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const {userData, loading, error: userError, fetchUserDashboard} = useDashboardStore();
+    const { inviteCode, setInviteCode, message, error: teamError, handleJoinTeam } = useTeamStore();
     const [user, setUser] = useState(null);
 
-
-    const [inviteCode, setInviteCode] = useState("");
-    const [message, setMessage] = useState("");
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
+    
+//  
     const router = useRouter()
 
-
-    const handleJoinTeam = async () => {
-        setMessage("");
-        setError("");
-    
-        if (!inviteCode) {
-            setError("Please enter a valid team code.");
-            return;
-        }
-    
-        console.log("Sending request with inviteCode:", inviteCode); // Debugging
-    
-        try {
-            const res = await fetch(`${apiUrl}/users/team`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ inviteCode }),
-            });
-            console.log("Invite Code Sent:", inviteCode);
-            console.log("Response status:", res.status); // Debugging
-            const data = await res.json();
-            console.log("Response data:", data); // Debugging
-    
-            if (res.ok) {
-                setMessage("Successfully joined the team!");
-                
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
-            } else {
-                setError(data.message || "Failed to join the team.");
-            }
-        } catch (err) {
-            setError("An error occurred. Please try again.");
-        }
-    };
 
 
     const [modalOpen, setModalOpen] = useState(false);
@@ -84,42 +45,16 @@ const Dashboard = () => {
     }, []);
 
     useEffect(() => {
-        const fetchUserDashboard = async () => {
-            try {
-                const response = await fetch(`${apiUrl}/app/dashboard`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-
-                const result = await response.json();
-
-                if (response.status === 200) {
-                    console.log("API Response:", result);
-                    setUserData(result);
-                } else if (response.status === 401) {
-                    setError("Invalid login credentials");
-                } else {
-                    setError(result.message || "Something went wrong");
-                }
-            } catch (error) {
-                setError("Network error, please try again");
-            } finally {
-                setLoading(false);
-            }
-        };
-
         fetchUserDashboard();
-    }, [apiUrl]);
+    }, []);
 
     if (loading) {
         return <div className="w-full h-full flex justify-center items-center">
                     <Loader />
                 </div>;
     }
-    if (error) {
-        return <div className="text-red-500">{error}. <Link className="text-primary underline" href={'/auth'}>Login</Link> </div>;
+    if (userError) {
+        return <div className="text-red-500">{userError}. <Link className="text-primary underline" href={'/auth'}>Login</Link> </div>;
     }
 
     if (!user) {
@@ -239,7 +174,7 @@ const Dashboard = () => {
         </ButtonBlue>
 
         {message && <p className="text-green-600 mt-4">{message}</p>}
-        {error && <p className="text-red-600 mt-4">{error}</p>}
+        {teamError && <p className="text-red-600 mt-4">{teamError}</p>}
     </Modal>
 )}
 
