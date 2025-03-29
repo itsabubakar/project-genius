@@ -15,46 +15,40 @@ import { useRouter } from "next/navigation";
 import Loader from "../components/loader";
 import useDashboardStore from "../store/useDashboardStore";
 import useTeamStore from "../store/joinTeamStore";
+import useModalStore from "../store/modalStore";
+import useUserStore from "../store/userStore";
+import { useQuery } from "@tanstack/react-query";
+import { fetchDashboard } from "../api/userDahsboard";
+import { useJoinTeam } from "../api/joinTeam";
 
 const currentDate = new Date();
 const nextStepIndex = progressData.findIndex(progress => new Date(progress.date) > currentDate);
 
 const Dashboard = () => {
-    const {userData, loading, error: userError, fetchUserDashboard} = useDashboardStore();
-    const { inviteCode, setInviteCode, message, error: teamError, handleJoinTeam } = useTeamStore();
-    const [user, setUser] = useState(null);
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
 
-    
-//  
+    const { userData } = useDashboardStore();
+    const { user, loadUserFromStorage } = useUserStore()
+    const { inviteCode, setInviteCode, message, error: teamError} = useTeamStore();
+    const { mutate, isLoading, error} = useJoinTeam(apiUrl);
+
     const router = useRouter()
 
 
 
-    const [modalOpen, setModalOpen] = useState(false);
-
-    const openModal = () => setModalOpen(true);
-    const closeModal = () => setModalOpen(false);
-
+    const { modalOpen, openModal, closeModal } = useModalStore()
     useEffect(() => {
-        if (typeof window !== "undefined") {
-            const storedUser = localStorage.getItem("user");
-            if (storedUser) {
-                setUser(JSON.parse(storedUser));
-            }
-        }
+        loadUserFromStorage()
     }, []);
 
-    useEffect(() => {
-        fetchUserDashboard();
-    }, []);
 
-    if (loading) {
+    if (dashboardLoader) {
         return <div className="w-full h-full flex justify-center items-center">
                     <Loader />
                 </div>;
     }
-    if (userError) {
-        return <div className="text-red-500">{userError}. <Link className="text-primary underline" href={'/auth'}>Login</Link> </div>;
+    if (dashboardError) {
+        return <div className="text-red-500">{dashboardError}. <Link className="text-primary underline" href={'/auth'}>Login</Link> </div>;
     }
 
     if (!user) {
@@ -168,9 +162,9 @@ const Dashboard = () => {
             onChange={(e) => setInviteCode(e.target.value)}
         />
         <ButtonBlue classname="mx-auto w-[318px] sm:w-[240px]"
-            onClick={handleJoinTeam}
+            onClick={() => mutate()}
         >
-            Join Team
+            {isLoading ? "Joining team..." : "Join Team"}
         </ButtonBlue>
 
         {message && <p className="text-green-600 mt-4">{message}</p>}

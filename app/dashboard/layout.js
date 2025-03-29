@@ -25,22 +25,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import pageTransition from "../motion/pageTransition";
 import slideUp from "../motion/slideUp";
 import slideLeft from "../motion/slideLeft";
+import useUserStore from "../store/userStore";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function Layout({ children }) {
+  const [queryClient] = useState(() => new QueryClient());
   const [activeTab, setActiveTab] = useState("overview");
-  const [user, setUser] = useState(null);
+  const { user, loadUserFromStorage } = useUserStore()
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
   
   const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      }
-    }
+      loadUserFromStorage()
   }, []);
 
   const handleTab = (tab) => {
@@ -72,7 +70,7 @@ function Layout({ children }) {
   };
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <div className="flex flex-col md:flex-row gap-4 px:4 md:px-6 min-h-screen py-2">
         <header
           className="md:hidden sticky top-0 h-[48px] sm:h-[80px] px-[16px] sm:px-[32px] md:px-[40px]
@@ -272,7 +270,7 @@ function Layout({ children }) {
       </div>
 
       <Footer />
-    </>
+    </QueryClientProvider>
   );
 }
 export default Layout;

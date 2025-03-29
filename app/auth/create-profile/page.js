@@ -9,13 +9,12 @@ import Form from "./form";
 import { AnimatePresence, motion } from "framer-motion";
 import slideUp from "@/app/motion/slideUp";
 import pageTransition from "@/app/motion/pageTransition";
+import useModalStore from "@/app/store/modalStore";
 
 
-export default function CreateProfile() {    
-    const [modalOpen, setModalOpen] = useState(false);
-
-    const openModal = () => setModalOpen(true);
-    const closeModal = () => setModalOpen(false);
+export default function CreateProfile() {
+    
+    const { modalOpen, openModal, closeModal } = useModalStore()
 
     const handleSubmit = (e) => {
         e.preventDefault();

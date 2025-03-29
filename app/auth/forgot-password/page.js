@@ -8,46 +8,31 @@ import spinner from "../../../public/svg/spinner.svg";
 import { useRouter } from "next/router";
 
 import Image from "next/image";
+import useModalStore from "@/app/store/modalStore";
+import * as yup from "yup"
+import useForgotStore from "@/app/store/emailStore";
+
+schema = yup.object().shape({
+    email: yup.string().email("Invalid email").required("Please enter a valid email address")
+})
+
 export default function ForgotPassword() {
 
-    const [modalOpen, setModalOpen] = useState(false);
-    const [email, setEmail] = useState("");
-    const openModal = () => setModalOpen(true); // Open modal
-    const closeModal = () => setModalOpen(false); // Close modal
-    const [error, setError] = useState("");
-    const [ loading, setLoading ] =useState(false)
+    const { modalOpen, openModal, closeModal } = useModalStore()
+    const { ForgotPassword, loading, error } = useForgotStore()
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
     
-    const handleSubmit = async (e) => {
-        setLoading(true)
-        e.preventDefault();
-        setError("");
-
-        if (!email) {
-            setError("Email is required");
-            return;
-        }
-
-        try {
-            const res = await fetch(`${apiUrl}/auth/reset`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email }),
-            });
-
-            if (res.status === 200) {
-                setModalOpen(true);
-            } else {
-                const data = await res.json();
-                setError(data.error);
-            }
-        } catch (err) {
-            setError("Failed to send reset email");
-        }
-        finally {
-            setLoading(false)
-        }
+    const {
+    register,
+    handleSubmit,
+    formState: { errors},
+    } = useForm({
+    resolver: yupResolver(loginSchema),
+    mode: "onChange",
+    });
+    const onSubmit = async (email) => {
+        ForgotPassword(email, apiUrl, openModal)
     };
 
     return (
@@ -58,19 +43,19 @@ export default function ForgotPassword() {
                     heading={"Forgot your password?"}
                     subHeading={"Let’s get you back on track. Submit your email to reset your password."}
                 />
-                <form className="flex flex-col gap-4 items-center" onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 items-center">
                     <div className="flex flex-col gap-2 text-greyscale_text">
                         <input
                             type="email"
-                            className="w-[350px] md:w-[600px] px-4 py-3 rounded-xl bg-greyscale_surface_subtle 
-                            focus:outline-primary"
+                            className={` w-[350px] md:w-[600px] px-4 py-3 rounded-xl bg-greyscale_surface_subtle ${errors ? "focus:outline-error_dark bg-error_subtle text-error_dark" : ""}`}
                             placeholder="Enter your email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            {...register("email")}
                         />
+                        {errors && <p className="text-red-500">{errors}</p>}
                     </div>
-                    {error && <p className="text-red-500">{error}</p>}
                     <ButtonBlue type="submit">{loading ? <Image src={spinner} className="animate-spin"/> : "Create account"}</ButtonBlue>
+                    
+                    {error && <p className="text-red-500">{error}</p>}
                 </form>
 
                 {modalOpen && (
