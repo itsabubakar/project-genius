@@ -27,7 +27,7 @@ const nextStepIndex = progressData.findIndex(progress => new Date(progress.date)
 const Dashboard = () => {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
 
-    const { userData } = useDashboardStore();
+    const { userData, isLoading: dashboardLoader, error: dashboardError} = useDashboardStore();
     const { user, loadUserFromStorage } = useUserStore()
     const { inviteCode, setInviteCode, message, error: teamError} = useTeamStore();
     const { mutate, isLoading, error} = useJoinTeam(apiUrl);
