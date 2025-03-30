@@ -81,7 +81,7 @@ export default function UpdateProfile() {
             <label>Email address</label>
             <input
               type="email"
-              value={user?.email || ""}
+              value={user.email}
               disabled
               className="p-3 rounded-xl bg-greyscale_disabled"
             />

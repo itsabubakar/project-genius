@@ -1,14 +1,33 @@
-const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
+import { useQuery } from "@tanstack/react-query";
+import useDashboardStore from "../store/useDashboardStore";
+const fetchDashboard = async () => {
+  const token = localStorage.getItem("token"); // Get stored token
 
-export const fetchDashboard = async () => {
-    const response = await fetch(`${apiUrl}/app/dashboard`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-    });
+  const response = await fetch(`https://test.api.projectgenius.com.ng/app/dashboard`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      ...(token && { Authorization: `Bearer ${token}` }), // Add token if available
+    },
+  });
 
-    if (!response.ok) {
-        throw new Error("Failed to fetch dashboard data");
-    }
-
-    return response.json();
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  console.log(response)
+  return response.json(); // Convert response to JSON
 };
+
+const useDashboardQuery = () => {
+  const setUserData = useDashboardStore((state) => state.setUserData);
+
+  return useQuery({
+    queryKey: ["dashboard"],
+    queryFn: fetchDashboard,
+    onSuccess: (data) => {
+      setUserData(data); // Store response in Zustand
+    },
+  });
+};
+
+export default useDashboardQuery;

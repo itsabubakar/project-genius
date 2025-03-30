@@ -13,28 +13,83 @@ import Modal from "./components/modal";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Loader from "../components/loader";
-import useDashboardStore from "../store/useDashboardStore";
 import useTeamStore from "../store/joinTeamStore";
 import useModalStore from "../store/modalStore";
 import useUserStore from "../store/userStore";
 import { useQuery } from "@tanstack/react-query";
-import { fetchDashboard } from "../api/userDahsboard";
+import { create } from "zustand";
 import { useJoinTeam } from "../api/joinTeam";
+import useDashboardQuery from "../api/userDahsboard";
+import useDashboardStore from "../store/useDashboardStore";
 
 const currentDate = new Date();
 const nextStepIndex = progressData.findIndex(progress => new Date(progress.date) > currentDate);
 
+async function fetchDashboardData(userData) {
+    try {
+      const response = await fetch('/api/dashboard', { // Assuming your API route is /api/dashboard
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          // Include any necessary authorization headers, e.g., if you are using JWT:
+          // 'Authorization': `Bearer ${userData.token}`,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+      throw error; // Rethrow the error to be handled by the caller
+    }
+  }
 const Dashboard = () => {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
-
-    const { userData, isLoading: dashboardLoader, error: dashboardError} = useDashboardStore();
+    
+    const [userData, setUserData ] = useState()
+    const [ loading, setLoading ] = useState(false)
+    const [ errors, setError ] = useState("")
     const { user, loadUserFromStorage } = useUserStore()
     const { inviteCode, setInviteCode, message, error: teamError} = useTeamStore();
     const { mutate, isLoading, error} = useJoinTeam(apiUrl);
 
     const router = useRouter()
 
+    // pending zustand and query implementation
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await fetch(`${apiUrl}/app/dashboard`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
 
+                const result = await response.json();
+
+                if (response.status === 200) {
+                    console.log("API Response:", result);
+                    setUserData(result);
+                    
+                } else if (response.status === 401) {
+                    setError("Invalid login credentials");
+                } else {
+                    setError(result.message || "Something went wrong");
+                }
+            } catch (error) {
+                setError("Network error, please try again");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchUserData();
+    }, [apiUrl]);
 
     const { modalOpen, openModal, closeModal } = useModalStore()
     useEffect(() => {
@@ -42,13 +97,13 @@ const Dashboard = () => {
     }, []);
 
 
-    if (dashboardLoader) {
+    if (loading) {
         return <div className="w-full h-full flex justify-center items-center">
                     <Loader />
                 </div>;
     }
-    if (dashboardError) {
-        return <div className="text-red-500">{dashboardError}. <Link className="text-primary underline" href={'/auth'}>Login</Link> </div>;
+    if (errors) {
+        return <div className="text-red-500">{errors}. <Link className="text-primary underline" href={'/auth'}>Login</Link> </div>;
     }
 
     if (!user) {
@@ -135,9 +190,8 @@ const Dashboard = () => {
                         { user.role === "lead" ? (
                             <>
                             <p className=" text-greysca">Create a new team to lead and inspire your group</p>
-                            {userData && (
-                            <ButtonBlue onClick={handlePayment}>Create Team</ButtonBlue>
-                        )}</>
+                            {userData && (<ButtonBlue onClick={handlePayment}>Create Team</ButtonBlue>)}
+                        </>
                         ) : (
                             <>
                             <p className="">Collaborate with others by joining an existing team</p>

@@ -9,7 +9,7 @@ const joinTeam = async ({ apiUrl, inviteCode }) => {
     });
 
     const data = await res.json();
-    if (!res.ok) throw new Error(data.message || "Failed to join the team.");
+    if (!res.ok) throw new Error(res.message || "Failed to join the team.");
     return data;
 };
 
