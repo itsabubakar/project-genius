@@ -14,6 +14,7 @@ import ButtonGlass from "./ui/buttonGlass";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import slideLeft from "./motion/slideLeft";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export default function RootLayout({ children }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,7 +22,7 @@ export default function RootLayout({ children }) {
   const router = useRouter();
 
   const navClass = "hover:text-primary transition duration-300 py-6";
-
+  const [queryClient] = useState(() => new QueryClient());
   // Exclude RootLayout for admin route
   if (pathname.startsWith("/admin")) {
     return (
@@ -118,6 +119,54 @@ export default function RootLayout({ children }) {
           <body>{children}</body>
         </html>
       );
+    }
+
+    if(pathname.startsWith("/auth")) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <html>
+      <head>
+        <link rel="icon" href="public/favicon/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap"
+          rel="stylesheet"
+        />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>
+        <header
+          className="sticky top-0 py-3 px-[16px] sm:px-[32px] md:px-[40px]
+            font-outfit flex justify-between items-center bg-white z-50"
+        >
+          <Logo classname="text-xl sm:text-[28px] lg:text-2xl"/>
+
+        </header>
+        <div className="px-5 pt-8 pb-28 flex flex-col gap-8
+              sm:justify-center sm:items-center min-h-[100vh] bg-custom"
+          >
+              {children}
+          </div>
+          </body>
+        </html>
+      </QueryClientProvider>
+      )
+      
     }
 
   return (

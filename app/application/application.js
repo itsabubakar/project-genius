@@ -202,7 +202,7 @@ export default function Application(){
     
                 if (response.status === 200) {
                     setUserData(result);
-                    console.log("API response", result)
+                    console.log("API response here", result)
                 } else {
                     setError(result.message || "Something went wrong");
                 }
@@ -323,7 +323,6 @@ export default function Application(){
                                 )}
                             </div>
                         </form>
-                        
                         {userData?.team && paymentStatus === true && (
                                     
                             <div className=" flex flex-col gap-3 bg-success_subtle xs:w-full p-4">

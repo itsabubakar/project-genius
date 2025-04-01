@@ -18,6 +18,10 @@ import Modal from "../modal";
 import spinner from "../../../public/svg/spinner.svg";
 
 import faculties from "../../data/faculties";
+import useRegisterStore from "@/app/store/registerStore";
+import { useMutation } from "@tanstack/react-query";
+import createUser from "@/app/api/register";
+import useModalStore from "@/app/store/modalStore";
 
 
 // yup function for form validation
@@ -34,7 +38,7 @@ const validationSchema = yup.object().shape({
 });
 
 function Form({ currentSection, nextSection, previousSection }) {
-  const { handleSubmit, control, watch, formState: { errors }, setError, register, trigger } = useForm({
+  const { handleSubmit, control, formState: { errors }, setError, register, trigger } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
       firstName: "",
@@ -48,9 +52,8 @@ function Form({ currentSection, nextSection, previousSection }) {
       confirmPassword: "",
     }
   });
-
-  const [modalOpen, setModalOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const setUser = useRegisterStore((state) => state.setUser)
+  const { modalOpen, openModal, closeModal } = useModalStore();
 
 
   // faculties and departments data filtering
@@ -61,45 +64,25 @@ function Form({ currentSection, nextSection, previousSection }) {
     setDepartmentOptions(facultyData ? facultyData.departments : []);
   };
 
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
-
   const validateSection = async (fields) => {
     const isValid = await trigger(fields);
     if (isValid) nextSection();
   };
 
-  const onSubmit = async (data) => {
-    try {
-      setLoading(true);
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
-      const response = await fetch(`${apiUrl}/users/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-      console.log("Response from server:", result);
-
-      if (!response.ok) {
-        if (Array.isArray(result.errors)) {
-          result.errors.forEach((err) => {
-            if (err.param) setError(err.param, { type: "manual", message: err.msg });
-          });
-        } else {
-          setError("apiError", { type: "manual", message: result.message || "Something went wrong." });
-        }
-      } else {
-        openModal();
-        console.log("User finalized successfully:", result);
-      }
-    } catch (error) {
-      setError("apiError", { type: "manual", message: "Network error, please try again." });
-    }
-    finally{
-      setLoading(false);
-    }
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: createUser,
+    onSuccess: (userData) => {
+      openModal()
+      console.log("Registration Successful")
+      setUser(userData)
+    },
+    onError: (error) => {
+      console.error("Error:", error.message);
+      setError("apiError", { type: "manual", message: error.message });
+    },
+  })
+  const onSubmit = (data) => {
+    mutate(data)
   };
 
   return (
@@ -142,13 +125,13 @@ function Form({ currentSection, nextSection, previousSection }) {
             <InputField label="Confirm Password" name="confirmPassword" register={register} type="password" placeholder="Confirm your password" error={errors.confirmPassword} />
             
           </section>
-          
+          {error && <p className="text-red-400">{error}</p>}
           <div className="flex gap-4 mt-3">
           <ButtonGlass classname="w-[50%] sm:w-[50%] flex items-center justify-center gap-2" onClick={previousSection}>
             <Image src={Previous} alt="previous"/> Previous
           </ButtonGlass>
-          <ButtonBlue classname="active:bg-greyscale_subtitle w-[50%] sm:w-[50%] flex justify-center" type="submit">
-            {loading ? <Image src={spinner} className="animate-spin"/> : "Create account"}
+          <ButtonBlue disabled={isPending} classname="active:bg-greyscale_subtitle w-[50%] sm:w-[50%] flex justify-center" type="submit">
+            {isPending ? <Image src={spinner} className="animate-spin" alt="Loading..." /> : "Create account"}
           </ButtonBlue>
         </div>
         </>

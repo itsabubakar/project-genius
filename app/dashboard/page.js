@@ -7,84 +7,61 @@ import UserCard from "./components/userCard";
 import Progress from "./components/progress";
 import progressData from "../data/progressData";
 
-import spinner from "../../public/svg/spinner.svg";
-
 import Unavailable from '../../public/unavailable.png'
 import ButtonBlue from "../ui/buttonBlue";
 import Modal from "./components/modal";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Loader from "../components/loader";
+import useTeamStore from "../store/joinTeamStore";
+import useModalStore from "../store/modalStore";
+import useUserStore from "../store/userStore";
+import { useQuery } from "@tanstack/react-query";
+import { create } from "zustand";
+import { useJoinTeam } from "../api/joinTeam";
+import useDashboardQuery from "../api/userDahsboard";
+import useDashboardStore from "../store/useDashboardStore";
 
 const currentDate = new Date();
 const nextStepIndex = progressData.findIndex(progress => new Date(progress.date) > currentDate);
 
+async function fetchDashboardData(userData) {
+    try {
+      const response = await fetch('/api/dashboard', { // Assuming your API route is /api/dashboard
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          // Include any necessary authorization headers, e.g., if you are using JWT:
+          // 'Authorization': `Bearer ${userData.token}`,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+      throw error; // Rethrow the error to be handled by the caller
+    }
+  }
 const Dashboard = () => {
-    const [userData, setUserData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [user, setUser] = useState(null);
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV;
+    
+    const [userData, setUserData ] = useState()
+    const [ loading, setLoading ] = useState(false)
+    const [ errors, setError ] = useState("")
+    const { user, loadUserFromStorage } = useUserStore()
+    const { inviteCode, setInviteCode, message, error: teamError} = useTeamStore();
+    const { mutate, isLoading, error} = useJoinTeam(apiUrl);
 
-
-    const [inviteCode, setInviteCode] = useState("");
-    const [message, setMessage] = useState("");
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
     const router = useRouter()
 
-
-    const handleJoinTeam = async () => {
-        setMessage("");
-        setError("");
-    
-        if (!inviteCode) {
-            setError("Please enter a valid team code.");
-            return;
-        }
-    
-        console.log("Sending request with inviteCode:", inviteCode); // Debugging
-    
-        try {
-            const res = await fetch(`${apiUrl}/users/team`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ inviteCode }),
-            });
-            console.log("Invite Code Sent:", inviteCode);
-            console.log("Response status:", res.status); // Debugging
-            const data = await res.json();
-            console.log("Response data:", data); // Debugging
-    
-            if (res.ok) {
-                setMessage("Successfully joined the team!");
-                
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
-            } else {
-                setError(data.message || "Failed to join the team.");
-            }
-        } catch (err) {
-            setError("An error occurred. Please try again.");
-        }
-    };
-
-
-    const [modalOpen, setModalOpen] = useState(false);
-
-    const openModal = () => setModalOpen(true);
-    const closeModal = () => setModalOpen(false);
-
+    // pending zustand and query implementation
     useEffect(() => {
-        if (typeof window !== "undefined") {
-            const storedUser = localStorage.getItem("user");
-            if (storedUser) {
-                setUser(JSON.parse(storedUser));
-            }
-        }
-    }, []);
-
-    useEffect(() => {
-        const fetchUserDashboard = async () => {
+        const fetchUserData = async () => {
             try {
                 const response = await fetch(`${apiUrl}/app/dashboard`, {
                     method: "GET",
@@ -98,6 +75,7 @@ const Dashboard = () => {
                 if (response.status === 200) {
                     console.log("API Response:", result);
                     setUserData(result);
+                    
                 } else if (response.status === 401) {
                     setError("Invalid login credentials");
                 } else {
@@ -110,16 +88,22 @@ const Dashboard = () => {
             }
         };
 
-        fetchUserDashboard();
+        fetchUserData();
     }, [apiUrl]);
+
+    const { modalOpen, openModal, closeModal } = useModalStore()
+    useEffect(() => {
+        loadUserFromStorage()
+    }, []);
+
 
     if (loading) {
         return <div className="w-full h-full flex justify-center items-center">
                     <Loader />
                 </div>;
     }
-    if (error) {
-        return <div className="text-red-500">{error}. <Link className="text-primary underline" href={'/auth'}>Login</Link> </div>;
+    if (errors) {
+        return <div className="text-red-500">{errors}. <Link className="text-primary underline" href={'/auth'}>Login</Link> </div>;
     }
 
     if (!user) {
@@ -206,9 +190,8 @@ const Dashboard = () => {
                         { user.role === "lead" ? (
                             <>
                             <p className=" text-greysca">Create a new team to lead and inspire your group</p>
-                            {userData && (
-                            <ButtonBlue onClick={handlePayment}>Create Team</ButtonBlue>
-                        )}</>
+                            {userData && (<ButtonBlue onClick={handlePayment}>Create Team</ButtonBlue>)}
+                        </>
                         ) : (
                             <>
                             <p className="">Collaborate with others by joining an existing team</p>
@@ -233,13 +216,13 @@ const Dashboard = () => {
             onChange={(e) => setInviteCode(e.target.value)}
         />
         <ButtonBlue classname="mx-auto w-[318px] sm:w-[240px]"
-            onClick={handleJoinTeam}
+            onClick={() => mutate()}
         >
-            Join Team
+            {isLoading ? "Joining team..." : "Join Team"}
         </ButtonBlue>
 
         {message && <p className="text-green-600 mt-4">{message}</p>}
-        {error && <p className="text-red-600 mt-4">{error}</p>}
+        {teamError && <p className="text-red-600 mt-4">{teamError}</p>}
     </Modal>
 )}
 

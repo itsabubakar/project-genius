@@ -4,9 +4,10 @@ import Heading from "../../components/landing_page/header";
 import ButtonBlue from "../../ui/buttonBlue";
 import AuthLayout from "../auth-components/layout";
 import Modal from "../modal";
+import useModalStore from "@/app/store/modalStore";
 
 export default function Verify() {
-    const [modalOpen, setModalOpen] = useState(false);
+    const {modalOpen, openModal, closeModal } = useModalStore()
     const [loading, setLoading] = useState(false);
     const [token, setToken] = useState(null);
     const [newPassword, setNewPassword] = useState("");
@@ -110,7 +111,7 @@ export default function Verify() {
                     <Modal
                         heading={"Password Updated"}
                         subHeading={"Your password has been successfully updated. Log in to continue."}
-                        modalClose={() => setModalOpen(false)}
+                        modalClose={closeModal}
                     >
                         <ButtonBlue classname={"mx-auto md:w-[264px] lg:w-[164px]"}>
                             Login

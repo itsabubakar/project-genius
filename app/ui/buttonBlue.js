@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 
-export default function ButtonBlue({children, classname, onClick}) {
+export default function ButtonBlue({children, classname, onClick, disabled}) {
     return (
-            <button
+            <button disabled={disabled}
                 className={`inter text-greyscale_surface_subtle px-[20px] py-[12px]
                     w-[330px] sm:w-[163px] rounded-full block text-center
                     transition duration-500 bg-primary
