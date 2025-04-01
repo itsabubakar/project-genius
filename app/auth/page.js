@@ -1,10 +1,8 @@
-"use client";
+"use client"
 import Heading from "../components/landing_page/header";
 import ButtonBlue from "../ui/buttonBlue";
 import ButtonGlass from "../ui/buttonGlass";
 import AuthLayout from "./auth-components/layout";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
@@ -13,13 +11,12 @@ import Image from "next/image";
 import * as yup from "yup"
 import spinner from "../../public/svg/spinner.svg";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { motion, AnimatePresence} from "framer-motion"
+import { motion } from "framer-motion"
 import slideUp from "../motion/slideUp";
-import useLoginStore from "../store/loginStore";
 import { useLogin } from "../api/login";
 
 // Zod schema for validation
-export const loginSchema = yup.object().shape({
+const loginSchema = yup.object().shape({
 	email: yup.string().email("Invalid email").required("Please enter a valid email address"),
 	password: yup.string().min(8, "Password must be at least 8 characters")
 });

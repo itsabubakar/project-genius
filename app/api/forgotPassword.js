@@ -1,24 +1,19 @@
-import { create } from "zustand";
+const forgotPassword = async (email, apiUrl) => {
+    if (!email) throw new Error("Email is required");
 
-const ForgotPassword = async ({ email, apiUrl }) => {
+    const res = await fetch(`${apiUrl}/auth/reset`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+    });
 
-    if (!email) {
-        setError("Email is required");
-        return;
-        }
+    const data = await res.json();
 
-        const res = await fetch(`${apiUrl}/auth/reset`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email }),
-        });
-        
-        const result = await res.json()
-        if (!res.ok) {
-            const errorData = await res.json();
-            throw new Error(errorData.error || "Failed to send reset request");
-        }
-        return result
-}
+    if (!res.ok) {
+        throw new Error(data.error || "Failed to send reset request");
+    }
 
-export default ForgotPassword
+    return data;
+};
+
+export default forgotPassword

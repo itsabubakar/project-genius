@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 const useForgotStore = create((set) => ({
-    email: null,
-    setEmail: (email) => set({ email })
-}))
+    email: "",
+    setEmail: (email) => set({ email }),
+}));
 
-export default useForgotStore
+export default useForgotStore;

@@ -1,9 +1,11 @@
 import { create } from "zustand";
 
 export const loginStore = create((set) => ({
-    user: JSON.parse(localStorage.getItem("user")),
+    user: typeof window !== "undefined" ? JSON.parse(localStorage.getItem("user")) : null,
     setUser: (user) => {
         set({ user });
-        localStorage.setItem("user", JSON.stringify(user));
+        if (typeof window !== "undefined") {
+            localStorage.setItem("user", JSON.stringify(user));
+        }
     },
 }));
