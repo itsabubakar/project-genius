@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Logo from "../ui/logo";
 import Footer from "../footer";
+import Rank from "./rank";
 
 function Layout({ children }) {
   const [activeTab, setActiveTab] = useState("overview");
@@ -133,6 +134,18 @@ function Layout({ children }) {
                 Dashboard
               </li>
             </ul>
+            <ul className="flex w-full flex-col  gap-8">
+              <li
+                onClick={() => handleTab("teams")}
+                className={`${isActive(
+                  "teams"
+                )} h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
+                `}
+              >
+                <Image src={isActive("teams") ? overview : overviewBlack} />{" "}
+                Dashboard
+              </li>
+            </ul>
 
             <hr className="" />
             <button
@@ -179,7 +192,8 @@ function Layout({ children }) {
         <div className="flex-1 flex flex-col">
           {/* Content */}
           <main className="flex-1 px-4 md:px-6 py-3 bg-greyscale_background_light">
-          {children}
+            {activeTab === "overview" && children}
+            {activeTab === "teams" && <Rank />}
           </main>
         </div>
       </div>

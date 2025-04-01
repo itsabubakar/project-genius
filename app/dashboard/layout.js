@@ -19,7 +19,7 @@ import Help from "./sections/help";
 import UpdateProfile from "./sections/updateProfile";
 import Footer from "../footer";
 import { useRouter } from "next/navigation";
-import Rank from "./sections/rank";
+import Rank from "../admin/rank";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import pageTransition from "../motion/pageTransition";
