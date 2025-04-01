@@ -27,15 +27,17 @@ module.exports = {
         greyscale_subtitle: "#4F5569", // lighter shade of gray
         greyscale_border: "#A2A7B9",
         greyscale_disabled: "#D0D3DC",
-
         greyscale_background_light: "#FEFEFE",
+
         error_dark: "#A70C0C", // red
         error_subtle: "#FEECEC",
-
+        error_light: "#F78888",
+        
         success: '#1AAE64',
         success_dark: "#106A3D", //green
         success_border: '#CAF7E0',
         success_subtle: "#E4FBF0",
+        success_light: "#5FE7A3",
 
         warning: '#F8D677',
       },

@@ -23,8 +23,6 @@ function Layout({ children }) {
   const [user, setUser] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
-  const [userData, setUserData] = useState(null);
-
   
   const apiUrl = process.env.NEXT_PUBLIC_API_URL_DEV
   useEffect(() => {
@@ -125,57 +123,18 @@ function Layout({ children }) {
           <nav className="flex flex-col w-full gap-8 cursor-pointer">
             <ul className="flex w-full flex-col  gap-8">
               <li
-                onClick={() => handleTab("overview")}
+                onClick={() => handleTab("dashboard")}
                 className={`${isActive(
-                  "overview"
+                  "dashboard"
                 )} h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
                 `}
               >
-                <Image src={isActive("overview") ? overview : overviewBlack} />{" "}
-                Overview
-              </li>
-              <li
-                //onClick={() => handleTab("rank")}
-                className={`text-greyscale_disabled h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
-                `}
-              >
-                <Image
-                  src={isActive("rank") ? rank : rankBlack}
-                  className="text-primary"
-                />
-                Rank and Progress
-              </li>
-              <li
-                className={`${isActive(
-                  "update-profile"
-                )} text-greyscale_disabled h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
-                `}
-              >
-                <Image
-                  src={isActive("update-profile") ? profile : profileBlack}
-                />{" "}
-                Update profile
-              </li>
-              <li
-                onClick={() => handleTab("help")}
-                className={`${isActive(
-                  "help"
-                )} h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center `}
-              >
-                <Image src={isActive("help") ? help : helpBlack} />
-                Find help
+                <Image src={isActive("dashboard") ? overview : overviewBlack} />{" "}
+                Dashboard
               </li>
             </ul>
 
             <hr className="" />
-            {userData?.team && user.role === 'lead' (
-
-              <Link href="/application"
-                className="h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center"
-                ><FaWpforms size={24}/>
-                  Application
-              </Link>
-              )}
             <button
               onClick={handleLogout}
               className="h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center"
@@ -204,44 +163,8 @@ function Layout({ children }) {
                   />{" "}
                   Overview
                 </li>
-                <li
-                  className={` text-greyscale_disabled  h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center`}
-                >
-                  <Image alt="icon" src={isActive("rank") ? rank : rankBlack} /> Rank and
-                  Progress
-                </li>
-                <li
-                  className={`${isActive(
-                    "update-profile"
-                  )} text-greyscale_disabled h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center`}
-                >
-                  <Image
-                    src={isActive("update-profile") ? profile : profileBlack}
-                  />{" "}
-                  Update profile
-                </li>
-                <li
-                  onClick={() => {
-                    handleTab("help");
-                    setMenuOpen(!menuOpen);
-                  }}
-                  className={`${isActive(
-                    "help"
-                  )} h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center`}
-                >
-                  <Image alt="icon" src={isActive("help") ? help : helpBlack} /> Find help
-                </li>
               </ul>
-              <hr /> 
-              {userData.team && user.role === 'lead' && (
-                <Link 
-                  href="/application" 
-                  className="h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center"
-                >
-                  <FaWpforms size={24} />
-                  Application
-                </Link>
-              )}
+              <hr />
               <button
                 onClick={handleLogout}
                 className="h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center"
@@ -255,11 +178,8 @@ function Layout({ children }) {
         {/* Main content */}
         <div className="flex-1 flex flex-col">
           {/* Content */}
-          <main className="flex-1 px-4 py-6 md:px-6 lg:p-8 bg-greyscale_background_light">
-          {/*  {activeTab === "overview" && children}
-            {activeTab === "help" && <Help />}
-            {activeTab === "rank" && <Rank />}
-            {activeTab === "update-profile" && <UpdateProfile />}}*/}
+          <main className="flex-1 px-4 md:px-6 py-3 bg-greyscale_background_light">
+          {children}
           </main>
         </div>
       </div>
