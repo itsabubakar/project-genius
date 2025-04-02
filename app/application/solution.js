@@ -67,7 +67,7 @@ const SolutionForm = ({ disabled }) => {
     
 
     const errorClass ="border-error_dark border-2 bg-error_subtle focus:outline-error_dark" //error class mod
-    const successClass = "focus:outline-primary" //success class mod
+    const successClass = "" //success class mod
 
     return (
         <form onSubmit={handleSubmit(handleSolutionSubmit)} className="flex flex-col gap-2">
