@@ -334,7 +334,7 @@ export default function Application(){
 
 
                         <SolutionForm 
-                            disabled={userData ? false : true}
+                            disabled={true}
                         />
                     </div>
 
