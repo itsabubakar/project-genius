@@ -8,9 +8,9 @@ import Loader from "../components/loader";
 
 export default function Page() {
     return (
-        <Suspense fallback={<div className="w-full h-full flex justify-center items-center">
-            <Loader />
-        </div>}
+        <Suspense fallback={<div className=" h-[85vh] flex justify-center items-center">
+                                <Image src={spinner} className="w-16 h-16 animate-spin" alt="Loading" />
+                            </div>}
         >
             <Application />
         </Suspense>
