@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const Loader = () => {
+function Loader() {
     return (
         <div className="grid place-content-cente px-4 py-24">
         <BarLoader />
