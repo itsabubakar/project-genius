@@ -14,9 +14,9 @@ import { useRouter } from "next/navigation";
 
 const solutionSchema = yup.object().shape({
     title: yup.string().required("Solution title is required"),
-    category: yup.string().required("Please select a category"),
-    problem: yup.string().min(50, "Problem description must be at least 50 characters").required("Problem is required"),
-    solution: yup.string().min(50, "Solution must be at least 50 characters").required("Solution is required"),
+    video: yup.string().required("Please include a video link"),
+    problem: yup.string().min(15, "Problem description must be at least 15 characters").required("Problem is required"),
+    solution: yup.string().min(15, "Solution must be at least 15 characters").required("Solution is required"),
 });
 
 const SolutionForm = ({ disabled }) => {
@@ -92,25 +92,16 @@ const SolutionForm = ({ disabled }) => {
                         error={errors.title}
                         disabled={disabled}
                     />
-
-                    <div className="flex flex-col gap-2">
-                        <label>Category</label>
-                        <div className={`w-full lg:w-[100%] md:w-[360px] border focus:outline-primary p-2 rounded-md px-4 py-2 text-greyscale_text flex ${disabled === true ? 'bg-greyscale_disabled' : 'bg-greyscale_surface_subtle'} ${errors.category ? errorClass : successClass}`}>
-                            <select
-                                disabled={disabled}
-                                {...register("category")}
-                                className={`  w-full bg-transparent focus:outline-none h-full text-greyscale_text appearance-none`}
-                            >
-                                <option value="">Select your solution category</option>
-                                <option value="health">Health</option>
-                                <option value="finance">Finance</option>
-                                <option value="education">Education</option>
-                            </select>
-                            <RiArrowDropDownLine className="w-5 h-5" color="#8990A6" />
-                        </div>
-                        {errors.category && <p className="text-red-500">{errors.category.message}</p>}
-                    </div>
-
+                    <InputField
+                        label="Video Pitch URL"
+                        name="title"
+                        type="text"
+                        className={`${errors.video ? errorClass : successClass}`}
+                        placeholder="Enter solution title"
+                        register={register}
+                        error={errors.title}
+                        disabled={disabled}
+                    />
                     <div>
                         <Textarea
                             label="Problem Addressed"
@@ -139,35 +130,36 @@ const SolutionForm = ({ disabled }) => {
 
             </div>
             <div className="sm:w-[701.6px] md:w-[821.6px] flex flex-col gap-4 ">
-                                        <h3 className="text-2xl text-greyscale_title">Mode of Submission</h3>
-            
-                                        <div className="p-4 bg-primary_subtle flex flex-col gap-4 rounded-xl">
-                                            <h3 className="text-2xl">Instruction</h3>
-            
-                                            <p>The event requires physical submission of the following deliverables:</p>
-                                            <div>
-                                                
-                                                <li>Pitch Deck (Slides)</li>
-                                                <li>Executive Summary for the judges</li>
-                                                <li>Prototype (to be presented at the Grand Finale)</li>
-                                                
-                                            </div>
-                                            <p>Please ensure that all materials are delivered by the specified deadline and in the appropriate format.</p>
-                                            
-                                            <div className="flex gap-3 ">
-                                            <input type="checkbox"
-                                                className="text-primary"
-                                                checked={checked}
-                                                onChange={(e) => setChecked(e.target.checked)}/>
-                                                <p className="flex text-start">I agree to Project Genius’ terms and conditions</p>
-                                            </div>
-                                            
-                                        </div>
-                                        <Button
-                                            disabled={true}
-                                            >
-                                                Submit application
-                                        </Button>
+                <h3 className="text-2xl text-greyscale_title">Mode of Submission</h3>
+
+                <div className="p-4 bg-primary_subtle flex flex-col gap-4 rounded-xl">
+                    <h3 className="text-2xl">Instruction</h3>
+
+                    <p>The event requires physical submission of the following deliverables:</p>
+                    <div>
+                        
+                        <li>Pitch Deck (Slides)</li>
+                        <li>Executive Summary for the judges</li>
+                        <li>Prototype (to be presented at the Grand Finale)</li>
+                        
+                    </div>
+                    <p>Please ensure that all materials are delivered by the specified deadline and in the appropriate format.</p>
+                    
+                    <div className="flex gap-3 ">
+                    <input type="checkbox"
+                        className="text-primary"
+                        disabled={disabled}
+                        checked={checked}
+                        onChange={(e) => setChecked(e.target.checked)}/>
+                        <p className="flex text-start">I agree to Project Genius’ terms and conditions</p>
+                    </div>
+                    
+                </div>
+                <Button
+                    disabled={!checked}
+                >
+                    Submit application
+                </Button>
                 {success && <p className="text-green-500">{success}</p>}
                 {error && <p className="text-red-500">{error}</p>}
             
