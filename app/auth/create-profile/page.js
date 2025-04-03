@@ -29,8 +29,8 @@ export default function CreateProfile() {
         <AuthLayout>
         <div className="w-fit h-fit flex flex-col justify-start md:mt-5 sm:items-center gap-4">
             <Heading
-            heading="Registration is officially closed"
-            subHeading="See you next year :("
+            heading="Join the Innovation Movement"
+            subHeading="Sign up to start your journey of creativity and collaboration."
             classname="gap-2 text-center"
             />
             <Form

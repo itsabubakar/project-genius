@@ -132,8 +132,8 @@ function Form({ currentSection, nextSection, previousSection }) {
             <Image src={Previous} alt="previous"/> Previous
           </ButtonGlass>
           <ButtonBlue
-              disabled={isDisabled}
-              classname={` bg-greyscale_disabled hover:bg-greyscale_disabled w-[50%] sm:w-[50%] flex justify-center`}
+              disabled={false}
+              classname={` w-[50%] sm:w-[50%] flex justify-center`}
               type="submit"
           >
             {isPending ? <Image src={spinner} className="animate-spin" alt="Loading..." /> : "Create account"}
