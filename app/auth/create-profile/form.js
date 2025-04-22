@@ -54,7 +54,6 @@ function Form({ currentSection, nextSection, previousSection }) {
   });
   const setUser = useRegisterStore((state) => state.setUser)
   const { modalOpen, openModal, closeModal } = useModalStore();
-  const isDisabled = true
 
 
   // faculties and departments data filtering
@@ -132,8 +131,8 @@ function Form({ currentSection, nextSection, previousSection }) {
             <Image src={Previous} alt="previous"/> Previous
           </ButtonGlass>
           <ButtonBlue
-              disabled={false}
-              classname={` w-[50%] sm:w-[50%] flex justify-center`}
+              disabled={true}
+              classname={` bg-greyscale_disabled hover:bg-greyscale_disabled w-[50%] sm:w-[50%] flex justify-center`}
               type="submit"
           >
             {isPending ? <Image src={spinner} className="animate-spin" alt="Loading..." /> : "Create account"}
