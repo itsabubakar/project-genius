@@ -238,7 +238,7 @@ export default function Application(){
                 
                 <div className={`${!popUp ? 'hidden': 'flex'} items-center gap-4 bg-success_subtle w-full rounded-2xl p-4 `}>
                     <div className="p-3 w-fit h-fit border-8 rounded-full border-success_border">
-                        <Image src={tick} width={40} height={40} />
+                        <Image src={tick} width={40} alt="tick" height={40} />
                     </div>
                     
                     <div className="flex flex-col gap-2">
@@ -249,24 +249,15 @@ export default function Application(){
                     <div on className="ml-auto" onClick={hidePopUp}>
                         <Image src={cancel} alt="Cancel Icon" width={40} height={40} />
                     </div>
-
-
-                
                 </div>
     
             ) :
             (
-                
-                
                 <div className={`${!popUp ? 'hidden': 'flex'} px-5 py-4 md:px-20 items-center gap-4 bg-primary_subtle w-full rounded-2xl p-4 `}>
-                    
                     <div className="flex flex-col gap-2 items-center text-center">
                         <p className="inter font-normal">To participate in the contest, a registration fee of 5,000 naira is required. Complete the payment process to proceed with the application</p>
                         <ButtonBlue onClick={handlePayment} classname='w-full md:w-[240px]'>Proceed to payment</ButtonBlue>
                     </div>
-
-
-                
                 </div>
             )}
         
@@ -308,7 +299,8 @@ export default function Application(){
                                         {...register("teamName")}
                                         className={`${errors.teamName ? "border-error_dark bg-error_subtle" : ""}`}
                                         placeholder={userData?.team?.team_name ?? "Enter team name"}
-                                        disabled={paymentStatus && !user.team ? false : true }
+                                        // Only enable if user has NOT created a team
+                                        disabled={!!userData?.team}
                                     />
                                         {inviteCode && <p>Invite Code: {inviteCode}</p>}
                                         {errors.teamName && <p className="text-red-500">{errors.teamName.message}</p>}
@@ -317,8 +309,13 @@ export default function Application(){
                                 {paymentStatus && (
                                     
                                     <div className="w-full">
-                                        
-                                        <ButtonBlue classname={"md:w-[395px] text-black w-[100%] xs:w-full sm:w-[335px] ml-auto"}>{loading ? <Image className="animate-spin mx-auto" src={spinner}/> : 'Create team code'}</ButtonBlue>
+                                        <ButtonBlue 
+                                            classname={"md:w-[395px] text-black w-[100%] xs:w-full sm:w-[335px] ml-auto"}
+                                            // Only enable if user has NOT created a team
+                                            disabled={!!userData?.team}
+                                        >
+                                            {loading ? <Image className="animate-spin mx-auto" src={spinner}/> : 'Create team code'}
+                                        </ButtonBlue>
                                     </div>
                                 )}
                             </div>
@@ -334,7 +331,7 @@ export default function Application(){
 
 
                         <SolutionForm 
-                            disabled={userData ? false : true}
+                            disabled={userData?.team ? false : true}
                         />
                     </div>
 
