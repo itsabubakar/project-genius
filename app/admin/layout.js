@@ -124,26 +124,26 @@ function Layout({ children }) {
           <nav className="flex flex-col w-full gap-8 cursor-pointer">
             <ul className="flex w-full flex-col  gap-8">
               <li
-                onClick={() => handleTab("dashboard")}
+                onClick={() => handleTab("overview")}
                 className={`${isActive(
                   "dashboard"
                 )} h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
                 `}
               >
-                <Image src={isActive("dashboard") ? overview : overviewBlack} />{" "}
+                <Image src={isActive("overview") ? overview : overviewBlack} />{" "}
                 Dashboard
               </li>
             </ul>
             <ul className="flex w-full flex-col  gap-8">
               <li
-                onClick={() => handleTab("teams")}
+                onClick={() => handleTab("ranks")}
                 className={`${isActive(
-                  "teams"
+                  "ranks"
                 )} h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
                 `}
               >
-                <Image src={isActive("teams") ? overview : overviewBlack} />{" "}
-                Dashboard
+                <Image src={isActive("ranks") ? overview : overviewBlack} />{" "}
+                Teams
               </li>
             </ul>
 
@@ -193,7 +193,7 @@ function Layout({ children }) {
           {/* Content */}
           <main className="flex-1 px-4 md:px-6 py-3 bg-greyscale_background_light">
             {activeTab === "overview" && children}
-            {activeTab === "teams" && <Rank />}
+            {activeTab === "ranks" && <Rank />}
           </main>
         </div>
       </div>

@@ -10,6 +10,9 @@ import TableRow from "./components/tableItem";
 import slideLeft from "../motion/slideLeft";
 import pageTransition from "../motion/pageTransition";
 import { useState } from "react";
+import Image from "next/image";
+import teamElement from "../../public/svg/team_element.svg";
+import { TeamModal } from "../modals/adminTeam";
 
 export default function Rank() {
     const [selectedTeam, setSelectedTeam] = useState(null);
@@ -68,10 +71,9 @@ export default function Rank() {
 
                 {/* Header */}
                 <thead>
-                    <tr className="flex gap-2 px-4 py-2 text-sm text-greyscale_text">
+                    <tr className="flex gap-4 px-1 py-2 text-sm text-greyscale_text">
                         <th className="text-start font-normal">RANK</th>
-                        <th className="text-start font-normal">TEAM NAME</th>
-                        <th className="text-start font-normal ml-auto">POINTS</th>
+                        <th className="text-start font-normal">TEAM NAME & POINTS</th>
                     </tr>
                 </thead>
                 <tbody className="inter flex flex-col gap-2">
@@ -90,27 +92,7 @@ export default function Rank() {
                 
             {modalOpen && (
                     <Backdrop onClose={closeModal}>
-                        <motion.div
-                            initial="initial"
-                            animate="animate"
-                            exit="exit"
-                            variants={slideLeft}
-                            transition={pageTransition}
-                            onClick={(e) => e.stopPropagation()}
-                            className="px-6 py-8 flex flex-col gap-2 mx-5 rounded-2xl text-black bg-greyscale_background_light text-center w-[343px] md:w-[408px] md:text-start"
-                        >
-                            <p>Edit {selectedTeam.teamName}&apos;s score</p>
-                            <input
-                                className="outline-none bg-greyscale_surface_subtle py-3 px-4"
-                                placeholder="Enter team's score"
-                                value={editedScore}
-                                onChange={(e) => setEditedScore(e.target.value)}
-                            />
-                            <div className="flex flex-col md:flex-row gap-3 w-full">
-                                <ButtonGlass onClick={closeModal} classname={"w-full sm:w-full lg:w-full text-greyscale_text border-greyscale_text"}>Cancel</ButtonGlass>
-                                <ButtonBlue onClick={handleSave} classname={"w-full sm:w-full lg:w-full"}>Save</ButtonBlue>
-                            </div>
-                        </motion.div>
+                        <TeamModal selectedTeam={selectedTeam.teamName} />
                     </Backdrop>
             )}
             </AnimatePresence>
