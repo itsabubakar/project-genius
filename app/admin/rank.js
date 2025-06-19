@@ -11,13 +11,14 @@ import slideLeft from "../motion/slideLeft";
 import pageTransition from "../motion/pageTransition";
 import { useState } from "react";
 import Image from "next/image";
-import teamElement from "../../public/svg/team_element.svg";
 import { TeamModal } from "../modals/adminTeam";
+import { TeamScoreModal } from "./modals/teamScore";
 
 export default function Rank() {
     const [selectedTeam, setSelectedTeam] = useState(null);
     const [editedScore, setEditedScore] = useState('');
     const [modalOpen, setModalOpen] = useState(false)
+    const { modalOpen: isModalOpen, openModal: openModalStore, closeModal: closeModalStore } = useModalStore();
     const [teams, setTeams] = useState([
         { position: 1, teamName: "Tech Titans", points: 70 },
         { position: 2, teamName: "Code Warriors", points: 69 },
@@ -92,7 +93,17 @@ export default function Rank() {
                 
             {modalOpen && (
                     <Backdrop onClose={closeModal}>
-                        <TeamModal selectedTeam={selectedTeam.teamName} />
+                        <TeamModal selectedTeam={selectedTeam.teamName} openEdit={openModalStore}/>
+                        {isModalOpen && (
+                            <TeamScoreModal selectedTeam={selectedTeam}
+                                isOpen={isModalOpen}
+                                onChange={(e) => setEditedScore(e.target.value)}
+                                closeModal={closeModalStore}
+                                handleSave={handleSave}
+                                editedScore={editedScore}
+                                setEditedScore={setEditedScore}
+                            />
+                        )}
                     </Backdrop>
             )}
             </AnimatePresence>
