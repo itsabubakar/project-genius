@@ -9,7 +9,7 @@ export const TeamScoreModal = ({ selectedTeam, onChange, isOpen, closeModal, han
         <Modal
             isOpen={isOpen}
             onClose={closeModal}
-            className="p-6 md:p-6 lg:p-6 md:w-[400px] lg:w-[400px] h-fit flex flex-col gap-8 rounded-2xl text-black bg-greyscale_background_light text-center md:text-start"
+            className="p-4 md:p-4 lg:p-4 md:w-[400px] lg:w-[400px] h-fit flex flex-col gap-8 rounded-2xl text-black bg-greyscale_background_light text-center md:text-start"
         >
             <div className="flex flex-col gap-5">
                 <div className="flex items-center justify-between">

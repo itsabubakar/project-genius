@@ -13,6 +13,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { TeamModal } from "../modals/adminTeam";
 import { TeamScoreModal } from "./modals/teamScore";
+import { TeamMembersModal } from "./modals/teamModal";
 
 export default function Rank() {
     const [selectedTeam, setSelectedTeam] = useState(null);
@@ -95,14 +96,47 @@ export default function Rank() {
                     <Backdrop onClose={closeModal}>
                         <TeamModal selectedTeam={selectedTeam.teamName} openEdit={openModalStore}/>
                         {isModalOpen && (
-                            <TeamScoreModal selectedTeam={selectedTeam}
-                                isOpen={isModalOpen}
-                                onChange={(e) => setEditedScore(e.target.value)}
-                                closeModal={closeModalStore}
-                                handleSave={handleSave}
-                                editedScore={editedScore}
-                                setEditedScore={setEditedScore}
-                            />
+                            <div
+                                className="px-4 pt-28 w-full bg-[#00000011] fixed inset-0 flex items-center justify-center z-50"
+                                onClick={(e) => e.stopPropagation()}
+                                >
+                                    <div className="w-full bg-white md:w-fit p-4 flex flex-col gap-6 md:gap-8 rounded-2xl"
+                                        >
+                                            <h3 className="text-3xl font-semibold flex justify-between" >{selectedTeam.teamName}<span onClick={closeModalStore}>X</span> </h3>
+                                            
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <TeamMembersModal
+                                                    teamName={selectedTeam.teamName}
+                                                    teamMember="John Doe"
+                                                    memberRole="Developer"
+                                                    memeberEmail="jdvance@gmail.com"
+                                                    memberDept={"Engineering"}
+                                                />
+                                                <TeamMembersModal
+                                                    teamName={selectedTeam.teamName}
+                                                    teamMember="John Doe"
+                                                    memberRole="Developer"
+                                                    memeberEmail="jdvance@gmail.com"
+                                                    memberDept={"Engineering"}
+                                                />
+                                                <TeamMembersModal
+                                                    teamName={selectedTeam.teamName}
+                                                    teamMember="John Doe"
+                                                    memberRole="Developer"
+                                                    memeberEmail="jdvance@gmail.com"
+                                                    memberDept={"Engineering"}
+                                                />
+                                            </div>
+                                    </div>
+                            </div>
+                            // <TeamScoreModal selectedTeam={selectedTeam}
+                            //     isOpen={isModalOpen}
+                            //     onChange={(e) => setEditedScore(e.target.value)}
+                            //     closeModal={closeModalStore}
+                            //     handleSave={handleSave}
+                            //     editedScore={editedScore}
+                            //     setEditedScore={setEditedScore}
+                            // />
                         )}
                     </Backdrop>
             )}
