@@ -3,13 +3,18 @@ import ButtonBlue from "@/app/ui/buttonBlue";
 import ButtonGlass from "@/app/ui/buttonGlass";
 import Image from "next/image";
 import list from "../../../public/icons/list.svg";
+import { motion } from "framer-motion";
 
 export const TeamScoreModal = ({ selectedTeam, onChange, isOpen, closeModal, handleSave, editedScore}) => {
     return (
-        <Modal
+        <motion.div
             isOpen={isOpen}
             onClose={closeModal}
-            className="p-4 md:p-4 lg:p-4 md:w-[400px] lg:w-[400px] h-fit flex flex-col gap-8 rounded-2xl text-black bg-greyscale_background_light text-center md:text-start"
+                initial={{ y: 100 , opacity: 0, scale: 0.4 }}
+                animate={{ y:0, opacity: 1, scale: 1,  }}
+                transition={{ duration: 4, type: "spring", stiffness: 700, damping: 90 }}
+                exit={{ opacity: 0, scale: 0.4, y: 100 }}
+            className="lg:h-fit p-4 md:p-4 lg:p-4 md:w-[400px] lg:w-[400px] h-fit flex flex-col gap-8 rounded-2xl text-black bg-greyscale_background_light text-center md:text-start"
         >
             <div className="flex flex-col gap-5">
                 <div className="flex items-center justify-between">
@@ -35,6 +40,6 @@ export const TeamScoreModal = ({ selectedTeam, onChange, isOpen, closeModal, han
                 <ButtonGlass onClick={closeModal} classname={"w-full sm:w-full lg:w-full text-primary_dark border-primary_dark"}>Cancel</ButtonGlass>
                 <ButtonBlue onClick={handleSave} classname={"w-full sm:w-full lg:w-full"}>Save</ButtonBlue>
             </div>
-        </Modal>
+        </motion.div>
     );
 }
