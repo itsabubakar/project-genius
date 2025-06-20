@@ -6,6 +6,8 @@ import TableRow from "./tableItem"
 import useModalStore from "@/app/store/modalStore"
 import { useState } from "react"
 import ButtonGlass from "@/app/ui/buttonGlass"
+import { set } from "react-hook-form"
+import ButtonBlue from "@/app/ui/buttonBlue"
 
 export const Ranking = ({}) => {
     
@@ -15,6 +17,8 @@ export const Ranking = ({}) => {
         const { modalOpen: isModalOpen, openModal: openModalStore, closeModal: closeModalStore } = useModalStore();
         const [showTeamModal, setShowTeamModal] = useState(false);
         const [showScoreModal, setShowScoreModal] = useState(false);
+        const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
         const openTeamModal = (team) => {
             setSelectedTeam(team);
             setShowTeamModal(true);
@@ -25,6 +29,12 @@ export const Ranking = ({}) => {
             setEditedScore(team.points);
             setShowScoreModal(true);
         };
+
+        const openDeleteModal = (team) => {
+            setSelectedTeam(team);
+            setDeleteModalOpen(true)
+        }
+
         
             const [teams, setTeams] = useState([
                 { position: 1, teamName: "Tech Titans", points: 70 },
@@ -53,6 +63,7 @@ export const Ranking = ({}) => {
                         onClick={() => openModal(team)}
                         openTeamScore={() => openScoreModal(team)}
                         openTeamDetail={() => openTeamModal(team)}
+                        toRemoveTeam={() => openDeleteModal(team)}
                     />
                 ))}
                 </tbody>
@@ -112,6 +123,39 @@ export const Ranking = ({}) => {
                         editedScore={editedScore}
                         setEditedScore={setEditedScore}
                     />
+                    </Backdrop>
+                )}
+                {deleteModalOpen && selectedTeam && (
+                    <Backdrop onClose={() => setDeleteModalOpen(false)}>
+                        <motion.div
+                            className="px-6 w-full bg-[#00000011] inset-0 flex items-center justify-center z-50"
+                            onClick={(e) => e.stopPropagation()}
+                            initial={{ y: 100 , opacity: 0, scale: 0.4 }}
+                            animate={{ y:0, opacity: 1, scale: 1,  }}
+                            transition={{ duration: 4, type: "spring", stiffness: 700, damping: 90 }}
+                            exit={{ opacity: 0, scale: 0.4, y: 100 }}
+                        >
+                            <div className="w-fit sm:w-[400px] bg-white p-6 flex flex-col gap-6 md:gap-8 rounded-2xl">
+                                <h3 className="text-3xl font-semibold flex justify-between">
+                                    Delete Team
+                                    <span
+                                    onClick={() => setDeleteModalOpen(false)}
+                                    className="cursor-pointer"
+                                    >
+                                    X
+                                    </span>
+                                </h3>
+                                <p className="text-2xl">Are you sure you want to remove {selectedTeam.teamName} from this round?</p>
+                                <div className="flex gap-4">
+                                    <ButtonGlass onClick={() => setDeleteModalOpen(false)}>Cancel</ButtonGlass>
+                                    <ButtonBlue onClick={() => {
+                                        // Handle deletion logic here
+                                        setTeams(teams.filter(t => t !== selectedTeam));
+                                        setDeleteModalOpen(false);
+                                    }}>Delete</ButtonBlue>
+                                </div>
+                            </div>
+                        </motion.div>
                     </Backdrop>
                 )}
             </AnimatePresence>

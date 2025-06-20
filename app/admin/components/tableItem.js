@@ -4,7 +4,7 @@ import element from "../../../public/svg/rank_elements.svg"
 import { motion } from "framer-motion"
 import { wrapperVariants } from "@/app/motion/variants/dropdown"
 
-export default function TableRow({ position, teamName, points, onClick, openTeamScore, openTeamDetail }) {
+export default function TableRow({ position, teamName, points, toRemoveTeam, openTeamScore, openTeamDetail }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const dropdownRef = useRef(null)
 
@@ -59,6 +59,7 @@ export default function TableRow({ position, teamName, points, onClick, openTeam
                 <button onClick={toggleDropdown} className="focus:outline-none">
                     <Image src={element} alt="Menu" />
                 </button>
+                <button onClick={toRemoveTeam}>X</button>
                 
                 {isDropdownOpen && (
                     <motion.div className="absolute right-0 w-[300px] bg-white shadow-lg z-10 rounded-lg">
