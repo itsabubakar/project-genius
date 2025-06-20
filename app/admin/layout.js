@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import Logo from "../ui/logo";
 import Footer from "../footer";
 import Rank from "./rank";
+import Rounds from "./rounds";
 
 function Layout({ children }) {
   const [activeTab, setActiveTab] = useState("overview");
@@ -147,6 +148,19 @@ function Layout({ children }) {
               </li>
             </ul>
 
+            <ul className="flex w-full flex-col  gap-8">
+              <li
+                onClick={() => handleTab("rounds")}
+                className={`${isActive(
+                  "rounds"
+                )} h-11 px-4 rounded-lg py-[10px] gap-3 flex items-center
+                `}
+              >
+                <Image src={isActive("ranks") ? overview : overviewBlack} />{" "}
+                Rounds
+              </li>
+            </ul>
+
             <hr className="" />
             <button
               onClick={handleLogout}
@@ -194,6 +208,7 @@ function Layout({ children }) {
           <main className="flex-1 px-4 md:px-6 py-3 bg-greyscale_background_light">
             {activeTab === "overview" && children}
             {activeTab === "ranks" && <Rank />}
+            {activeTab === "rounds" && <Rounds />}
           </main>
         </div>
       </div>
