@@ -40,23 +40,37 @@ const SolutionForm = ({ disabled }) => {
     const handleSolutionSubmit = async (data) => {
         setError(null);
         setSuccess(null);
-    
+
         try {
             const response = await fetch(`${apiUrl}/teams/solutions`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { 
+                    "Content-Type": "application/json",
+                    // Add authorization header if needed
+                    // "Authorization": `Bearer ${token}`
+                },
                 body: JSON.stringify(data),
             });
-    
-            const responseData = await response.json().catch(() => null); // Handle cases where response is not JSON
-    
+
             if (!response.ok) {
-                const errorMessage = "Already submitted solution"|| (responseData?.error, 'f') || "Something went wrong.";
+                let errorMessage = "Something went wrong";
+                
+                // Try to get error message from response
+                try {
+                    const errorData = await response.json();
+                    errorMessage = errorData.message || errorData.error || "Already submitted solution";
+                } catch (e) {
+                    // If response isn't JSON, use status text
+                    errorMessage = response.statusText || "Submission failed";
+                }
+                
                 throw new Error(errorMessage);
             }
-    
+
+            // Handle successful response
+            const responseData = await response.json();
             setSuccess("Solution submitted successfully!");
-            console.log("Solution submitted successfully!");
+            console.log("Solution submitted successfully:", responseData);
             reset();
             router.push('/dashboard');
         } catch (err) {

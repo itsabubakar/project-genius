@@ -94,9 +94,9 @@ function Form({ currentSection, nextSection, previousSection }) {
             <InputField label="Last Name" name="lastName" register={register} placeholder="Enter your last name" error={errors.lastName} />
             <InputField label="Email" name="email" register={register} type="email" placeholder="Enter your email" error={errors.email} />
             <InputField label="Phone" name="phone" register={register} type="number" placeholder="Enter your phone number" error={errors.phone} />
-            <ButtonBlue onClick={() => validateSection(["firstName", "lastName", "email", "phone"])} classname="w-full md:w-full lg:w-full flex items-center justify-center gap-2">
+            {/* <ButtonBlue onClick={() => validateSection(["firstName", "lastName", "email", "phone"])} classname="w-full md:w-full lg:w-full flex items-center justify-center gap-2">
               Next <Image src={Next} alt="arrow"/>
-            </ButtonBlue>
+            </ButtonBlue> */}
           </section>
         )}
 
@@ -127,7 +127,7 @@ function Form({ currentSection, nextSection, previousSection }) {
           </section>
           {error && <p className="text-red-400">{error}</p>}
           <div className="flex gap-4 mt-3">
-          <ButtonGlass classname="w-[50%] sm:w-[50%] flex items-center justify-center gap-2" onClick={previousSection}>
+          {/* <ButtonGlass classname="w-[50%] sm:w-[50%] flex items-center justify-center gap-2" onClick={previousSection}>
             <Image src={Previous} alt="previous"/> Previous
           </ButtonGlass>
           <ButtonBlue
@@ -136,7 +136,7 @@ function Form({ currentSection, nextSection, previousSection }) {
               type="submit"
           >
             {isPending ? <Image src={spinner} className="animate-spin" alt="Loading..." /> : "Create account"}
-        </ButtonBlue>
+        </ButtonBlue> */}
         </div>
         </>
         )}

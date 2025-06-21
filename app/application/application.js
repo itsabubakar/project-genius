@@ -60,7 +60,6 @@ export default function Application(){
                 console.log("Payment status data:", data);
                 setPaymentStatus(data.is_paid);
             } catch (error) {
-                console.error("Error fetching payment status:", error);
                 setPaymentError("Failed to fetch payment status. Please try again later.");
             }
         };
@@ -223,8 +222,6 @@ export default function Application(){
         </div>;
     }
 
-    
-
     return (
         <section className="flex flex-col px-5 md:px-20 lg:px-[238px] my-10 sm:items-center">
             <Heading 
@@ -263,7 +260,7 @@ export default function Application(){
         
         
             
-            {user?.role === "lead" ? (
+            {!user ? (
                 <>
 
                     <div className="mt-10 h-full flex flex-col py-6 md:border rounded-xl gap-10 md:px-20 md:pt-10 ">
@@ -277,19 +274,19 @@ export default function Application(){
                                     <Input 
                                         label="Full name"
                                         type="text"
-                                        placeholder={user.firstName}
+                                        // placeholder={user.firstName}
                                         disabled={true}
                                     />
                                     <Input 
                                         label="Department"
                                         type="text"
-                                        placeholder={user.department}
+                                        // placeholder={user.department}
                                         disabled={true}
                                     />
                                     <Input 
                                         label="Email address"
                                         type="email"
-                                        placeholder={user.email}
+                                        // placeholder={user.email}
                                         disabled={true}
                                     />
                                     <div className="w-full">
@@ -331,7 +328,7 @@ export default function Application(){
 
 
                         <SolutionForm 
-                            disabled={userData?.team ? false : true}
+                            disabled={!userData?.team ? false : true}
                         />
                     </div>
 
