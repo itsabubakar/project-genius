@@ -8,16 +8,16 @@ import { MiniBoard } from "./components/miniTeamBoard";
 
 export default function Admin(){
     return(
-      <div className="flex flex-col gap-6 md:gap-[30px]">
-        <h3 className="text-3xl">Dashboard</h3>
+      <div className="flex flex-col gap-6">
+        <h3 className="text-[36px]">Dashboard</h3>
         <div className="flex flex-col sm:flex-row gap-4">
-            <div className="w-full bg-greyscale_surface_subtle px-5 py-3">
+            <div className="w-full bg-greyscale_surface_subtle rounded-xl px-5 py-3">
                 <input placeholder="Search teams by name" className="w-full bg-transparent"/>
 
             </div>
-            <button className="w-full sm:w-[161px] px-5 py-3 rounded-full bg-primary text-white">
+            {/* <button className="w-full sm:w-[161px] px-5 py-3 rounded-full bg-primary text-white">
                 export data
-            </button>
+            </button> */}
         </div>
         <section className="grid md:grid-cols-2 lg:grid-cols-4 w-full gap-8">
             <Card icon={team} count={20} description={"Teams Applied"}/>

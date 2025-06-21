@@ -73,7 +73,7 @@ export const Ranking = ({}) => {
                 {showTeamModal && selectedTeam && (
                     <Backdrop onClose={() => setShowTeamModal(false)}>
                         <motion.div
-                            className="px-4 w-full bg-[#00000011] fixed inset-0 flex items-center justify-center z-50"
+                            className="px-4 backdrop-blur-[8px] w-full bg-[#00000011] fixed inset-0 flex items-center justify-center z-50"
                             onClick={(e) => e.stopPropagation()}
                             initial={{ y: 100 , opacity: 0, scale: 0.4 }}
                             animate={{ y:0, opacity: 1, scale: 1,  }}
@@ -135,7 +135,7 @@ export const Ranking = ({}) => {
                             transition={{ duration: 4, type: "spring", stiffness: 700, damping: 90 }}
                             exit={{ opacity: 0, scale: 0.4, y: 100 }}
                         >
-                            <div className="w-fit sm:w-[400px] bg-white p-6 flex flex-col gap-6 md:gap-8 rounded-2xl">
+                            <div className="w-fit sm:w-[400px] h-[260px] bg-white p-6 flex flex-col gap-4 rounded-2xl">
                                 <h3 className="text-3xl font-semibold flex justify-between">
                                     Delete Team
                                     <span
@@ -152,7 +152,7 @@ export const Ranking = ({}) => {
                                         // Handle deletion logic here
                                         setTeams(teams.filter(t => t !== selectedTeam));
                                         setDeleteModalOpen(false);
-                                    }}>Delete</ButtonBlue>
+                                    }}>Remove</ButtonBlue>
                                 </div>
                             </div>
                         </motion.div>

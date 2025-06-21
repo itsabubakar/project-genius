@@ -43,7 +43,7 @@ export default function TableRow({ position, teamName, points, toRemoveTeam, ope
     }
 
     return (
-        <tr className="flex items-center border border-greyscale_border rounded-2xl py-4 px-2 relative">
+        <tr className="flex items-center border border-greyscale_surface_subtle rounded-2xl py-4 px-2 relative">
             {/* Rank */}
             <th className="w-12 flex justify-center mr-2">
                 <div className={`${position === 1 ? "bg-[#FFCD5F] text-[#8B4513]"
