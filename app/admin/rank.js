@@ -19,19 +19,18 @@ export default function Rank() {
     const [selectedTeam, setSelectedTeam] = useState(null);
     const [editedScore, setEditedScore] = useState('');
     const [modalOpen, setModalOpen] = useState(false)
-    const { modalOpen: isModalOpen, openModal: openModalStore, closeModal: closeModalStore } = useModalStore();
     const [showTeamModal, setShowTeamModal] = useState(false);
     const [showScoreModal, setShowScoreModal] = useState(false);
-     const openTeamModal = (team) => {
-    setSelectedTeam(team);
-    setShowTeamModal(true);
-  };
+    const openTeamModal = (team) => {
+        setSelectedTeam(team);
+        setShowTeamModal(true);
+    };
 
-  const openScoreModal = (team) => {
-    setSelectedTeam(team);
-    setEditedScore(team.points);
-    setShowScoreModal(true);
-  };
+    const openScoreModal = (team) => {
+        setSelectedTeam(team);
+        setEditedScore(team.points);
+        setShowScoreModal(true);
+    };
 
     const [teams, setTeams] = useState([
         { position: 1, teamName: "Tech Titans", points: 70 },
@@ -110,7 +109,6 @@ export default function Rank() {
                     <Backdrop onClose={() => setShowTeamModal(false)}>
                         <motion.div
                             className="px-4 w-full blur-md bg-[#00000011] fixed inset-0 flex items-center justify-center z-50"
-                            onClick={(e) => e.stopPropagation()}
                             initial={{ y: 100 , opacity: 0, scale: 0.4 }}
                             animate={{ y:0, opacity: 1, scale: 1,  }}
                             transition={{ duration: 4, type: "spring", stiffness: 700, damping: 90 }}

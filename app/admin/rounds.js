@@ -4,8 +4,20 @@ import ButtonGlass from "../ui/buttonGlass";
 import { Ranking } from "./components/ranking";
 import Button from "../ui/headerButton";
 import ButtonBlue from "../ui/buttonBlue";
+import useModalStore from "../store/modalStore";
+import Backdrop from "../modals/backdrop";
+import { motion } from "framer-motion";
+import { CheckTeam } from "./components/checkTeam";
+import { useState } from "react";
 
 export default function Rounds() {
+    const { modalOpen, openModal, closeModal } = useModalStore()
+    const [checked, setChecked] = useState(false)
+
+    const handleCheck = () => {
+        setChecked(true)
+        console.log(setChecked == true)
+    }
     return (
         <div className="flex flex-col gap-4 md:gap-[30px] lg:gap-8">
             <h1 className="text-[36px] font-bold">Rounds</h1>
@@ -17,7 +29,7 @@ export default function Rounds() {
             </section>
 
             <section className="shadow-md md:p-8 rounded-2xl">
-                <h1 className="text-[36px] font-bold text-greyscale_text">Round</h1>
+                <h1 className="text-[36px] text-greyscale_text">Round</h1>
                     {/* Add your round list component here */}
                     <div className="flex flex-col gap-8 justify-center items-center">
                         <div className="flex flex-col items-center gap-12">
@@ -28,7 +40,35 @@ export default function Rounds() {
 
                     </div>
             </section>
-            <ButtonBlue classname="sm:mx-auto w-full sm:w-[200px] md:w-[200px] lg:w-[200px]">Add Round</ButtonBlue>
+            <ButtonBlue onClick={openModal} classname="sm:mx-auto w-full sm:w-[200px] md:w-[200px] lg:w-[200px]">Add Round</ButtonBlue>
+            {modalOpen && (
+                
+                <Backdrop onClose={closeModal}>
+                    <motion.div
+                        className="w-[343px] md:w-[517px] mx-4 rounded-2xl gap-6 p-6 bg-greyscale_background_light backdrop-blur-md inset-0 flex flex-col justify-center z-50"
+                        onClick={(e) => e.stopPropagation()}
+                        initial={{ y: 100 , opacity: 0, scale: 0.4 }}
+                        animate={{ y:0, opacity: 1, scale: 1,  }}
+                        transition={{ duration: 4, type: "spring", stiffness: 700, damping: 90 }}
+                        exit={{ opacity: 0, scale: 0.4, y: 100 }}
+                    >
+                        <div className="flex flex-col gap-2">
+                            <h3 className="text-2xl font-semibold">Select Teams for this Round</h3>
+                            <p className=" text-greyscale_text">Select teams to advance to the next round. Save to apply changes.</p>
+                    
+                        </div>
+                        {
+                            <CheckTeam onClick={handleCheck} check={checked} teamName={"kkk"} points={200} />
+                        }
+                        <div className="flex flex-col sm:flex-row gap-3">
+                            
+                            <ButtonGlass onClick={closeModal} classname="w-full sm:full md:w-full">Cancel</ButtonGlass>
+                            <ButtonBlue onClick={closeModal} classname="w-full sm:full md:w-full">Confirm</ButtonBlue>
+                            
+                        </div>
+                    </motion.div>
+                </Backdrop>
+            )}
         </div>
     );
 }
