@@ -9,9 +9,12 @@ import Backdrop from "../modals/backdrop";
 import { motion } from "framer-motion";
 import { CheckTeam } from "./components/checkTeam";
 import { useState } from "react";
+import note from "../../public/icons/note.svg"
+import { useDropdownStore } from "../store/dropdownStore";
 
 export default function Rounds() {
     const { modalOpen, openModal, closeModal } = useModalStore()
+    const { isOpen, toggleDropdown, closeDropdown } = useDropdownStore()
     const [checked, setChecked] = useState(false)
 
     const handleCheck = () => {
@@ -22,7 +25,27 @@ export default function Rounds() {
         <div className="flex flex-col gap-4 md:gap-[30px] lg:gap-8">
             <h1 className="text-[36px] font-bold">Rounds</h1>
             <section className="flex flex-col gap-7 bg-white py-3 p-8 rounded-lg md:shadow-md">
-                <h2 className="text-greyscale_text text-[28px]">Round One</h2>
+                <div className="flex gap-3">
+                    <h2 className="text-greyscale_text text-[28px]">Round One</h2>
+                    <div className="w-fit h-fit rounded-lg p-2 bg-greyscale_surface_subtle">
+                        <Image src={note} alt="" className="h-fit" />
+                    </div>
+                    <div className="w-[125px]">
+                        
+                        <div onClick={toggleDropdown} className="p-2 bg-greyscale_surface_subtle">
+                            <p className="flex justify-between">Ongoing <span>\/</span></p>
+                        </div>
+                        {isOpen && (
+                            <div className="absolute z-50 bg-white shadow-md rounded-lg mt-2 w-[125px]">
+                                <ul className="flex flex-col gap-2">
+                                    <li onClick={closeDropdown} className="border-b cursor-pointer hover:bg-greyscale_surface_subtle p-2 px-4">Ongoing</li>
+                                    <li onClick={closeDropdown} className="border-b cursor-pointer hover:bg-greyscale_surface_subtle p-2 px-4">Completed</li>
+                                    <li onClick={closeDropdown} className="border-b cursor-pointer hover:bg-greyscale_surface_subtle p-2 px-4">Upcoming</li>
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                </div>
                 {/* Add your round list component here */}
                 <Ranking />
                 <ButtonGlass classname="sm:mx-auto w-full sm:w-[200px] md:w-[200px] lg:w-[200px]">Add Team</ButtonGlass>
