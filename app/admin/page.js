@@ -5,14 +5,16 @@ import eliminated from "./assets/eliminated.svg"
 import points from "./assets/points.svg"
 import { TeamRow } from "./components/teamBoard";
 import { MiniBoard } from "./components/miniTeamBoard";
+import search from "../../public/icons/search.svg";
 
 export default function Admin(){
     return(
       <div className="flex flex-col gap-6">
         <h3 className="text-[36px]">Dashboard</h3>
         <div className="flex flex-col sm:flex-row gap-4">
-            <div className="w-full bg-greyscale_surface_subtle rounded-xl px-5 py-3">
-                <input placeholder="Search teams by name" className="w-full bg-transparent"/>
+            <div className="flex justify-center gap-2 items-center w-full bg-greyscale_surface_subtle rounded-xl px-5 py-3">
+              <Image src={search} alt="Team Icon" width={20}/>
+              <input placeholder="Search teams by name" className="outline-none w-full bg-transparent"/>
 
             </div>
             {/* <button className="w-full sm:w-[161px] px-5 py-3 rounded-full bg-primary text-white">

@@ -9,7 +9,7 @@ import ButtonGlass from "@/app/ui/buttonGlass"
 import { set } from "react-hook-form"
 import ButtonBlue from "@/app/ui/buttonBlue"
 
-export const Ranking = ({}) => {
+export const Ranking = ({hideButton}) => {
     
         const [selectedTeam, setSelectedTeam] = useState(null);
         const [editedScore, setEditedScore] = useState('');
@@ -43,7 +43,7 @@ export const Ranking = ({}) => {
                 { position: 4, teamName: "Algorithm Aces", points: 40 },
             ]);
     return (
-        <div>
+        <div className="">
             <table className="w-full">
 
                 {/* Header */}
@@ -64,6 +64,7 @@ export const Ranking = ({}) => {
                         openTeamScore={() => openScoreModal(team)}
                         openTeamDetail={() => openTeamModal(team)}
                         toRemoveTeam={() => openDeleteModal(team)}
+                        hideButton={hideButton}
                     />
                 ))}
                 </tbody>

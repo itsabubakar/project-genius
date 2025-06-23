@@ -3,8 +3,9 @@ import { useState, useRef, useEffect } from "react"
 import element from "../../../public/svg/rank_elements.svg"
 import { motion } from "framer-motion"
 import { wrapperVariants } from "@/app/motion/variants/dropdown"
+import cross from "../../../public/icons/cancel.svg"
 
-export default function TableRow({ position, teamName, points, toRemoveTeam, openTeamScore, openTeamDetail }) {
+export default function TableRow({ position, teamName, points, toRemoveTeam, openTeamScore, openTeamDetail, hideButton }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const dropdownRef = useRef(null)
 
@@ -56,10 +57,13 @@ export default function TableRow({ position, teamName, points, toRemoveTeam, ope
             </th>
             <th className="flex gap-4 text-left font-medium">{teamName} <span>|</span> {points}</th>
             <th className="ml-auto font-medium mr-6 relative" ref={dropdownRef}>
-                <button onClick={toggleDropdown} className="focus:outline-none">
-                    <Image src={element} alt="Menu" />
-                </button>
-                <button onClick={toRemoveTeam}>X</button>
+                
+                <div className="flex gap-2">
+                    <button onClick={toggleDropdown} className="focus:outline-none">
+                        <Image src={element} alt="Menu" />
+                    </button>
+                    <Image className={`${hideButton === true ? "hidden" : "flex"}`} onClick={toRemoveTeam} src={cross} alt="" />
+                </div>
                 
                 {isDropdownOpen && (
                     <motion.div className="absolute right-0 w-[300px] bg-white shadow-lg z-10 rounded-lg">

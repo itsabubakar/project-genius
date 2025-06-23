@@ -23,7 +23,7 @@ export default function Rounds() {
     }
     return (
         <div className="flex flex-col gap-4 md:gap-[30px] lg:gap-8">
-            <h1 className="text-[36px] font-bold">Rounds</h1>
+            <h1 className="text-[36px]">Rounds</h1>
             <section className="flex flex-col gap-7 bg-white py-3 p-8 rounded-lg md:shadow-md">
                 <div className="flex gap-3">
                     <h2 className="text-greyscale_text text-[28px]">Round One</h2>
@@ -32,17 +32,34 @@ export default function Rounds() {
                     </div>
                     <div className="w-[125px]">
                         
-                        <div onClick={toggleDropdown} className="p-2 bg-greyscale_surface_subtle">
+                        <div onClick={toggleDropdown} className="p-2 bg-primary_subtle rounded">
                             <p className="flex justify-between">Ongoing <span>\/</span></p>
                         </div>
                         {isOpen && (
-                            <div className="absolute z-50 bg-white shadow-md rounded-lg mt-2 w-[125px]">
-                                <ul className="flex flex-col gap-2">
-                                    <li onClick={closeDropdown} className="border-b cursor-pointer hover:bg-greyscale_surface_subtle p-2 px-4">Ongoing</li>
-                                    <li onClick={closeDropdown} className="border-b cursor-pointer hover:bg-greyscale_surface_subtle p-2 px-4">Completed</li>
-                                    <li onClick={closeDropdown} className="border-b cursor-pointer hover:bg-greyscale_surface_subtle p-2 px-4">Upcoming</li>
+                            <motion.div 
+                                initial={{ opacity: 0, y: -30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                transition={{duration: 0.7}}
+                            className="absolute z-50 bg-white shadow-md rounded-lg mt-2 w-[125px]">
+                                <ul className="flex flex-col">
+                                    <motion.li
+                                initial={{ opacity: 0, y: -30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                transition={{duration: 0.3}} onClick={closeDropdown} className="border-b cursor-pointer hover:bg-greyscale_surface_subtle p-2 px-4">Ongoing</motion.li>
+                                    <motion.li
+                                initial={{ opacity: 0, y: -30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                transition={{duration: 0.6}} onClick={closeDropdown} className="border-b cursor-pointer hover:bg-greyscale_surface_subtle p-2 px-4">Completed</motion.li>
+                                    <motion.li
+                                initial={{ opacity: 0, y: -30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                transition={{duration: 0.9}} onClick={closeDropdown} className="border-b cursor-pointer hover:bg-greyscale_surface_subtle p-2 px-4">Upcoming</motion.li>
                                 </ul>
-                            </div>
+                            </motion.div>
                         )}
                     </div>
                 </div>
